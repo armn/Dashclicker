@@ -1,0 +1,35 @@
+<nb-card size="tiny">
+  <nb-card-header
+    >{{ cardTitle }}
+    <h3>{{ quantity(type) | numbers }}</h3>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="row align-items-center">
+      <div class="col">
+        <button
+          nbButton
+          status="success"
+          (click)="add(type)"
+          [disabled]="canAfford(type)"
+        >
+          Click
+        </button>
+      </div>
+      <div class="col">
+        <div class="costs">
+          <span class="text-success"
+            >+{{ next(type) | numbers }} {{ itemName }}</span
+          >
+          <div *ngIf="type == 'clicks'">
+            <span class="text-success"
+              >{{ gs.game.clicksPerSecond | numbers }} clicks/s</span
+            >
+          </div>
+          <div *ngIf="cost(type)">
+            <span class="text-danger">-{{ cost(type) | numbers }} clicks</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

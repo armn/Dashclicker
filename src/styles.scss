@@ -1,1 +1,17 @@
+@import 'themes';
+
+@import '~@nebular/theme/styles/globals';
+
+@include nb-install() {
+  @include nb-theme-global();
+}
+
+;
+
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: 'Bahnschrift';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Bahnschrift Regular'), url('./assets//fonts/BAHNSCHRIFT.woff') format('woff');
+}
