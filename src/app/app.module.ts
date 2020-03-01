@@ -8,20 +8,33 @@ import {
   NbLayoutModule,
   NbCardModule,
   NbActionsModule,
-  NbButtonModule
+  NbButtonModule,
+  NbUserModule,
+  NbListModule
 } from "@nebular/theme";
 import { NbEvaIconsModule } from "@nebular/eva-icons";
 import { AppRoutingModule } from "./app-routing.module";
 import { ClicksComponent } from "./clicks/clicks.component";
 import { ClickItemComponent } from "./clicks/click-item/click-item.component";
 import { NumbersPipe } from "./numbers.pipe";
+import { MarketComponent } from "./market/market.component";
+import { MarketItemComponent } from "./market/market-item/market-item.component";
+import { GameService } from "./game.service";
+import { TasksComponent } from "./tasks/tasks.component";
+import { AnalyticsComponent } from "./analytics/analytics.component";
+import { AnalyticsItemComponent } from './analytics/analytics-item/analytics-item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ClicksComponent,
     ClickItemComponent,
-    NumbersPipe
+    NumbersPipe,
+    MarketComponent,
+    MarketItemComponent,
+    TasksComponent,
+    AnalyticsComponent,
+    AnalyticsItemComponent
   ],
   imports: [
     BrowserModule,
@@ -31,10 +44,12 @@ import { NumbersPipe } from "./numbers.pipe";
     NbCardModule,
     NbActionsModule,
     NbButtonModule,
+    NbUserModule,
     NbEvaIconsModule,
+    NbListModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [GameService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

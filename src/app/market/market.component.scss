@@ -1,0 +1,11 @@
+@import '../../themes';
+
+nb-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.market {
+  table-layout: fixed;
+}

@@ -1,0 +1,38 @@
+@import '../../../themes';
+
+.actions {
+  button {
+    margin-left: 8px;
+    margin-bottom: 5px;
+  }
+}
+
+td {
+  vertical-align: middle;
+}
+
+.offer span {
+  padding: 6px 10px;
+  font-family: "Bahnschrift";
+
+}
+
+.visits span {
+  background: nb-theme(color-primary-100);
+}
+
+.views span {
+  background: nb-theme(color-info-100);
+}
+
+.reads span {
+  background: nb-theme(color-warning-100);
+}
+
+.shares span {
+  background: nb-theme(color-danger-100);
+}
+
+.downloads span {
+  background: nb-theme(color-success-200);
+}

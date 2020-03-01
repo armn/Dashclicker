@@ -7,41 +7,39 @@ import { GameService } from "src/app/game.service";
   styleUrls: ["./click-item.component.scss"]
 })
 export class ClickItemComponent implements OnInit {
-  @Input() type: string;
+  @Input() resource: string;
   @Input() cardTitle: string;
   @Input() itemName: string;
-  @Input() buttonName: string;
-
-  // title: string;
-  // name: string;
 
   constructor(public gs: GameService) {}
 
   ngOnInit() {}
 
-  quantity(resource: string) {
-    return this.gs.game[resource];
+  quantity() {
+    return this.gs.game[this.resource];
   }
 
-  cost(resource: string) {
-    return this.gs.game.costs[resource];
+  cost() {
+    return this.gs.game.costs[this.resource];
   }
 
-  add(item: string) {
-    this.gs.add(item);
+  add() {
+    this.gs.add(this.resource);
   }
 
-  canAfford(resource: string) {
-    return this.gs.game.clicks >= this.gs.game.costs[resource] ? false : true;
+  canAfford() {
+    return this.gs.game.clicks >= this.gs.game.costs[this.resource]
+      ? false
+      : true;
   }
 
-  next(resource: string) {
-    switch (resource) {
+  next() {
+    switch (this.resource) {
       case "value":
-        return this.gs.game.modifiers.value + this.gs.game.counts.value * 5;
+        return this.gs.game.value / 5 + this.gs.game.counts.value * 2 + 1;
 
       case "clicks":
-        return this.gs.game.value;
+        return this.gs.game.value * this.gs.game.multiplier;
 
       case "multiplier":
         return this.gs.game.multiplier;

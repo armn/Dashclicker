@@ -1,7 +1,4 @@
 import { Injectable } from "@angular/core";
-import { Game } from "./game.model";
-import { of, Observable, VirtualTimeScheduler } from "rxjs";
-
 @Injectable({
   providedIn: "root"
 })
@@ -14,7 +11,8 @@ export class GameService {
     auto: 0,
     multiplier: 1,
 
-    priceModifier: 1.05,
+    maxClicks: 0,
+    priceModifier: 1.01,
     clicksPerSecond: 0,
 
     counts: {
@@ -24,9 +22,9 @@ export class GameService {
     },
 
     modifiers: {
-      value: 1.25,
-      auto: 1.12,
-      multiplier: 1.8
+      value: 1.3,
+      auto: 1.25,
+      multiplier: 1.6
     },
 
     costs: {
@@ -35,6 +33,11 @@ export class GameService {
       auto: 100,
       multiplier: 1000
     }
+  };
+
+  public market = {
+    orderCount: 0,
+    orders: []
   };
 
   constructor() {
@@ -49,6 +52,9 @@ export class GameService {
           case "add":
             this.game.clicksPerSecond = data.clicks;
             this.game.clicks += data.clicks;
+            if (this.game.clicks >= this.game.maxClicks) {
+              this.game.maxClicks = this.game.clicks;
+            }
             break;
         }
       };
@@ -60,7 +66,6 @@ export class GameService {
       });
     } else {
       // Web workers are not supported in this environment.
-      // You should add a fallback so that your program still executes correctly.
     }
   }
 
@@ -69,21 +74,23 @@ export class GameService {
 
     switch (resource) {
       case "clicks":
-        this.game.clicks += this.game.value;
+        this.game.clicks += this.game.value * this.game.multiplier;
         break;
       case "value":
-        this.game.value +=
-          this.game.modifiers.value + this.game.counts.value * 5;
+        this.game.value += this.game.value / 5 + this.game.counts.value * 2 + 1;
         this.game.counts.value += 1;
         this.game.costs.value =
           this.game.costs.value *
-          Math.pow(this.game.modifiers.value, this.game.counts.value);
+            this.game.priceModifier *
+            Math.pow(this.game.modifiers.value, this.game.counts.value) +
+          this.game.costs.value / 10;
         break;
       case "auto":
         this.game.auto += 1;
         this.game.counts.auto += 1;
         this.game.costs.auto =
           this.game.costs.auto *
+          this.game.priceModifier *
           Math.pow(this.game.modifiers.auto, this.game.counts.auto);
         break;
       case "multiplier":
@@ -91,8 +98,13 @@ export class GameService {
         this.game.counts.multiplier += 1;
         this.game.costs.multiplier =
           this.game.costs.multiplier *
+          this.game.priceModifier *
           Math.pow(this.game.modifiers.multiplier, this.game.counts.multiplier);
         break;
+    }
+
+    if (this.game.clicks >= this.game.maxClicks) {
+      this.game.maxClicks = this.game.clicks;
     }
 
     if (resource !== "clicks") {
@@ -105,5 +117,9 @@ export class GameService {
 
       this.worker.postMessage({ ...data });
     }
+  }
+
+  remove(amount: number) {
+    this.game.clicks = this.game.clicks - amount;
   }
 }

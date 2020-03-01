@@ -1,0 +1,27 @@
+@import '../../../themes';
+
+.analytics-item {
+  padding: 6px 10px;
+  font-family: "Bahnschrift";
+  font-size: 1.5rem;
+}
+
+.Visits {
+  background: nb-theme(color-primary-100);
+}
+
+.Views {
+  background: nb-theme(color-info-100);
+}
+
+.Reads {
+  background: nb-theme(color-warning-100);
+}
+
+.Shares {
+  background: nb-theme(color-danger-100);
+}
+
+.Downloads {
+  background: nb-theme(color-success-200);
+}

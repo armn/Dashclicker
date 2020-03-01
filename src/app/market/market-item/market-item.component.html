@@ -1,0 +1,34 @@
+<td class="buyer">
+  <nb-user
+    size="large"
+    [name]="buyer.name.first + ' ' + buyer.name.last"
+    [badgeText]="relationship?.value | numbers"
+    [title]="'#' + order.id"
+    [badgeStatus]="relationship?.value > 0 ? 'success' : 'danger'"
+    badgePosition="bottom right"
+    [picture]="'./assets/images/people/' + order.person + '.jpg'"
+  >
+    >
+  </nb-user>
+</td>
+<td class="clicks">{{ order.clicks | numbers }}</td>
+<td [class]="'offer ' + order.unit">
+  <span
+    >{{ order.offer | numbers }} <small>{{ order.unit }}</small></span
+  >
+</td>
+<td class="unit">{{ order.clicks / order.offer | numbers }}</td>
+<td class="actions text-right">
+  <button nbButton status="danger" size="small" (click)="reject()">
+    Reject
+  </button>
+  <button
+    nbButton
+    status="success"
+    size="small"
+    (click)="sell()"
+    [disabled]="gs.game.clicks <= order.clicks"
+  >
+    Sell
+  </button>
+</td>

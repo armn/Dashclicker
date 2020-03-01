@@ -1,0 +1,30 @@
+<nb-card size="large" accent="success">
+  <nb-card-header
+    >Market
+    <button nbButton status="info" size="small" (click)="generateOrder()">
+      Refresh
+    </button>
+  </nb-card-header>
+  <nb-card-body>
+    <table class="market table">
+      <thead>
+        <tr>
+          <th>Buyer</th>
+          <th>Clicks</th>
+          <th>Offer</th>
+          <th>Unit cost</th>
+          <th class="text-right">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          app-market-item
+          *ngFor="let order of market.orders$ | async"
+          class="market-entry"
+          [order]="order"
+        ></tr>
+      </tbody>
+    </table>
+  </nb-card-body>
+  <!-- <nb-card-footer>By Wikipedia</nb-card-footer> -->
+</nb-card>
