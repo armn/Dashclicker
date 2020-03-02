@@ -1,6 +1,167 @@
-<div [class]="'analytics-item ' + measurement.name">
-  <span>
-    <small>{{ measurement.name }}: </small>
-    {{ measurement.amount | numbers }}
-  </span>
+<div class="analytics-row row">
+  <div [class]="'analytics-item col-sm-6 ' + analytic">
+    <span>
+      {{ measurement.amount | numbers }}
+      <small>{{ analytic }}</small>
+    </span>
+
+    <em> {{ measurement.tick | numbers }}/s </em>
+  </div>
+  <div class="produces col-sm-4">
+    <div *ngIf="analytic !== 'visits'">
+      <h5
+        [nbPopover]="produces"
+        nbPopoverTrigger="hint"
+        nbPopoverPlacement="bottom"
+      >
+        {{ measurement.generators | numbers }}
+      </h5>
+    </div>
+  </div>
+
+  <div class="analytics-actions col-sm-2">
+    <!-- <nb-toggle
+      nbTooltip="Gain automatically"
+      nbTooltipStatus="primary"
+    ></nb-toggle> -->
+    <div
+      [nbPopover]="popover"
+      nbPopoverTrigger="hint"
+      nbPopoverPlacement="bottom"
+    >
+      <button
+        nbButton
+        status="primary"
+        size="medium"
+        (click)="gain()"
+        *ngIf="analytic !== 'visits'"
+        [disabled]="buttonChecker()"
+      >
+        Buy
+      </button>
+    </div>
+  </div>
 </div>
+
+<ng-template #popover>
+  <div class="analytics-popover medium-popover">
+    <div class="row">
+      <div class="col-sm-6">
+        <ul class="costs">
+          <li>
+            <span class="subtitle-2">Cost</span>
+          </li>
+          <li
+            *ngIf="measurement.cost.visits"
+            [class]="
+              this.as.analytics.visits.amount > measurement.cost.visits
+                ? 'text-success'
+                : 'text-danger'
+            "
+          >
+            {{ measurement.cost.visits | numbers }} <small>visits</small>
+          </li>
+          <li
+            *ngIf="measurement.cost.views"
+            [class]="
+              this.as.analytics.views.amount >= measurement.cost.views
+                ? 'text-success'
+                : 'text-danger'
+            "
+          >
+            {{ measurement.cost.views | numbers }} <small>views</small>
+          </li>
+          <li
+            *ngIf="measurement.cost.reads"
+            [class]="
+              this.as.analytics.reads.amount >= measurement.cost.reads
+                ? 'text-success'
+                : 'text-danger'
+            "
+          >
+            {{ measurement.cost.reads | numbers }} <small>reads</small>
+          </li>
+          <li
+            *ngIf="measurement.cost.shares"
+            [class]="
+              this.as.analytics.shares.amount >= measurement.cost.shares
+                ? 'text-success'
+                : 'text-danger'
+            "
+          >
+            {{ measurement.cost.shares | numbers }} <small>shares</small>
+          </li>
+          <li
+            *ngIf="measurement.cost.downloads"
+            [class]="
+              this.as.analytics.downloads.amount >= measurement.cost.downloads
+                ? 'text-success'
+                : 'text-danger'
+            "
+          >
+            {{ measurement.cost.downloads | numbers }}
+            <small>downloads</small>
+          </li>
+        </ul>
+      </div>
+      <div class="col-sm-6">
+        <ul class="costs">
+          <li>
+            <span class="subtitle-2">Generate</span>
+          </li>
+          <li *ngIf="measurement.produces.downloads">
+            +{{ measurement.produces.downloads | numbers }}
+            <small>downloads/s</small>
+          </li>
+          <li *ngIf="measurement.produces.shares">
+            +{{ measurement.produces.shares | numbers }}
+            <small>shares/s</small>
+          </li>
+          <li *ngIf="measurement.produces.reads">
+            +{{ measurement.produces.reads | numbers }}
+            <small>reads/s</small>
+          </li>
+          <li *ngIf="measurement.produces.views">
+            +{{ measurement.produces.views | numbers }}
+            <small>views/s</small>
+          </li>
+          <li *ngIf="measurement.produces.visits">
+            +{{ measurement.produces.visits | numbers }}
+            <small>visits/s</small>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #produces>
+  <div class="analytics-popover">
+    <div>
+      <ul class="costs">
+        <li>
+          {{ measurement.generators * measurement.produces.visits | numbers }}
+          <small> visits/s</small>
+        </li>
+        <li *ngIf="measurement.produces.views">
+          {{ measurement.generators * measurement.produces.views | numbers }}
+          <small> views/s</small>
+        </li>
+        <li *ngIf="measurement.produces.reads">
+          {{ measurement.generators * measurement.produces.reads | numbers }}
+          <small> reads/s</small>
+        </li>
+        <li *ngIf="measurement.produces.shares">
+          {{ measurement.generators * measurement.produces.shares | numbers }}
+          <small> shares/s</small>
+        </li>
+        <li *ngIf="measurement.produces.downloads">
+          {{
+            measurement.generators * measurement.produces.downloads | numbers
+          }}
+          <small> downloads/s</small>
+        </li>
+      </ul>
+    </div>
+  </div>
+</ng-template>

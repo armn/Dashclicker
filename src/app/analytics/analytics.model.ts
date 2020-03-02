@@ -2,7 +2,7 @@ export interface AnalyticsStore {
   visits?: {
     name?: string;
     amount?: number;
-    worth?: number;
+    tick?: number;
     base?: number;
     modifier?: number;
     cost?: number;
@@ -10,28 +10,23 @@ export interface AnalyticsStore {
   views?: {
     name?: string;
     amount?: number;
-    worth?: number;
-    base?: number;
-    modifier?: number;
-    cost?: {
-      visits?: number;
-    };
-  };
-  reads?: {
-    name?: string;
-    amount?: number;
-    worth?: number;
+    tick?: number;
     base?: number;
     modifier?: number;
     cost?: {
       visits?: number;
       views?: number;
     };
+    produces?: {
+      visits?: number;
+      views?: number;
+    };
+    generators?: number;
   };
-  shares?: {
+  reads?: {
     name?: string;
     amount?: number;
-    worth?: number;
+    tick?: number;
     base?: number;
     modifier?: number;
     cost?: {
@@ -39,11 +34,17 @@ export interface AnalyticsStore {
       views?: number;
       reads?: number;
     };
+    produces?: {
+      visits?: number;
+      views?: number;
+      reads?: number;
+    };
+    generators?: number;
   };
-  downloads?: {
+  shares?: {
     name?: string;
     amount?: number;
-    worth?: number;
+    tick?: number;
     base?: number;
     modifier?: number;
     cost?: {
@@ -52,5 +53,34 @@ export interface AnalyticsStore {
       reads?: number;
       shares?: number;
     };
+    produces?: {
+      visits?: number;
+      views?: number;
+      reads?: number;
+      shares?: number;
+    };
+    generators?: number;
+  };
+  downloads?: {
+    name?: string;
+    amount?: number;
+    tick?: number;
+    base?: number;
+    modifier?: number;
+    cost?: {
+      visits?: number;
+      views?: number;
+      reads?: number;
+      shares?: number;
+      downloads?: number;
+    };
+    produces?: {
+      visits?: number;
+      views?: number;
+      reads?: number;
+      shares?: number;
+      downloads?: number;
+    };
+    generators?: number;
   };
 }

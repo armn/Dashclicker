@@ -1,27 +1,40 @@
 <nb-card status="primary" size="medium">
   <nb-card-header>Analytics</nb-card-header>
+
   <nb-list>
     <nb-list-item>
-      <app-analytics-item [measurement]="analytics.visits"></app-analytics-item>
+      <app-analytics-item
+        [measurement]="analytics.visits"
+        analytic="visits"
+      ></app-analytics-item>
     </nb-list-item>
 
     <nb-list-item>
-      <app-analytics-item [measurement]="analytics.views"></app-analytics-item>
+      <app-analytics-item
+        [measurement]="analytics.views"
+        analytic="views"
+      ></app-analytics-item>
     </nb-list-item>
 
     <nb-list-item>
-      <app-analytics-item [measurement]="analytics.reads"></app-analytics-item>
+      <app-analytics-item
+        [measurement]="analytics.reads"
+        analytic="reads"
+      ></app-analytics-item>
     </nb-list-item>
 
     <nb-list-item>
-      <app-analytics-item [measurement]="analytics.shares"></app-analytics-item>
+      <app-analytics-item
+        [measurement]="analytics.shares"
+        analytic="shares"
+      ></app-analytics-item>
     </nb-list-item>
 
     <nb-list-item>
       <app-analytics-item
         [measurement]="analytics.downloads"
+        analytic="downloads"
       ></app-analytics-item>
     </nb-list-item>
   </nb-list>
-  <nb-card-footer></nb-card-footer>
 </nb-card>

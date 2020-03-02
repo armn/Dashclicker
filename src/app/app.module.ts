@@ -10,7 +10,10 @@ import {
   NbActionsModule,
   NbButtonModule,
   NbUserModule,
-  NbListModule
+  NbListModule,
+  NbToggleModule,
+  NbPopoverModule,
+  NbTooltipModule
 } from "@nebular/theme";
 import { NbEvaIconsModule } from "@nebular/eva-icons";
 import { AppRoutingModule } from "./app-routing.module";
@@ -22,7 +25,7 @@ import { MarketItemComponent } from "./market/market-item/market-item.component"
 import { GameService } from "./game.service";
 import { TasksComponent } from "./tasks/tasks.component";
 import { AnalyticsComponent } from "./analytics/analytics.component";
-import { AnalyticsItemComponent } from './analytics/analytics-item/analytics-item.component';
+import { AnalyticsItemComponent } from "./analytics/analytics-item/analytics-item.component";
 
 @NgModule({
   declarations: [
@@ -47,6 +50,9 @@ import { AnalyticsItemComponent } from './analytics/analytics-item/analytics-ite
     NbUserModule,
     NbEvaIconsModule,
     NbListModule,
+    NbToggleModule,
+    NbPopoverModule,
+    NbTooltipModule,
     AppRoutingModule
   ],
   providers: [GameService],

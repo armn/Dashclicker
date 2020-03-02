@@ -1,27 +1,59 @@
 @import '../../../themes';
 
-.analytics-item {
+.analytics-item span {
   padding: 6px 10px;
   font-family: "Bahnschrift";
   font-size: 1.5rem;
 }
 
-.Visits {
-  background: nb-theme(color-primary-100);
+em {
+  font-style: normal;
+  display: inline-block;
+  margin-left: 5px;
 }
 
-.Views {
-  background: nb-theme(color-info-100);
+
+.analytics-row {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.Reads {
-  background: nb-theme(color-warning-100);
+.analytics-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+
 }
 
-.Shares {
-  background: nb-theme(color-danger-100);
+nb-toggle {
+  margin-bottom: -10px;
+  margin-right: 15px;
 }
 
-.Downloads {
-  background: nb-theme(color-success-200);
+.analytics-popover {
+  padding: 10px;
+}
+
+.costs {
+  margin-bottom: 0;
+  margin-left: 0;
+  padding-left: 0;
+  list-style: none;
+
+  li {
+    white-space: nowrap;
+  }
+}
+
+.produces {
+  display: flex;
+  align-items: center;
+
+  h5 {
+    margin-bottom: 0;
+    margin-right: 5px;
+  }
 }

@@ -4,7 +4,7 @@ import { AnalyticsService } from "./analytics.service";
 @Component({
   selector: "app-analytics",
   templateUrl: "./analytics.component.html",
-  styles: []
+  styleUrls: ["./analytics.component.scss"]
 })
 export class AnalyticsComponent implements OnInit {
   constructor(public as: AnalyticsService) {}

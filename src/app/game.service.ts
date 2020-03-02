@@ -1,4 +1,5 @@
 import { Injectable } from "@angular/core";
+import { AnalyticsService } from "./analytics/analytics.service";
 @Injectable({
   providedIn: "root"
 })
@@ -46,7 +47,10 @@ export class GameService {
 
   startWorker() {
     if (typeof Worker !== "undefined") {
-      this.worker = new Worker("./game.worker", { type: "module" });
+      this.worker = new Worker("./game.worker", {
+        name: "clicks",
+        type: "module"
+      });
       this.worker.onmessage = ({ data }) => {
         switch (data.message) {
           case "add":

@@ -82,14 +82,15 @@ export class MarketService {
 
     let buyer = this.ps.data.find(buyer => buyer.id == randomPerson);
 
-    const clickOffer =
-      this.getRandomInt(1, this.gs.game.clicks) * (Math.random() * 10) + 1;
+    const clickOffer = Math.ceil(
+      this.getRandomInt(1, this.gs.game.clicks) * (Math.random() * 10)
+    );
 
     const order = {
       id: this.orderCount,
       person: randomPerson,
       clicks: clickOffer,
-      offer: basePrice * clickOffer * buyer.random + 1,
+      offer: Math.ceil(basePrice * clickOffer * buyer.random),
       unit: orderType
     };
 

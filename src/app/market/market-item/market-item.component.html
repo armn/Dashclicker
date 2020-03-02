@@ -11,13 +11,17 @@
     >
   </nb-user>
 </td>
-<td class="clicks">{{ order.clicks | numbers }}</td>
+<td class="clicks">
+  <strong>{{ order.clicks | numbers }}</strong>
+</td>
 <td [class]="'offer ' + order.unit">
   <span
     >{{ order.offer | numbers }} <small>{{ order.unit }}</small></span
   >
 </td>
-<td class="unit">{{ order.clicks / order.offer | numbers }}</td>
+<td class="unit">
+  {{ order.clicks / order.offer | numbers }} <small>clicks</small>
+</td>
 <td class="actions text-right">
   <button nbButton status="danger" size="small" (click)="reject()">
     Reject
