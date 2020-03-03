@@ -96,7 +96,7 @@ export class AnalyticsService {
     },
     downloads: {
       name: "Downloads",
-      base: 0.0000001,
+      base: 0.000001,
       amount: 0,
       tick: 0,
       modifier: 1.4,

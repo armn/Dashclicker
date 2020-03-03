@@ -40,11 +40,11 @@ function analytics(message) {
     message.data.downloads.generators;
 
   const analytics = {
-    visits: Math.round(visits),
-    views: Math.round(views),
-    reads: Math.round(reads),
-    shares: Math.round(shares),
-    downloads: Math.round(downloads)
+    visits: Math.ceil(visits),
+    views: Math.ceil(views),
+    reads: Math.ceil(reads),
+    shares: Math.ceil(shares),
+    downloads: Math.ceil(downloads)
   };
 
   const result = {

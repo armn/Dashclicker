@@ -1,6 +1,25 @@
 <nb-card status="info" size="medium">
   <nb-card-header>Tasks</nb-card-header>
-  <nb-card-body
+  <nb-list>
+    <nb-list-item *ngFor="let item of availableTasks()">
+      <nb-checkbox
+        [checked]="item.completed"
+        [disabled]="available(item)"
+        [nbPopover]="popover"
+        nbPopoverTrigger="hint"
+        nbPopoverPlacement="bottom"
+        (checkedChange)="complete(item)"
+        >{{ item.title }}</nb-checkbox
+      >
+
+      <ng-template #popover>
+        <div class="custom-popover">
+          {{ item.requirements.description }}
+        </div>
+      </ng-template>
+    </nb-list-item>
+  </nb-list>
+  <nb-card-footer
     ><h5>Dashclicker</h5>
     <p class="subtitle">
       Thank you for playing the prototype!
@@ -10,14 +29,11 @@
       <a href="https://reddit.com/r/dashclicker" target="_blank"
         >r/Dashclicker</a
       >
-      for the latest updates.
-    </p>
-    <p>
+      for the latest updates. <br />
       You can also
       <a href="https://github.com/armn/dashclicker" target="_blank"
         >view the source code on GitHub.</a
       >
-    </p></nb-card-body
-  >
-  <nb-card-footer></nb-card-footer>
+    </p>
+  </nb-card-footer>
 </nb-card>

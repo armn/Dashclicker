@@ -9,3 +9,7 @@ nb-card-header {
 .market {
   table-layout: fixed;
 }
+
+.market-entry.true {
+  background: nb-theme(color-success-100);
+}

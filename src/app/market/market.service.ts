@@ -16,6 +16,7 @@ export class MarketService {
     private ps: PeopleService
   ) {}
 
+  specialDeals = false;
   public orderCount: number = 0;
   private _orders = new BehaviorSubject<Order[]>([]);
   private _relationship = new BehaviorSubject<Relationship[]>([]);
@@ -73,6 +74,12 @@ export class MarketService {
         break;
     }
 
+    let specialDealLottery = this.getRandomInt(1, 10);
+    let isSpecialDeal = false;
+    if (this.specialDeals && specialDealLottery === 10) {
+      isSpecialDeal = true;
+    }
+
     let basePrice;
     this.as.analytics$.pipe(first()).subscribe(result => {
       basePrice = result[orderType].base;
@@ -83,15 +90,20 @@ export class MarketService {
     let buyer = this.ps.data.find(buyer => buyer.id == randomPerson);
 
     const clickOffer = Math.ceil(
-      this.getRandomInt(1, this.gs.game.clicks) * (Math.random() * 10)
+      this.getRandomInt(1, this.gs.game.clicks) * (Math.random() * 5)
     );
+
+    const offer = isSpecialDeal
+      ? Math.ceil(basePrice * clickOffer * buyer.random) * 100
+      : Math.ceil(basePrice * clickOffer * buyer.random);
 
     const order = {
       id: this.orderCount,
       person: randomPerson,
       clicks: clickOffer,
-      offer: Math.ceil(basePrice * clickOffer * buyer.random),
-      unit: orderType
+      offer: offer,
+      unit: orderType,
+      special: isSpecialDeal
     };
 
     this.orders = [...this.orders, { ...order }];
@@ -135,5 +147,9 @@ export class MarketService {
     }
 
     this.orders = this.orders.filter(entry => entry.id !== order.id);
+  }
+
+  enableSpecialDeals() {
+    this.specialDeals = true;
   }
 }

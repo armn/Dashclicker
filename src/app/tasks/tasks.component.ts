@@ -1,5 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { GameService } from "../game.service";
+import { TasksService } from "./tasks.service";
+import { Task } from "./task.model";
+import { AnalyticsService } from "../analytics/analytics.service";
+import { MarketService } from "../market/market.service";
 
 @Component({
   selector: "app-tasks",
@@ -7,7 +11,33 @@ import { GameService } from "../game.service";
   styleUrls: ["./tasks.component.scss"]
 })
 export class TasksComponent implements OnInit {
-  constructor(public gs: GameService) {}
+  constructor(
+    public ts: TasksService,
+    public gs: GameService,
+    public as: AnalyticsService
+  ) {}
+
+  tasks = this.ts.tasks;
+
+  toggle() {
+    //this.checked = checked;
+  }
+
+  complete(task: Task) {
+    this.ts.complete(task);
+  }
+
+  available(task: Task) {
+    if (eval(task.requirements.evaluate)) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  availableTasks() {
+    return this.tasks.filter(task => task.completed === false);
+  }
 
   ngOnInit() {}
 }

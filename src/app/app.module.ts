@@ -13,7 +13,8 @@ import {
   NbListModule,
   NbToggleModule,
   NbPopoverModule,
-  NbTooltipModule
+  NbTooltipModule,
+  NbCheckboxModule
 } from "@nebular/theme";
 import { NbEvaIconsModule } from "@nebular/eva-icons";
 import { AppRoutingModule } from "./app-routing.module";
@@ -22,7 +23,6 @@ import { ClickItemComponent } from "./clicks/click-item/click-item.component";
 import { NumbersPipe } from "./numbers.pipe";
 import { MarketComponent } from "./market/market.component";
 import { MarketItemComponent } from "./market/market-item/market-item.component";
-import { GameService } from "./game.service";
 import { TasksComponent } from "./tasks/tasks.component";
 import { AnalyticsComponent } from "./analytics/analytics.component";
 import { AnalyticsItemComponent } from "./analytics/analytics-item/analytics-item.component";
@@ -53,9 +53,10 @@ import { AnalyticsItemComponent } from "./analytics/analytics-item/analytics-ite
     NbToggleModule,
     NbPopoverModule,
     NbTooltipModule,
+    NbCheckboxModule,
     AppRoutingModule
   ],
-  providers: [GameService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
