@@ -31,7 +31,7 @@ export class TasksService {
       title: "Decrease click value, auto clicker and multiplier cost",
       requirements: {
         evaluate: "this.as.analytics.downloads.generators >= 1",
-        description: "Requires 1 download generator"
+        description: "Requires 1 downloads generator"
       },
       completed: false,
       reward: `this.gs.game.costs = {
@@ -55,11 +55,11 @@ export class TasksService {
     this.tasks.push(task);
     task = {
       id: 3,
-      title: "Decrease generator cost, increase generated measurements",
+      title: "Decrease generator costs, increase measurement generation",
       requirements: {
         evaluate:
           "this.as.analytics.views.generator >= 5 && this.as.analytics.reads.generator >= 5 && this.as.analytics.shares.generator >= 5 && this.as.analytics.downloads.generator >= 5",
-        description: "Have at least 5 of each generator"
+        description: "Requires at least 5 of each generator"
       },
       completed: false,
       reward: `alert('This is the end of current gameplay, more features coming soon!')`
