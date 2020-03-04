@@ -54,7 +54,7 @@ export class TasksService {
         "Decrease generator costs, increase measurement generation",
         "this.as.analytics.views.generators >= 5 && this.as.analytics.reads.generators >= 5 && this.as.analytics.shares.generators >= 5 && this.as.analytics.downloads.generators >= 5",
         "Requires at least 5 of each generator",
-        "this.as.updateGenerators(1)",
+        "this.as.upgradeGenerators(1)",
         false
       ),
       new Task(
@@ -62,7 +62,7 @@ export class TasksService {
         "Decrease generator costs and increase measurement generation even more",
         "this.as.analytics.views.generators + this.as.analytics.reads.generators + this.as.analytics.shares.generators + this.as.analytics.downloads.generators >= 50",
         "Have a total of at least 50 generators",
-        "this.as.updateGenerators(2)",
+        "this.as.upgradeGenerators(2)",
         false
       )
     );

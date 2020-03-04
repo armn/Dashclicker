@@ -3,7 +3,17 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebase: {
+    apiKey: "AIzaSyDJLX3e__as5o0kuIIIIZN8t-s3JTB6iPU",
+    authDomain: "dashclicker-game.firebaseapp.com",
+    databaseURL: "https://dashclicker-game.firebaseio.com",
+    projectId: "dashclicker-game",
+    storageBucket: "dashclicker-game.appspot.com",
+    messagingSenderId: "881414126943",
+    appId: "1:881414126943:web:3a2882975e76955bf6caea",
+    measurementId: "G-X3H0CMLYF8"
+  }
 };
 
 /*

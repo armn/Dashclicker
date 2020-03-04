@@ -22,6 +22,11 @@ import {
 } from "@nebular/theme";
 import { NbEvaIconsModule } from "@nebular/eva-icons";
 import { AppRoutingModule } from "./app-routing.module";
+
+import { AngularFireModule } from "@angular/fire";
+import { AngularFirestoreModule } from "@angular/fire/firestore";
+import { AngularFireAuthModule } from "@angular/fire/auth";
+
 import { ClicksComponent } from "./clicks/clicks.component";
 import { ClickItemComponent } from "./clicks/click-item/click-item.component";
 import { NumbersPipe } from "./numbers.pipe";
@@ -34,6 +39,9 @@ import { WalletComponent } from "./wallet/wallet.component";
 import { TradingComponent } from "./trading/trading.component";
 import { ProjectsComponent } from "./projects/projects.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { OrdersComponent } from "./orders/orders.component";
+
+import { environment } from "../environments/environment";
 
 @NgModule({
   declarations: [
@@ -48,7 +56,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     AnalyticsItemComponent,
     WalletComponent,
     TradingComponent,
-    ProjectsComponent
+    ProjectsComponent,
+    OrdersComponent
   ],
   imports: [
     BrowserModule,
@@ -71,7 +80,10 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     NbSelectModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireAuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

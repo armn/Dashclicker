@@ -27,6 +27,7 @@
     <div class="row">
       <div class="col-sm-4">
         <app-wallet></app-wallet>
+        <app-orders></app-orders>
       </div>
       <div class="col-sm-8">
         <app-trading></app-trading>
@@ -36,7 +37,15 @@
     <app-projects></app-projects>
   </nb-layout-column>
 
-  <nb-layout-footer fixed>
-    <!-- Insert footer here -->
+  <nb-layout-footer>
+    <div class="footer">
+      <a href="https://ko-fi.com/S6S21H5F7" target="_blank" class="kofi">
+        <img
+          src="./assets/images/kofi.png"
+          alt="Support me on Ko-fi"
+          title="Support me on Ko-fi"
+      /></a>
+      <button nbButton>About</button>
+    </div>
   </nb-layout-footer>
 </nb-layout>

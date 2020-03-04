@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "dashclicker-game": {
+      "hosting": {
+        "dashclicker": [
+          "dashclicker-game"
+        ]
+      }
+    }
+  }
+}

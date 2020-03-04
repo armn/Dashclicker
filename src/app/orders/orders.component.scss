@@ -1,0 +1,12 @@
+.quantity {
+  margin-left: 5px;
+}
+
+.price {
+  margin-left: -25px;
+  max-width: 140px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: inline-block;
+}
