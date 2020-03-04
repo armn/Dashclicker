@@ -35,8 +35,11 @@ export class RegisterComponent implements OnInit {
       )
       .then(data => {
         this.fb.afs.doc(`users/${data.user.uid}`).set({
-          email: this.registerForm.value.email,
-          display_name: this.registerForm.value.email
+          display_name: this.registerForm.value.email.substring(
+            0,
+            this.registerForm.value.email.lastIndexOf("@")
+          ),
+          uid: data.user.uid
         });
         this.fb.isLoggedIn();
         this.showToast(

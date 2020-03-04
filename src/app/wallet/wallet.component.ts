@@ -18,12 +18,11 @@ export class WalletComponent implements OnInit {
     this.subscription = this.fb.user.subscribe(user => {
       if (user) {
         this.user = user;
-        console.log(user);
       }
     });
   }
 
-  ngOnDestry() {
+  ngOnDestroy() {
     this.subscription.unsubscribe();
   }
 }
