@@ -2,73 +2,74 @@ import { Injectable } from "@angular/core";
 import { Task } from "./task.model";
 import { GameService } from "../game.service";
 import { MarketService } from "../market/market.service";
+import { AnalyticsService } from "../analytics/analytics.service";
 
 @Injectable({
   providedIn: "root"
 })
 export class TasksService {
   tasks: Task[];
-  constructor(public gs: GameService, public ms: MarketService) {
+  constructor(
+    public gs: GameService,
+    public ms: MarketService,
+    public as: AnalyticsService
+  ) {
     this.tasks = [];
-    this.initialTasks();
+    this.addTasks();
   }
 
-  initialTasks() {
-    let task = new Task();
-    task = {
-      id: 0,
-      title: "10M clicks to give you a jump start",
-      requirements: {
-        evaluate: "true",
-        description: `A gift for playing the prototype`
-      },
-      completed: false,
-      reward: `this.gs.game.clicks += 10000000`
-    };
-    this.tasks.push(task);
-    task = {
-      id: 1,
-      title: "Decrease click value, auto clicker and multiplier cost",
-      requirements: {
-        evaluate: "this.as.analytics.downloads.generators >= 1",
-        description: "Requires 1 downloads generator"
-      },
-      completed: false,
-      reward: `this.gs.game.costs = {
-        clicks: 0,
-        value: 10,
-        auto: 100,
-        multiplier: 1000
-      }`
-    };
-    this.tasks.push(task);
-    task = {
-      id: 2,
-      title: "Enable special deals in the market",
-      requirements: {
-        evaluate: "this.as.analytics.downloads.amount >= 100",
-        description: "Requires 100 downloads"
-      },
-      completed: false,
-      reward: `this.ms.enableSpecialDeals()`
-    };
-    this.tasks.push(task);
-    task = {
-      id: 3,
-      title: "Decrease generator costs, increase measurement generation",
-      requirements: {
-        evaluate:
-          "this.as.analytics.views.generator >= 5 && this.as.analytics.reads.generator >= 5 && this.as.analytics.shares.generator >= 5 && this.as.analytics.downloads.generator >= 5",
-        description: "Requires at least 5 of each generator"
-      },
-      completed: false,
-      reward: `alert('This is the end of current gameplay, more features coming soon!')`
-    };
-    this.tasks.push(task);
+  addTasks() {
+    this.tasks.push(
+      new Task(
+        0,
+        "Get 10M clicks",
+        "true",
+        "A gift for playing the development version",
+        "this.gs.game.clicks += 10000000",
+        false
+      ),
+      new Task(
+        1,
+        "Decrease click value, auto clicker and multiplier cost",
+        "this.as.analytics.downloads.generators >= 1",
+        "Requires 1 downloads generator",
+        `this.gs.game.costs = {
+              clicks: 0,
+              value: 10,
+              auto: 100,
+              multiplier: 1000
+            }`,
+        false
+      ),
+      new Task(
+        2,
+        "Enable special deals in the market",
+        "this.as.analytics.downloads.amount >= 100",
+        "Requires 100 downloads",
+        "this.ms.enableSpecialDeals()",
+        false
+      ),
+      new Task(
+        3,
+        "Decrease generator costs, increase measurement generation",
+        "this.as.analytics.views.generators >= 5 && this.as.analytics.reads.generators >= 5 && this.as.analytics.shares.generators >= 5 && this.as.analytics.downloads.generators >= 5",
+        "Requires at least 5 of each generator",
+        "this.as.updateGenerators(1)",
+        false
+      ),
+      new Task(
+        4,
+        "Decrease generator costs and increase measurement generation even more",
+        "this.as.analytics.views.generators + this.as.analytics.reads.generators + this.as.analytics.shares.generators + this.as.analytics.downloads.generators >= 50",
+        "Have a total of at least 50 generators",
+        "this.as.updateGenerators(2)",
+        false
+      )
+    );
   }
 
   complete(task: Task) {
-    eval(task.reward);
     task.completed = true;
+    eval(task.reward);
   }
 }

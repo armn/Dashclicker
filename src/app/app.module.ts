@@ -14,7 +14,11 @@ import {
   NbToggleModule,
   NbPopoverModule,
   NbTooltipModule,
-  NbCheckboxModule
+  NbCheckboxModule,
+  NbProgressBarModule,
+  NbTabsetModule,
+  NbInputModule,
+  NbSelectModule
 } from "@nebular/theme";
 import { NbEvaIconsModule } from "@nebular/eva-icons";
 import { AppRoutingModule } from "./app-routing.module";
@@ -26,6 +30,10 @@ import { MarketItemComponent } from "./market/market-item/market-item.component"
 import { TasksComponent } from "./tasks/tasks.component";
 import { AnalyticsComponent } from "./analytics/analytics.component";
 import { AnalyticsItemComponent } from "./analytics/analytics-item/analytics-item.component";
+import { WalletComponent } from "./wallet/wallet.component";
+import { TradingComponent } from "./trading/trading.component";
+import { ProjectsComponent } from "./projects/projects.component";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -37,7 +45,10 @@ import { AnalyticsItemComponent } from "./analytics/analytics-item/analytics-ite
     MarketItemComponent,
     TasksComponent,
     AnalyticsComponent,
-    AnalyticsItemComponent
+    AnalyticsItemComponent,
+    WalletComponent,
+    TradingComponent,
+    ProjectsComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +65,13 @@ import { AnalyticsItemComponent } from "./analytics/analytics-item/analytics-ite
     NbPopoverModule,
     NbTooltipModule,
     NbCheckboxModule,
-    AppRoutingModule
+    NbProgressBarModule,
+    NbTabsetModule,
+    NbInputModule,
+    NbSelectModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

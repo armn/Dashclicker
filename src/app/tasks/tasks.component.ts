@@ -28,7 +28,7 @@ export class TasksComponent implements OnInit {
   }
 
   available(task: Task) {
-    if (eval(task.requirements.evaluate)) {
+    if (eval(task.evaluate)) {
       return false;
     } else {
       return true;

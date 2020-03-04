@@ -131,8 +131,54 @@ export class AnalyticsService {
     this._analytics.next(val);
   }
 
-  setInitialValue() {
-    this.analytics.visits;
+  updateGenerators(level: number = 1) {
+    this.analytics.views.cost = {
+      visits: 10000 / level,
+      views: 1000 / level
+    };
+    this.analytics.views.produces = {
+      visits: 100 * level,
+      views: 10 * level
+    };
+    this.analytics.reads.produces = {
+      visits: 1000 / level,
+      views: 100 / level,
+      reads: 10 / level
+    };
+    this.analytics.reads.cost = {
+      visits: 10000,
+      views: 1000,
+      reads: 100
+    };
+
+    this.analytics.shares.produces = {
+      visits: 10000 * level,
+      views: 1000 * level,
+      reads: 100 * level,
+      shares: 10 * level
+    };
+    this.analytics.shares.cost = {
+      visits: 10000 / level,
+      views: 1000 / level,
+      reads: 100 / level,
+      shares: 10 / level
+    };
+
+    this.analytics.downloads.cost = {
+      visits: 1000000 / level,
+      views: 100000 / level,
+      reads: 10000 / level,
+      shares: 1000 / level,
+      downloads: 1 / level
+    };
+    this.analytics.downloads.produces = {
+      visits: 100000 * level,
+      views: 10000 * level,
+      reads: 1000 * level,
+      shares: 100 * level,
+      downloads: 10 * level
+    };
+    this.workerUpdate();
   }
 
   workerUpdate() {
