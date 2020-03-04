@@ -18,7 +18,12 @@ import {
   NbProgressBarModule,
   NbTabsetModule,
   NbInputModule,
-  NbSelectModule
+  NbSelectModule,
+  NbDialogModule,
+  NbToastrModule,
+  NbContextMenuModule,
+  NbMenuModule,
+  NbIconModule
 } from "@nebular/theme";
 import { NbEvaIconsModule } from "@nebular/eva-icons";
 import { AppRoutingModule } from "./app-routing.module";
@@ -26,6 +31,8 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AngularFireModule } from "@angular/fire";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { AngularFireAuthModule } from "@angular/fire/auth";
+import * as firebase from "firebase";
+import "firebase/firestore";
 
 import { ClicksComponent } from "./clicks/clicks.component";
 import { ClickItemComponent } from "./clicks/click-item/click-item.component";
@@ -42,6 +49,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { OrdersComponent } from "./orders/orders.component";
 
 import { environment } from "../environments/environment";
+import { LoginComponent } from "./wallet/login/login.component";
+import { RegisterComponent } from "./wallet/register/register.component";
 
 @NgModule({
   declarations: [
@@ -57,7 +66,9 @@ import { environment } from "../environments/environment";
     WalletComponent,
     TradingComponent,
     ProjectsComponent,
-    OrdersComponent
+    OrdersComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -81,6 +92,11 @@ import { environment } from "../environments/environment";
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    NbDialogModule.forRoot(),
+    NbToastrModule.forRoot(),
+    NbContextMenuModule,
+    NbMenuModule.forRoot(),
+    NbIconModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule

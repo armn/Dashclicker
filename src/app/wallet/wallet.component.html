@@ -1,9 +1,15 @@
 <nb-card status="warning" size="small">
   <nb-card-header>Wallet</nb-card-header>
-  <nb-card-body>
+  <nb-card-body *ngIf="!this.fb.user">
     <nb-tabset fullWidth>
-      <nb-tab tabTitle="Login"> </nb-tab>
-      <nb-tab tabTitle="Register"> </nb-tab>
+      <nb-tab tabTitle="Login"> <app-login></app-login></nb-tab>
+      <nb-tab tabTitle="Register"> <app-register></app-register></nb-tab>
     </nb-tabset>
+  </nb-card-body>
+  <nb-card-body *ngIf="this.fb.user">
+    Logged in! <button nbButton (click)="wallet()">Load my wallet</button>
+    <div *ngIf="this.user">
+      {{ this.user?.display_name }}
+    </div>
   </nb-card-body>
 </nb-card>

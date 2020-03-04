@@ -1,0 +1,41 @@
+<form class="form" [formGroup]="loginForm" (submit)="login()" novalidate>
+  <input
+    nbInput
+    id="email"
+    type="email"
+    placeholder="E-mail"
+    fullWidth
+    autocomplete="username"
+    formControlName="email"
+  />
+  <input
+    nbInput
+    id="password"
+    type="password"
+    placeholder="Password"
+    autocomplete="current-password"
+    formControlName="password"
+    fullWidth
+  />
+  <div class="actions">
+    <button
+      nbButton
+      status="primary"
+      type="submit"
+      [disabled]="!loginForm.valid"
+    >
+      Login
+    </button>
+    <div class="subtitle ml-2">
+      or
+      <span
+        class="link "
+        nbTooltip="This will create a temporary account. You will be able to register afterwards."
+        >Play as a guest</span
+      >
+    </div>
+  </div>
+  <div class="subtitle-2 mt-2">
+    <span class="link">Forgot password?</span>
+  </div>
+</form>

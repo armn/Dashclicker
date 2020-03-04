@@ -5,12 +5,17 @@ import {
   AngularFirestoreDocument
 } from "@angular/fire/firestore";
 import { map } from "rxjs/operators";
+import { Observable, of, Subscription } from "rxjs";
 
 @Injectable({
   providedIn: "root"
 })
 export class FirebaseService {
-  constructor(public auth: AngularFireAuth, public afs: AngularFirestore) {}
+  public user: Observable<any>;
+
+  constructor(public auth: AngularFireAuth, public afs: AngularFirestore) {
+    //this.user =
+  }
 
   async signup(email, password) {
     return this.auth
@@ -22,19 +27,47 @@ export class FirebaseService {
       });
   }
 
+  login(email, password) {
+    this.auth
+      .signInWithEmailAndPassword(email, password)
+      .then(data => {
+        return of(true);
+      })
+      .catch(err => {
+        console.log("Something went wrong:", err.message);
+        return of(false);
+      });
+  }
+
+  async guest() {
+    return this.auth.signInAnonymously();
+  }
+
   async getCurrentUserId() {
     await this.auth.currentUser.then(user => {
       return user.uid;
     });
   }
 
-  async getUserInformation() {
-    // await this.auth.currentUser.then(user => {
-    //   uid = user.uid;
-    // });
-    return this.afs.doc(`users/${this.getCurrentUserId()}`).valueChanges();
+  getUserInformation() {
+    if (this.auth.currentUser) {
+      this.auth.currentUser.then(user => {
+        if (user) {
+          return this.afs.doc(`users/${user.uid}`).valueChanges();
+        } else {
+          return of(null);
+        }
+      });
+    } else {
+      return of(null);
+    }
   }
 
+  isLoggedIn() {
+    this.auth.currentUser.then(user => {
+      this.user = this.afs.doc(`users/${user.uid}`).valueChanges();
+    });
+  }
   updateUser(name) {
     return this.afs
       .doc(`users/${this.getCurrentUserId()}`)
