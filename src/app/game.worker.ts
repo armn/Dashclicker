@@ -24,7 +24,7 @@ addEventListener("message", ({ data }) => {
 });
 
 function calculate(data) {
-  const clicks = data.value * data.auto * data.multiplier;
+  const clicks = Math.ceil(data.value * data.auto * data.multiplier);
   const result = {
     message: "add",
     clicks: clicks

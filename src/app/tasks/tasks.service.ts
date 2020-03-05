@@ -22,10 +22,10 @@ export class TasksService {
     this.tasks.push(
       new Task(
         0,
-        "Get 10M clicks",
+        "Receive a gift of 1K clicks",
         "true",
-        "A gift for playing the development version",
-        "this.gs.game.clicks += 10000000",
+        "",
+        "this.gs.game.clicks += 1000",
         false
       ),
       new Task(

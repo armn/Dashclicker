@@ -56,7 +56,8 @@ export class RegisterComponent implements OnInit {
           orders: 0,
           ordersMax: 0,
           projects: 0,
-          projectsMax: 0
+          projectsMax: 0,
+          registered: new Date().getTime()
         });
         this.fb.isLoggedIn();
         this.showToast(

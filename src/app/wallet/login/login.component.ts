@@ -47,8 +47,20 @@ export class LoginComponent implements OnInit {
       });
   }
 
-  guest() {
-    //this.fb.guest();
+  forgot() {
+    this.fb.auth
+      .sendPasswordResetEmail(this.loginForm.value.email)
+      .then(data => {
+        this.showToast(
+          `Password reset link has been e-mailed to ${this.loginForm.value.email}`,
+          "Check your e-mail",
+          "success"
+        );
+        this.fb.isLoggedIn();
+      })
+      .catch(err => {
+        this.showToast(err.message, "Password reset failed", "danger");
+      });
   }
 
   showToast(title, message, status) {

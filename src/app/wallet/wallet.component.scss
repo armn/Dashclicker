@@ -14,4 +14,16 @@
   display: flex;
   width: 100%;
   justify-content: flex-end;
+  align-items: center;
+}
+
+li span {
+  font-family: "Bahnschrift";
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.logout {
+  cursor: pointer;
+  border: none !important;
 }

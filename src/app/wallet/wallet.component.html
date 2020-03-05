@@ -1,10 +1,13 @@
 <nb-card status="warning" size="small">
   <nb-card-header
     >Wallet
-    <span *ngIf="this.user && this.user.display_name">
-      ({{ this.user.display_name }})
-    </span></nb-card-header
-  >
+    <span *ngIf="this.user && this.user.name"> ({{ this.user.name }}) </span>
+    <nb-icon
+      icon="question-mark"
+      nbTooltip="An account is not neccessary to play the game, but it allows you to to save your progress betweeen games."
+      class="text-right"
+    ></nb-icon>
+  </nb-card-header>
   <nb-card-body *ngIf="!this.fb.user">
     <nb-tabset fullWidth>
       <nb-tab tabTitle="Login"> <app-login></app-login></nb-tab>
@@ -14,7 +17,7 @@
   <nb-card-body *ngIf="this.fb.user">
     <div class="load" *ngIf="!this.user">
       <button nbButton status="primary" (click)="wallet()">
-        Load my wallet
+        Load wallet
       </button>
     </div>
     <div *ngIf="this.user">
@@ -22,31 +25,52 @@
         <nb-card-body>
           <ul class="wallet">
             <li>
-              {{ this.user.clicks | numbers }}
+              <span>{{ this.user.clicks | numbers }}</span
+              >/{{ this.user.clicksMax | numbers }}
               <small>clicks</small>
             </li>
             <li>
-              {{ this.user.visits | numbers }}
-              <small>visits</small>
+              <span>{{ this.user.visits | numbers }}</span
+              >/{{ this.user.visitsMax | numbers }}
+              <small> visits</small>
             </li>
-            <li>{{ this.user.views | numbers }} <small>views</small></li>
-            <li>{{ this.user.reads | numbers }} <small>reads</small></li>
-            <li>{{ this.user.shares | numbers }} <small>shares</small></li>
             <li>
-              {{ this.user.downloads | numbers }} <small>downloads</small>
+              <span>{{ this.user.views | numbers }}</span
+              >/{{ this.user.viewsMax | numbers }} <small> views</small>
+            </li>
+            <li>
+              <span>{{ this.user.reads | numbers }}</span
+              >/{{ this.user.readsMax | numbers }} <small> reads</small>
+            </li>
+            <li>
+              <span>{{ this.user.shares | numbers }}</span
+              >/{{ this.user.sharesMax | numbers }} <small> shares</small>
+            </li>
+            <li>
+              <span>{{ this.user.downloads | numbers }}</span
+              >/{{ this.user.downloadsMax | numbers }}<small> downloads</small>
             </li>
           </ul>
         </nb-card-body>
       </nb-card>
       <div class="actions">
-        <button nbButton class="mr-2" status="primary" (click)="deposit()">
-          Deposit
-          <nb-icon icon="arrow-down"></nb-icon>
-        </button>
         <button nbButton status="primary" (click)="withdraw()">
           Withdraw
           <nb-icon icon="arrow-up"></nb-icon>
         </button>
+        <button nbButton class="ml-2" status="primary" (click)="deposit()">
+          Deposit
+          <nb-icon icon="arrow-down"></nb-icon>
+        </button>
+
+        <nb-action
+          icon="log-out"
+          status="primary"
+          (click)="logout()"
+          nbTooltip="Log out"
+          class="ml-2 logout"
+        >
+        </nb-action>
       </div>
     </div>
   </nb-card-body>

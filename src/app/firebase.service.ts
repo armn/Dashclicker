@@ -24,23 +24,15 @@ export class FirebaseService {
     //this.user =
   }
 
-  getUserInformation() {
-    if (this.auth.currentUser) {
-      this.auth.currentUser.then(user => {
-        if (user) {
-          return this.afs.doc(`users/${user.uid}`).valueChanges();
-        } else {
-          return of(null);
-        }
-      });
-    } else {
-      return of(null);
-    }
+  logout() {
+    this.auth.signOut();
+    this.user = null;
   }
-
   isLoggedIn() {
     this.auth.currentUser.then(user => {
-      this.user = this.afs.doc(`users/${user.uid}`).valueChanges();
+      if (user) {
+        this.user = this.afs.doc(`users/${user.uid}`).valueChanges();
+      }
     });
   }
 
@@ -62,14 +54,83 @@ export class FirebaseService {
             visits > current.data().visitsMax
               ? visits
               : current.data().visitsMax || 0;
+          const views =
+            current.data().views + this.as.analytics.views.amount || 0;
+          const viewsMax =
+            views > current.data().viewsMax
+              ? views
+              : current.data().viewsMax || 0;
+
+          const reads =
+            current.data().reads + this.as.analytics.reads.amount || 0;
+          const readsMax =
+            reads > current.data().readsMax
+              ? reads
+              : current.data().readsMax || 0;
+
+          const shares =
+            current.data().shares + this.as.analytics.shares.amount || 0;
+          const sharesMax =
+            reads > current.data().sharesMax
+              ? shares
+              : current.data().sharesMax || 0;
+
+          const downloads =
+            current.data().downloads + this.as.analytics.downloads.amount || 0;
+          const downloadsMax =
+            reads > current.data().downloadsMax
+              ? downloads
+              : current.data().downloadsMax || 0;
 
           this.afs.doc(`users/${user.uid}`).update({
             clicks: clicks,
-            clicksMax: clicksMax
+            clicksMax: clicksMax,
+            visits: visits,
+            visitsMax: visitsMax,
+            views: views,
+            viewsMax: viewsMax,
+            reads: reads,
+            readsMax: readsMax,
+            shares: shares,
+            sharesMax: sharesMax,
+            downloads: downloads,
+            downloadsMax: downloadsMax,
+            seen: new Date().getTime()
           });
 
           this.gs.game.clicks = 0;
           this.as.deposit();
+        });
+    });
+  }
+
+  withdraw() {
+    this.auth.currentUser.then(user => {
+      this.afs
+        .doc(`users/${user.uid}`)
+        .get()
+        .toPromise()
+        .then(current => {
+          this.gs.game.clicks += current.data().clicks;
+          const analytics = {
+            visits: current.data().visits,
+            views: current.data().views,
+            reads: current.data().reads,
+            shares: current.data().shares,
+            downloads: current.data().downloads
+          };
+
+          this.as.withdraw({ ...analytics });
+
+          this.afs.doc(`users/${user.uid}`).update({
+            clicks: 0,
+            visits: 0,
+            views: 0,
+            reads: 0,
+            shares: 0,
+            downloads: 0,
+            seen: new Date().getTime()
+          });
         });
     });
   }
