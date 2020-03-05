@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Validators, FormBuilder, FormGroup } from "@angular/forms";
 import { FirebaseService } from "../../firebase.service";
 import { NbToastrService } from "@nebular/theme";
+import { AngularFireAnalytics } from "@angular/fire/analytics";
 
 @Component({
   selector: "app-register",
@@ -14,7 +15,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private fb: FirebaseService,
-    private ts: NbToastrService
+    private ts: NbToastrService,
+    private afAnalytics: AngularFireAnalytics
   ) {}
 
   ngOnInit() {
@@ -34,6 +36,8 @@ export class RegisterComponent implements OnInit {
         this.registerForm.value.password
       )
       .then(data => {
+        this.afAnalytics.logEvent("user_registered");
+
         this.fb.afs.doc(`users/${data.user.uid}`).set({
           name: this.registerForm.value.email.substring(
             0,
@@ -69,10 +73,6 @@ export class RegisterComponent implements OnInit {
       .catch(err => {
         this.showToast(err.message, "Registration failed", "danger");
       });
-  }
-
-  guest() {
-    //this.fb.guest();
   }
 
   showToast(title, message, status) {

@@ -3,6 +3,7 @@ import { FormGroup, Validators, FormBuilder } from "@angular/forms";
 import { FirebaseService } from "src/app/firebase.service";
 import { Observable, of } from "rxjs";
 import { NbToastrService } from "@nebular/theme";
+import { AngularFireAnalytics } from "@angular/fire/analytics";
 
 @Component({
   selector: "app-login",
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private fb: FirebaseService,
-    private ts: NbToastrService
+    private ts: NbToastrService,
+    private afAnalytics: AngularFireAnalytics
   ) {}
 
   ngOnInit() {
@@ -35,6 +37,7 @@ export class LoginComponent implements OnInit {
         this.loginForm.value.password
       )
       .then(data => {
+        this.afAnalytics.logEvent("user_logged_in");
         this.showToast(
           `Logged in as ${this.loginForm.value.email}`,
           "Login successful",

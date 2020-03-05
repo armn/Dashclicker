@@ -31,6 +31,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AngularFireModule } from "@angular/fire";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { AngularFireAuthModule } from "@angular/fire/auth";
+import { AngularFireAnalyticsModule } from "@angular/fire/analytics";
 import * as firebase from "firebase";
 import "firebase/firestore";
 
@@ -99,7 +100,8 @@ import { RegisterComponent } from "./wallet/register/register.component";
     NbIconModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFireAnalyticsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
