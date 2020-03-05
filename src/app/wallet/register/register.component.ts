@@ -35,11 +35,28 @@ export class RegisterComponent implements OnInit {
       )
       .then(data => {
         this.fb.afs.doc(`users/${data.user.uid}`).set({
-          display_name: this.registerForm.value.email.substring(
+          name: this.registerForm.value.email.substring(
             0,
             this.registerForm.value.email.lastIndexOf("@")
           ),
-          uid: data.user.uid
+          clicks: 0,
+          clicksMax: 0,
+          visits: 0,
+          visitsMax: 0,
+          views: 0,
+          viewsMax: 0,
+          reads: 0,
+          readsMax: 0,
+          shares: 0,
+          sharesMax: 0,
+          downloads: 0,
+          downloadsMax: 0,
+          money: 0,
+          moneyMax: 0,
+          orders: 0,
+          ordersMax: 0,
+          projects: 0,
+          projectsMax: 0
         });
         this.fb.isLoggedIn();
         this.showToast(
@@ -54,7 +71,7 @@ export class RegisterComponent implements OnInit {
   }
 
   guest() {
-    this.fb.guest();
+    //this.fb.guest();
   }
 
   showToast(title, message, status) {

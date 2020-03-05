@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
   }
 
   guest() {
-    this.fb.guest();
+    //this.fb.guest();
   }
 
   showToast(title, message, status) {

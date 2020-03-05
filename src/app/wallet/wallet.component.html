@@ -12,11 +12,42 @@
     </nb-tabset>
   </nb-card-body>
   <nb-card-body *ngIf="this.fb.user">
-    <button nbButton *ngIf="!this.user" (click)="wallet()">
-      Load my wallet
-    </button>
+    <div class="load" *ngIf="!this.user">
+      <button nbButton status="primary" (click)="wallet()">
+        Load my wallet
+      </button>
+    </div>
     <div *ngIf="this.user">
-      {{ this.user.id }}
+      <nb-card accent="primary">
+        <nb-card-body>
+          <ul class="wallet">
+            <li>
+              {{ this.user.clicks | numbers }}
+              <small>clicks</small>
+            </li>
+            <li>
+              {{ this.user.visits | numbers }}
+              <small>visits</small>
+            </li>
+            <li>{{ this.user.views | numbers }} <small>views</small></li>
+            <li>{{ this.user.reads | numbers }} <small>reads</small></li>
+            <li>{{ this.user.shares | numbers }} <small>shares</small></li>
+            <li>
+              {{ this.user.downloads | numbers }} <small>downloads</small>
+            </li>
+          </ul>
+        </nb-card-body>
+      </nb-card>
+      <div class="actions">
+        <button nbButton class="mr-2" status="primary" (click)="deposit()">
+          Deposit
+          <nb-icon icon="arrow-down"></nb-icon>
+        </button>
+        <button nbButton status="primary" (click)="withdraw()">
+          Withdraw
+          <nb-icon icon="arrow-up"></nb-icon>
+        </button>
+      </div>
     </div>
   </nb-card-body>
 </nb-card>

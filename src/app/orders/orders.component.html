@@ -24,8 +24,9 @@
           maxlength="42"
           inputmode="numeric"
           fieldSize="small"
+          [nbTooltip]="quantity.value | numbers"
+          fullWidth
         />
-        <label class="quantity nowrap">{{ quantity.value | numbers }}</label>
       </div>
     </div>
   </nb-card-body>
@@ -42,11 +43,7 @@
         </nb-select>
       </div>
       <div class="col-sm-4">
-        <div
-          class="price"
-          nbTooltip="{{ quantity.value | numbers }}"
-          nbTooltipStatus="primary"
-        >
+        <div class="price" nbTooltip="{{ quantity.value | numbers }}">
           {{ quantity.value * 0.001 | currency }}
         </div>
       </div>

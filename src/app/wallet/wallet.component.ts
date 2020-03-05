@@ -22,6 +22,14 @@ export class WalletComponent implements OnInit {
     });
   }
 
+  deposit() {
+    this.fb.deposit();
+  }
+
+  withdraw() {
+    //this.fb.withdraw();
+  }
+
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }

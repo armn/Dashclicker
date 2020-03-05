@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable, ɵsetCurrentInjector } from "@angular/core";
 import { AngularFireAuth } from "@angular/fire/auth";
 import {
   AngularFirestore,
@@ -6,47 +6,22 @@ import {
 } from "@angular/fire/firestore";
 import { map } from "rxjs/operators";
 import { Observable, of, Subscription } from "rxjs";
+import { GameService } from "./game.service";
+import { AnalyticsService } from "./analytics/analytics.service";
 
 @Injectable({
   providedIn: "root"
 })
 export class FirebaseService {
-  public user: Observable<any>;
+  public user: any;
 
-  constructor(public auth: AngularFireAuth, public afs: AngularFirestore) {
+  constructor(
+    public auth: AngularFireAuth,
+    public afs: AngularFirestore,
+    public gs: GameService,
+    public as: AnalyticsService
+  ) {
     //this.user =
-  }
-
-  async signup(email, password) {
-    return this.auth
-      .createUserWithEmailAndPassword(email, password)
-      .then(data => {
-        return this.afs
-          .doc(`users/${data.user.uid}`)
-          .set({ email: email, display_name: email });
-      });
-  }
-
-  login(email, password) {
-    this.auth
-      .signInWithEmailAndPassword(email, password)
-      .then(data => {
-        return of(true);
-      })
-      .catch(err => {
-        console.log("Something went wrong:", err.message);
-        return of(false);
-      });
-  }
-
-  async guest() {
-    return this.auth.signInAnonymously();
-  }
-
-  async getCurrentUserId() {
-    await this.auth.currentUser.then(user => {
-      return user.uid;
-    });
   }
 
   getUserInformation() {
@@ -68,23 +43,48 @@ export class FirebaseService {
       this.user = this.afs.doc(`users/${user.uid}`).valueChanges();
     });
   }
-  updateUser(name) {
-    return this.afs
-      .doc(`users/${this.getCurrentUserId()}`)
-      .update({ display_name: name });
-  }
 
-  createOrder(order) {
-    return this.afs.collection("orders").add({
-      type: order.type,
-      quantity: order.quantity,
-      metric: order.metric,
-      price: order.price,
-      filled: false,
-      creator: this.getCurrentUserId(),
-      date: new Date().getTime()
+  deposit() {
+    this.auth.currentUser.then(user => {
+      this.afs
+        .doc(`users/${user.uid}`)
+        .get()
+        .toPromise()
+        .then(current => {
+          const clicks = current.data().clicks + this.gs.game.clicks || 0;
+          const clicksMax =
+            clicks > current.data().clicksMax
+              ? clicks
+              : current.data().clicksMax || 0;
+          const visits =
+            current.data().visits + this.as.analytics.visits.amount || 0;
+          const visitsMax =
+            visits > current.data().visitsMax
+              ? visits
+              : current.data().visitsMax || 0;
+
+          this.afs.doc(`users/${user.uid}`).update({
+            clicks: clicks,
+            clicksMax: clicksMax
+          });
+
+          this.gs.game.clicks = 0;
+          this.as.deposit();
+        });
     });
   }
+
+  // createOrder(order) {
+  //   return this.afs.collection("orders").add({
+  //     type: order.type,
+  //     quantity: order.quantity,
+  //     metric: order.metric,
+  //     price: order.price,
+  //     filled: false,
+  //     creator: this.getCurrentUserId(),
+  //     date: new Date().getTime()
+  //   });
+  // }
 
   getMyOrders() {
     return this.afs.collection("orders").valueChanges();

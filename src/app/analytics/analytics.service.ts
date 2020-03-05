@@ -351,4 +351,20 @@ export class AnalyticsService {
     this.analytics.shares.amount += message.data.shares;
     this.analytics.downloads.amount += message.data.downloads;
   }
+
+  deposit() {
+    this.analytics.visits.amount = 0;
+    this.analytics.views.amount = 0;
+    this.analytics.reads.amount = 0;
+    this.analytics.shares.amount = 0;
+    this.analytics.downloads.amount = 0;
+  }
+
+  withdraw(data) {
+    this.analytics.visits.amount += data.visits;
+    this.analytics.views.amount += data.views;
+    this.analytics.reads.amount += data.reads;
+    this.analytics.shares.amount += data.shares;
+    this.analytics.downloads.amount += data.downloads;
+  }
 }
