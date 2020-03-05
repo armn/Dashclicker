@@ -59,15 +59,15 @@ export class TasksService {
       ),
       new Task(
         4,
-        "Decrease generator costs and increase Measurement generation even more",
+        "Decrease generator costs and increase Measurement generation (2)",
         "this.as.analytics.views.generators + this.as.analytics.reads.generators + this.as.analytics.shares.generators + this.as.analytics.downloads.generators >= 50",
-        "Have a total of 50 Generators",
+        "Have at least 50 Generators",
         "this.as.upgradeGenerators(2)",
         false
       ),
       new Task(
         5,
-        "Decrease click value, auto clicker and multiplier cost again",
+        "Decrease click value, auto clicker and multiplier cost (2)",
         "this.gs.game.counts.auto >= 20",
         "Have 20 Auto clickers",
         `this.gs.game.costs = {
@@ -76,6 +76,14 @@ export class TasksService {
           auto: 100,
           multiplier: 1000
         }`,
+        false
+      ),
+      new Task(
+        6,
+        "Decrease generator costs and increase Measurement generation (3)",
+        "this.as.analytics.downloads.generators >= 10",
+        "Have at least 10 downloads Generators",
+        "this.as.upgradeGenerators(3)",
         false
       )
     );
