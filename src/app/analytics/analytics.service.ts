@@ -170,7 +170,7 @@ export class AnalyticsService {
       views: 100000 / level,
       reads: 10000 / level,
       shares: 1000 / level,
-      downloads: 1 / level
+      downloads: 1
     };
     this.analytics.downloads.produces = {
       visits: 100000 * level,
