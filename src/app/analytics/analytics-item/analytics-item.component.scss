@@ -5,6 +5,10 @@
   font-family: "Bahnschrift";
   font-size: 1.5rem;
   white-space: nowrap;
+
+  @media (max-width: 576px) {
+    font-size: 1rem;
+  }
 }
 
 em {

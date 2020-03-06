@@ -1,7 +1,13 @@
 <nb-card status="success" size="large">
   <nb-card-header class="projects-header"
     >Projects
-    <button nbButton status="warning" size="small" (click)="generateProject()">
+    <button
+      nbButton
+      status="warning"
+      size="small"
+      (click)="generateProject()"
+      [disabled]="canGenerate()"
+    >
       Generate
     </button></nb-card-header
   >
@@ -9,7 +15,7 @@
     <nb-list-item *ngFor="let project of this.ps.availableProjects()">
       <div class="project-item row">
         <div class="col-auto col-sm-1"><small>#</small>{{ project.id }}</div>
-        <div class="col-8 col-sm-7">
+        <div class="col-12 col-sm-7">
           <div class="requirements">
             <span class="visits">
               <span>{{ project.visits | numbers }}</span>
@@ -104,4 +110,8 @@
       </ng-template>
     </nb-list-item>
   </nb-list>
+  <nb-card-footer class="text-center"
+    >Feeling stuck? Try depositing in your wallet and reloading the game for a
+    new run.</nb-card-footer
+  >
 </nb-card>

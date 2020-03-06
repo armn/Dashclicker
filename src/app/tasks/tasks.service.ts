@@ -135,6 +135,14 @@ export class TasksService {
         "Have 100 generators",
         "this.as.upgradeGenerators()",
         false
+      ),
+      new Task(
+        11,
+        "Reset generator costs & increase measurement generation by 100000x",
+        "this.as.analytics.views.generators + this.as.analytics.reads.generators + this.as.analytics.shares.generators + this.as.analytics.downloads.generators >= 150",
+        "Have 150 generators",
+        "this.as.upgradeGenerators(true)",
+        false
       )
     );
   }

@@ -62,4 +62,11 @@ export class ProjectsComponent implements OnInit {
   generateProject() {
     this.ps.generate();
   }
+
+  canGenerate() {
+    if (this.ps.availableProjects().length >= 6) {
+      return true;
+    }
+    return false;
+  }
 }
