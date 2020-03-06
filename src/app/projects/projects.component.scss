@@ -1,6 +1,7 @@
 .money {
   margin-bottom: 0;
 }
+
 .projects-header {
   display: flex;
   justify-content: space-between;
@@ -12,6 +13,7 @@
     top: 4px;
   }
 }
+
 .project-item {
   display: flex;
   align-items: center;
@@ -25,4 +27,8 @@
   span {
     padding: 4px 6px;
   }
+}
+
+.projects-popover {
+  padding: 10px;
 }

@@ -4,6 +4,7 @@ import { TasksService } from "./tasks.service";
 import { Task } from "./task.model";
 import { AnalyticsService } from "../analytics/analytics.service";
 import { MarketService } from "../market/market.service";
+import { AssetsService } from "../assets/assets.service";
 
 @Component({
   selector: "app-tasks",
@@ -14,7 +15,8 @@ export class TasksComponent implements OnInit {
   constructor(
     public ts: TasksService,
     public gs: GameService,
-    public as: AnalyticsService
+    public as: AnalyticsService,
+    public ast: AssetsService
   ) {}
 
   tasks = this.ts.tasks;
@@ -37,6 +39,11 @@ export class TasksComponent implements OnInit {
 
   availableTasks() {
     return this.tasks.filter(task => task.completed === false);
+  }
+
+  money() {
+    const money = this.ast.assets.find(asset => asset.type == "money");
+    return money.amount;
   }
 
   ngOnInit() {}

@@ -54,7 +54,7 @@
           <li
             *ngIf="measurement.cost.visits"
             [class]="
-              this.as.analytics.visits.amount > measurement.cost.visits
+              this.as.analytics.visits.amount >= measurement.cost.visits
                 ? 'text-success'
                 : 'text-danger'
             "

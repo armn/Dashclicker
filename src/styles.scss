@@ -50,3 +50,14 @@ table {
   color: nb-theme(color-primary-500);
   cursor: pointer;
 }
+
+.costs {
+  margin-bottom: 0;
+  margin-left: 0;
+  padding-left: 0;
+  list-style: none;
+
+  li {
+    white-space: nowrap;
+  }
+}

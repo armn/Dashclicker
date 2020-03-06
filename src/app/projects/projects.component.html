@@ -31,7 +31,12 @@
         <div class="col-6 col-sm-3">
           <h5 class="money">$ {{ project.money | numbers }}</h5>
         </div>
-        <div class="col-12 col-sm-1 text-right">
+        <div
+          class="col-12 col-sm-1 text-right"
+          [nbPopover]="popover"
+          nbPopoverTrigger="hint"
+          nbPopoverPlacement="bottom"
+        >
           <button
             nbButton
             status="success"
@@ -42,6 +47,61 @@
           </button>
         </div>
       </div>
+      <ng-template #popover>
+        <div class="projects-popover medium-popover">
+          <div class="row">
+            <div class="col-sm-12">
+              <ul class="costs">
+                <li
+                  [class]="
+                    this.as.analytics.visits.amount >= project.visits
+                      ? 'text-success'
+                      : 'text-danger'
+                  "
+                >
+                  {{ project.visits | numbers }} <small>visits</small>
+                </li>
+                <li
+                  [class]="
+                    this.as.analytics.views.amount >= project.views
+                      ? 'text-success'
+                      : 'text-danger'
+                  "
+                >
+                  {{ project.views | numbers }} <small>views</small>
+                </li>
+                <li
+                  [class]="
+                    this.as.analytics.reads.amount >= project.reads
+                      ? 'text-success'
+                      : 'text-danger'
+                  "
+                >
+                  {{ project.reads | numbers }} <small>reads</small>
+                </li>
+                <li
+                  [class]="
+                    this.as.analytics.shares.amount >= project.shares
+                      ? 'text-success'
+                      : 'text-danger'
+                  "
+                >
+                  {{ project.shares | numbers }} <small>shares</small>
+                </li>
+                <li
+                  [class]="
+                    this.as.analytics.downloads.amount >= project.downloads
+                      ? 'text-success'
+                      : 'text-danger'
+                  "
+                >
+                  {{ project.downloads | numbers }} <small>downloads</small>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </ng-template>
     </nb-list-item>
   </nb-list>
 </nb-card>

@@ -8,8 +8,9 @@ import { Order } from "../market/market.model";
 })
 export class AnalyticsService {
   worker: Worker;
-
+  level: number;
   constructor() {
+    this.level = 1;
     this.startWorker();
   }
 
@@ -131,53 +132,54 @@ export class AnalyticsService {
     this._analytics.next(val);
   }
 
-  upgradeGenerators(level: number = 1) {
+  upgradeGenerators() {
+    this.level += 1;
     this.analytics.views.cost = {
-      visits: 10000 / level,
-      views: 1000 / level
+      visits: 10000 / this.level,
+      views: 1000 / this.level
     };
     this.analytics.views.produces = {
-      visits: 100 * level,
-      views: 10 * level
+      visits: 100 * this.level,
+      views: 10 * this.level
     };
 
     this.analytics.reads.produces = {
-      visits: 1000 * level,
-      views: 100 * level,
-      reads: 10 * level
+      visits: 1000 * this.level,
+      views: 100 * this.level,
+      reads: 10 * this.level
     };
     this.analytics.reads.cost = {
-      visits: 10000 / level,
-      views: 1000 / level,
-      reads: 100 / level
+      visits: 10000 / this.level,
+      views: 1000 / this.level,
+      reads: 100 / this.level
     };
 
     this.analytics.shares.produces = {
-      visits: 10000 * level,
-      views: 1000 * level,
-      reads: 100 * level,
-      shares: 10 * level
+      visits: 10000 * this.level,
+      views: 1000 * this.level,
+      reads: 100 * this.level,
+      shares: 10 * this.level
     };
     this.analytics.shares.cost = {
-      visits: 10000 / level,
-      views: 1000 / level,
-      reads: 100 / level,
-      shares: 10 / level
+      visits: 10000 / this.level,
+      views: 1000 / this.level,
+      reads: 100 / this.level,
+      shares: 10 / this.level
     };
 
     this.analytics.downloads.cost = {
-      visits: 1000000 / level,
-      views: 100000 / level,
-      reads: 10000 / level,
-      shares: 1000 / level,
+      visits: 1000000 / this.level,
+      views: 100000 / this.level,
+      reads: 10000 / this.level,
+      shares: 1000 / this.level,
       downloads: 1
     };
     this.analytics.downloads.produces = {
-      visits: 100000 * level,
-      views: 10000 * level,
-      reads: 1000 * level,
-      shares: 100 * level,
-      downloads: 10 * level
+      visits: 100000 * this.level,
+      views: 10000 * this.level,
+      reads: 1000 * this.level,
+      shares: 100 * this.level,
+      downloads: 10 * this.level
     };
     this.workerUpdate();
   }
