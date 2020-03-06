@@ -1,20 +1,47 @@
-<nb-card status="success" size="giant">
-  <nb-card-header>Projects</nb-card-header>
-  <nb-card-body></nb-card-body>
-  <nb-card-footer>
-    <div class="row align-items-center">
-      <div class="col">
-        <nb-progress-bar
-          [value]="50"
-          size="giant"
-          displayValue="true"
-          status="primary"
-        >
-        </nb-progress-bar>
+<nb-card status="success" size="large">
+  <nb-card-header class="projects-header"
+    >Projects
+    <button nbButton status="warning" size="small" (click)="generateProject()">
+      Generate
+    </button></nb-card-header
+  >
+  <nb-list>
+    <nb-list-item *ngFor="let project of this.ps.availableProjects()">
+      <div class="project-item row">
+        <div class="col-auto col-sm-1"><small>#</small>{{ project.id }}</div>
+        <div class="col-8 col-sm-7">
+          <div class="requirements">
+            <span class="visits">
+              <span>{{ project.visits | numbers }}</span>
+            </span>
+            <span class="views">
+              <span>{{ project.views | numbers }}</span>
+            </span>
+            <span class="reads">
+              <span>{{ project.reads | numbers }}</span>
+            </span>
+            <span class="shares">
+              <span>{{ project.shares | numbers }}</span>
+            </span>
+            <span class="downloads">
+              <span>{{ project.downloads | numbers }}</span>
+            </span>
+          </div>
+        </div>
+        <div class="col-6 col-sm-3">
+          <h5 class="money">$ {{ project.money | numbers }}</h5>
+        </div>
+        <div class="col-12 col-sm-1 text-right">
+          <button
+            nbButton
+            status="success"
+            (click)="complete(project)"
+            [disabled]="canComplete(project)"
+          >
+            <nb-icon icon="checkmark"></nb-icon>
+          </button>
+        </div>
       </div>
-      <div class="col-auto">
-        <button nbButton size="medium" status="primary">Complete</button>
-      </div>
-    </div>
-  </nb-card-footer>
+    </nb-list-item>
+  </nb-list>
 </nb-card>

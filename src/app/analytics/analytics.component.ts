@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { AnalyticsService } from "./analytics.service";
 
 @Component({
@@ -6,7 +6,7 @@ import { AnalyticsService } from "./analytics.service";
   templateUrl: "./analytics.component.html",
   styleUrls: ["./analytics.component.scss"]
 })
-export class AnalyticsComponent implements OnInit {
+export class AnalyticsComponent implements OnInit, OnDestroy {
   constructor(public as: AnalyticsService) {}
   analytics: any;
   subscription: any;

@@ -21,7 +21,7 @@
       </button>
     </div>
     <div *ngIf="this.user">
-      <nb-card accent="primary">
+      <nb-card>
         <nb-card-body>
           <ul class="wallet">
             <li>
@@ -49,6 +49,10 @@
             <li>
               <span>{{ this.user.downloads | numbers }}</span
               >/{{ this.user.downloadsMax | numbers }}<small> downloads</small>
+            </li>
+            <li>
+              <span>$ {{ this.user.money | numbers }}</span
+              >/{{ this.user.moneyMax | numbers }}<small> money</small>
             </li>
           </ul>
         </nb-card-body>

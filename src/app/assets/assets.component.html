@@ -1,0 +1,11 @@
+<nb-card status="danger" size="tiny">
+  <nb-card-header>Assets</nb-card-header>
+  <nb-card-body>
+    <div class="assets">
+      <div class="asset" *ngFor="let asset of assets">
+        <h5>{{ asset.name }}</h5>
+        <h3>{{ asset.symbol }} {{ asset.amount | numbers }}</h3>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

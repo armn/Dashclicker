@@ -360,11 +360,27 @@ export class AnalyticsService {
     this.analytics.downloads.amount = 0;
   }
 
+  decrease(visits, views, reads, shares, downloads) {
+    this.analytics.visits.amount -= visits;
+    this.analytics.views.amount -= views;
+    this.analytics.reads.amount -= reads;
+    this.analytics.shares.amount -= shares;
+    this.analytics.downloads.amount -= downloads;
+  }
+
   withdraw(data) {
     this.analytics.visits.amount += data.visits;
     this.analytics.views.amount += data.views;
     this.analytics.reads.amount += data.reads;
     this.analytics.shares.amount += data.shares;
     this.analytics.downloads.amount += data.downloads;
+  }
+  totalGenerators() {
+    return (
+      this.analytics.views.generators +
+      this.analytics.reads.generators +
+      this.analytics.shares.generators +
+      this.analytics.downloads.generators
+    );
   }
 }

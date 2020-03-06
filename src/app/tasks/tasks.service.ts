@@ -30,7 +30,7 @@ export class TasksService {
       ),
       new Task(
         1,
-        "Decrease click value, auto clicker and multiplier costs",
+        "Reset click value, auto clicker and multiplier costs",
         "this.as.analytics.downloads.generators >= 1",
         "Have at least 1 downloads Generator",
         `this.gs.game.costs = {
@@ -51,7 +51,7 @@ export class TasksService {
       ),
       new Task(
         3,
-        "Decrease generator costs & increase measurement generation",
+        "Reset generator costs & increase measurement generation",
         "this.as.analytics.views.generators >= 5 && this.as.analytics.reads.generators >= 5 && this.as.analytics.shares.generators >= 5 && this.as.analytics.downloads.generators >= 5",
         "Have at least 5 of each Generator",
         "this.as.upgradeGenerators(1)",
@@ -67,7 +67,7 @@ export class TasksService {
       ),
       new Task(
         5,
-        "Decrease click value, auto clicker & multiplier costs (2)",
+        "Reset click value, auto clicker & multiplier costs (2)",
         "this.gs.game.counts.auto >= 20",
         "Have 20 Auto clickers",
         `this.gs.game.costs = {

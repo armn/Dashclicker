@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnDestroy } from "@angular/core";
 import { FirebaseService } from "../firebase.service";
 import { Subscription } from "rxjs";
 
@@ -7,7 +7,7 @@ import { Subscription } from "rxjs";
   templateUrl: "./wallet.component.html",
   styleUrls: ["./wallet.component.scss"]
 })
-export class WalletComponent implements OnInit {
+export class WalletComponent implements OnInit, OnDestroy {
   public user: any;
   private subscription: Subscription;
   constructor(public fb: FirebaseService) {}

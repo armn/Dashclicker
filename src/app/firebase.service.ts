@@ -8,6 +8,7 @@ import { map } from "rxjs/operators";
 import { Observable, of, Subscription } from "rxjs";
 import { GameService } from "./game.service";
 import { AnalyticsService } from "./analytics/analytics.service";
+import { AssetsService } from "./assets/assets.service";
 
 @Injectable({
   providedIn: "root"
@@ -19,7 +20,8 @@ export class FirebaseService {
     public auth: AngularFireAuth,
     public afs: AngularFirestore,
     public gs: GameService,
-    public as: AnalyticsService
+    public as: AnalyticsService,
+    public ast: AssetsService
   ) {
     //this.user =
   }
@@ -82,6 +84,15 @@ export class FirebaseService {
               ? downloads
               : current.data().downloadsMax || 0;
 
+          const moneyObject = this.ast.assets.find(
+            asset => asset.type === "money"
+          );
+          const money = current.data().money + moneyObject.amount || 0;
+          const moneyMax =
+            money > current.data().moneyMax
+              ? money
+              : current.data().moneyMax || 0;
+
           this.afs.doc(`users/${user.uid}`).update({
             clicks: clicks,
             clicksMax: clicksMax,
@@ -95,11 +106,14 @@ export class FirebaseService {
             sharesMax: sharesMax,
             downloads: downloads,
             downloadsMax: downloadsMax,
+            money: money,
+            moneyMax: moneyMax,
             seen: new Date().getTime()
           });
 
           this.gs.game.clicks = 0;
           this.as.deposit();
+          moneyObject.amount = 0;
         });
     });
   }
@@ -119,6 +133,8 @@ export class FirebaseService {
             shares: current.data().shares,
             downloads: current.data().downloads
           };
+          const money = this.ast.assets.find(asset => asset.type == "money");
+          money.amount += current.data().money;
 
           this.as.withdraw({ ...analytics });
 
@@ -129,6 +145,7 @@ export class FirebaseService {
             reads: 0,
             shares: 0,
             downloads: 0,
+            money: 0,
             seen: new Date().getTime()
           });
         });

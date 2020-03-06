@@ -1,0 +1,28 @@
+.money {
+  margin-bottom: 0;
+}
+.projects-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  button {
+    margin-top: -8px;
+    position: relative;
+    top: 4px;
+  }
+}
+.project-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  align-items: space-between;
+}
+
+.requirements {
+  font-family: "Bahnschrift";
+
+  span {
+    padding: 4px 6px;
+  }
+}
