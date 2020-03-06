@@ -4,12 +4,14 @@
   padding: 6px 10px;
   font-family: "Bahnschrift";
   font-size: 1.5rem;
+  white-space: nowrap;
 }
 
 em {
   font-style: normal;
   display: inline-block;
   margin-left: 5px;
+  position: absolute;
 }
 
 

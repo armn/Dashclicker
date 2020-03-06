@@ -17,3 +17,8 @@ td {
 
 }
 
+@media (max-width: 576px) {
+  td {
+    border: none;
+  }
+}

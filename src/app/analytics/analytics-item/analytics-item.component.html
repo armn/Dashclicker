@@ -1,5 +1,5 @@
 <div class="analytics-row row">
-  <div [class]="'analytics-item col-sm-6 ' + analytic">
+  <div [class]="'analytics-item col-sm-6 col-7 ' + analytic">
     <span>
       {{ measurement.amount | numbers }}
       <small>{{ analytic }}</small>
@@ -7,7 +7,7 @@
 
     <em> {{ measurement.tick | numbers }}/s </em>
   </div>
-  <div class="produces col-sm-4">
+  <div class="produces col-sm-4 col-2 ">
     <div *ngIf="analytic !== 'visits'">
       <h5
         [nbPopover]="produces"
@@ -19,7 +19,7 @@
     </div>
   </div>
 
-  <div class="analytics-actions col-sm-2">
+  <div class="analytics-actions col-sm-2 col-3">
     <!-- <nb-toggle
       nbTooltip="Gain automatically"
       nbTooltipStatus="primary"

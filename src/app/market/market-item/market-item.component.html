@@ -1,4 +1,4 @@
-<td class="buyer">
+<td class="buyer d-block d-sm-table-cell">
   <nb-user
     size="large"
     [name]="buyer.name.first + ' ' + buyer.name.last"
@@ -11,18 +11,20 @@
     >
   </nb-user>
 </td>
-<td class="clicks">
+<td class="clicks  d-inline-block d-sm-table-cell">
   <strong>{{ order.clicks | numbers }}</strong>
+  <span class="d-inline d-sm-none"> clicks</span>
 </td>
-<td [class]="'offer ' + order.unit">
+<td [class]="'offer d-inline-block d-sm-table-cell ' + order.unit">
   <span
     >{{ order.offer | numbers }} <small>{{ order.unit }}</small></span
   >
 </td>
-<td class="unit">
-  {{ order.clicks / order.offer | numbers }} <small>clicks</small>
+<td class="unit d-inline-block d-sm-table-cell">
+  {{ order.clicks / order.offer | numbers }}
+  <small>clicks <span class="d-inline d-sm-none">/ unit</span></small>
 </td>
-<td class="actions text-right">
+<td class="actions text-right  d-block d-sm-table-cell">
   <button nbButton status="danger" size="small" (click)="reject()">
     Reject
   </button>

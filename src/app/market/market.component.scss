@@ -13,3 +13,10 @@ nb-card-header {
 .market-entry.true {
   background: nb-theme(color-success-100);
 }
+
+@media (max-width: 576px) {
+  table thead {
+    display: none;
+  }
+
+}
