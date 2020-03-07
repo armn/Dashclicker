@@ -5,11 +5,20 @@ import { Task } from "./task.model";
 import { AnalyticsService } from "../analytics/analytics.service";
 import { MarketService } from "../market/market.service";
 import { AssetsService } from "../assets/assets.service";
+import { trigger, transition, style, animate } from "@angular/animations";
 
 @Component({
   selector: "app-tasks",
   templateUrl: "./tasks.component.html",
-  styleUrls: ["./tasks.component.scss"]
+  styleUrls: ["./tasks.component.scss"],
+  animations: [
+    trigger("inOutAnimation", [
+      transition(":leave", [
+        style({ opacity: 1 }),
+        animate("0.25s ease-out", style({ opacity: 0 }))
+      ])
+    ])
+  ]
 })
 export class TasksComponent implements OnInit {
   constructor(

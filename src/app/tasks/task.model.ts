@@ -5,6 +5,7 @@ export class Task {
     public evaluate: string,
     public description: string,
     public reward: string,
-    public completed: boolean = false
+    public completed: boolean = false,
+    public status?: string
   ) {}
 }

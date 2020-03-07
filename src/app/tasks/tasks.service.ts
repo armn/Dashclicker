@@ -28,7 +28,8 @@ export class TasksService {
         "this.as.analytics.downloads.generators >= 1",
         "Have 1 downloads generator",
         "this.ms.enableSpecialDeals()",
-        false
+        false,
+        "info"
       ),
       new Task(
         2,
@@ -41,7 +42,8 @@ export class TasksService {
               auto: 100,
               multiplier: 1000
             }`,
-        false
+        false,
+        "primary"
       ),
       new Task(
         3,
@@ -54,7 +56,8 @@ export class TasksService {
           auto: 100,
           multiplier: 1000
         }`,
-        false
+        false,
+        "primary"
       ),
       new Task(
         4,
@@ -67,7 +70,8 @@ export class TasksService {
           auto: 100,
           multiplier: 1000
         }`,
-        false
+        false,
+        "primary"
       ),
       new Task(
         5,
@@ -80,7 +84,8 @@ export class TasksService {
           auto: 100,
           multiplier: 1000
         }`,
-        false
+        false,
+        "primary"
       ),
       new Task(
         6,
@@ -93,7 +98,8 @@ export class TasksService {
           auto: 100,
           multiplier: 1000
         }`,
-        false
+        false,
+        "primary"
       ),
       new Task(
         7,
@@ -106,61 +112,82 @@ export class TasksService {
           auto: 100,
           multiplier: 1000
         }`,
-        false
+        false,
+        "primary"
       ),
       new Task(
         8,
+        "Reset click value, auto clicker and multiplier costs #7",
+        "this.gs.game.counts.auto >= 60",
+        "Have 60 auto clickers",
+        `this.gs.game.costs = {
+          clicks: 0,
+          value: 10,
+          auto: 100,
+          multiplier: 1000
+        }`,
+        false,
+        "primary"
+      ),
+      new Task(
+        9,
         "Reset generator costs and increase measurement generation",
         "this.as.analytics.views.generators >= 5 && this.as.analytics.reads.generators >= 5 && this.as.analytics.shares.generators >= 5 && this.as.analytics.downloads.generators >= 5",
         "Have 5 of each generator",
         "this.as.upgradeGenerators()",
-        false
+        false,
+        "success"
       ),
       new Task(
-        9,
+        10,
         "Reset generator costs and increase measurement generation #2",
         "this.as.analytics.views.generators + this.as.analytics.reads.generators + this.as.analytics.shares.generators + this.as.analytics.downloads.generators >= 50",
         "Have 50 generators",
         "this.as.upgradeGenerators()",
-        false
-      ),
-
-      new Task(
-        10,
-        "Reset generator costs and increase measurement generation #3",
-        "this.as.analytics.downloads.generators >= 10",
-        "Have 10 downloads generators",
-        "this.as.upgradeGenerators()",
-        false
+        false,
+        "success"
       ),
 
       new Task(
         11,
-        "Reset generator costs and increase measurement generation #4",
-        "this.money() >= 50000",
-        "Have 50K money",
+        "Reset generator costs and increase measurement generation #3",
+        "this.as.analytics.downloads.generators >= 10",
+        "Have 10 downloads generators",
         "this.as.upgradeGenerators()",
-        false
+        false,
+        "success"
       ),
 
       new Task(
         12,
+        "Reset generator costs and increase measurement generation #4",
+        "this.money() >= 50000",
+        "Have 50K money",
+        "this.as.upgradeGenerators()",
+        false,
+        "success"
+      ),
+
+      new Task(
+        13,
         "Reset generator costs and increase measurement generation #5",
         "this.as.analytics.views.generators + this.as.analytics.reads.generators + this.as.analytics.shares.generators + this.as.analytics.downloads.generators >= 100",
         "Have 100 generators",
         "this.as.upgradeGenerators()",
-        false
+        false,
+        "success"
       ),
       new Task(
-        13,
+        14,
         "Reset generator costs and increase measurement generation #6",
         "this.as.analytics.views.generators + this.as.analytics.reads.generators + this.as.analytics.shares.generators + this.as.analytics.downloads.generators >= 150",
         "Have 150 generators",
         "this.as.upgradeGenerators()",
-        false
+        false,
+        "success"
       ),
       new Task(
-        14,
+        15,
         "Reduce current project costs & reset click value, auto clicker and multiplier costs",
         "this.as.analytics.views.generators + this.as.analytics.reads.generators + this.as.analytics.shares.generators + this.as.analytics.downloads.generators >= 200",
         "Have 200 generators",
@@ -171,10 +198,11 @@ export class TasksService {
           auto: 100,
           multiplier: 1000
         }`,
-        false
+        false,
+        "warning"
       ),
       new Task(
-        15,
+        16,
         "Reduce current project costs & reset click value, auto clicker and multiplier costs #2",
         "this.as.analytics.views.generators + this.as.analytics.reads.generators + this.as.analytics.shares.generators + this.as.analytics.downloads.generators >= 250",
         "Have 250 generators",
@@ -185,7 +213,23 @@ export class TasksService {
           auto: 100,
           multiplier: 1000
         }`,
-        false
+        false,
+        "warning"
+      ),
+      new Task(
+        17,
+        "Reduce current project costs & reset click value, auto clicker and multiplier costs #3",
+        "this.as.analytics.views.generators >= 100",
+        "Have 100 views generators",
+        `this.ps.reduceCosts(); 
+        this.gs.game.costs = {
+          clicks: 0,
+          value: 10,
+          auto: 100,
+          multiplier: 1000
+        }`,
+        false,
+        "warning"
       )
     );
   }

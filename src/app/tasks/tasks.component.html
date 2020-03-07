@@ -8,7 +8,7 @@
     ></nb-badge> -->
   </nb-card-header>
   <nb-list>
-    <nb-list-item *ngFor="let item of availableTasks()">
+    <nb-list-item *ngFor="let item of availableTasks()" [@inOutAnimation]>
       <nb-checkbox
         [checked]="item.completed"
         [disabled]="available(item)"
@@ -16,20 +16,21 @@
         nbPopoverTrigger="hint"
         nbPopoverPlacement="bottom"
         (checkedChange)="complete(item)"
+        [status]="item.status"
         >{{ item.title }}</nb-checkbox
       >
 
       <ng-template #popover>
         <div class="custom-popover">
-          {{ item.description }}
+          <span>{{ item.description }}</span>
         </div>
       </ng-template>
     </nb-list-item>
   </nb-list>
-  <nb-card-footer
+  <nb-card-footer *ngIf="availableTasks().length == 0"
     ><h5>Dashclicker</h5>
     <p class="subtitle">
-      Thank you for playing the development version!
+      Thank you for playing!
     </p>
     <p>
       Follow
