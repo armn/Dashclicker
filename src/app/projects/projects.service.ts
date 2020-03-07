@@ -55,4 +55,9 @@ export class ProjectsService {
   availableProjects() {
     return this.projects.filter(project => project.completed == false);
   }
+
+  restart() {
+    this.projects = [];
+    this.level = 1;
+  }
 }

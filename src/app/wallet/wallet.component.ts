@@ -1,6 +1,11 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { FirebaseService } from "../firebase.service";
 import { Subscription } from "rxjs";
+import { GameService } from "../game.service";
+import { AnalyticsService } from "../analytics/analytics.service";
+import { TasksService } from "../tasks/tasks.service";
+import { ProjectsService } from "../projects/projects.service";
+import { MarketService } from "../market/market.service";
 
 @Component({
   selector: "app-wallet",
@@ -10,7 +15,15 @@ import { Subscription } from "rxjs";
 export class WalletComponent implements OnInit, OnDestroy {
   public user: any;
   private subscription: Subscription;
-  constructor(public fb: FirebaseService) {}
+  public reloading: boolean;
+  constructor(
+    public fb: FirebaseService,
+    private gs: GameService,
+    private ms: MarketService,
+    private as: AnalyticsService,
+    private ts: TasksService,
+    private ps: ProjectsService
+  ) {}
 
   ngOnInit() {}
 
@@ -30,6 +43,15 @@ export class WalletComponent implements OnInit, OnDestroy {
 
   deposit() {
     this.fb.deposit();
+  }
+
+  reload() {
+    this.reloading = true;
+    setTimeout(() => {
+      this.reloading = false;
+    }, 3000);
+
+    this.fb.deposit(true);
   }
 
   withdraw() {

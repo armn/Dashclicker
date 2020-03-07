@@ -58,11 +58,33 @@
         </nb-card-body>
       </nb-card>
       <div class="actions">
-        <button nbButton status="primary" (click)="withdraw()">
+        <button
+          nbButton
+          [status]="reloading ? 'success' : 'danger'"
+          class="reload"
+          (click)="reload()"
+          nbTooltip="This will deposit your assets and start a new run (a way to advance in the game)"
+        >
+          Restart
+          <nb-icon [icon]="reloading ? 'checkmark' : 'refresh'"></nb-icon>
+        </button>
+
+        <button
+          nbButton
+          status="primary"
+          (click)="withdraw()"
+          [disabled]="reloading"
+        >
           Withdraw
           <nb-icon icon="arrow-up"></nb-icon>
         </button>
-        <button nbButton class="ml-2" status="primary" (click)="deposit()">
+        <button
+          nbButton
+          class="ml-2"
+          status="primary"
+          (click)="deposit()"
+          [disabled]="reloading"
+        >
           Deposit
           <nb-icon icon="arrow-down"></nb-icon>
         </button>

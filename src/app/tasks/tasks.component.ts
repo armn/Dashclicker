@@ -28,7 +28,7 @@ export class TasksComponent implements OnInit {
     public ast: AssetsService
   ) {}
 
-  tasks = this.ts.tasks;
+  //tasks = this.ts.tasks;
 
   toggle() {
     //this.checked = checked;
@@ -47,7 +47,7 @@ export class TasksComponent implements OnInit {
   }
 
   availableTasks() {
-    return this.tasks.filter(task => task.completed === false);
+    return this.ts.tasks.filter(task => task.completed === false);
   }
 
   // @TODO - figure out a non-resource intensive way of implementing this

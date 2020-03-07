@@ -6,6 +6,36 @@ import { AnalyticsService } from "./analytics/analytics.service";
 export class GameService {
   public worker: Worker;
 
+  private initial = {
+    clicks: 0,
+    value: 1,
+    auto: 0,
+    multiplier: 1,
+
+    maxClicks: 0,
+    priceModifier: 1.01,
+    clicksPerSecond: 0,
+
+    counts: {
+      value: 0,
+      auto: 0,
+      multiplier: 0
+    },
+
+    modifiers: {
+      value: 1.3,
+      auto: 1.25,
+      multiplier: 1.6
+    },
+
+    costs: {
+      clicks: 0,
+      value: 10,
+      auto: 100,
+      multiplier: 1000
+    }
+  };
+
   public game = {
     clicks: 0,
     value: 1,
@@ -125,5 +155,20 @@ export class GameService {
 
   remove(amount: number) {
     this.game.clicks = this.game.clicks - amount;
+  }
+
+  restart() {
+    this.worker.postMessage({
+      message: "stop"
+    });
+
+    this.game = JSON.parse(JSON.stringify(this.initial));
+
+    this.worker.postMessage({
+      message: "start",
+      value: this.game.value,
+      auto: this.game.auto,
+      multiplier: this.game.multiplier
+    });
   }
 }

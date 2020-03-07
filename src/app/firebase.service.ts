@@ -9,6 +9,9 @@ import { Observable, of, Subscription } from "rxjs";
 import { GameService } from "./game.service";
 import { AnalyticsService } from "./analytics/analytics.service";
 import { AssetsService } from "./assets/assets.service";
+import { MarketService } from "./market/market.service";
+import { TasksService } from "./tasks/tasks.service";
+import { ProjectsService } from "./projects/projects.service";
 
 @Injectable({
   providedIn: "root"
@@ -19,12 +22,13 @@ export class FirebaseService {
   constructor(
     public auth: AngularFireAuth,
     public afs: AngularFirestore,
-    public gs: GameService,
-    public as: AnalyticsService,
-    public ast: AssetsService
-  ) {
-    //this.user =
-  }
+    private gs: GameService,
+    private ms: MarketService,
+    private as: AnalyticsService,
+    private ts: TasksService,
+    private ast: AssetsService,
+    private ps: ProjectsService
+  ) {}
 
   logout() {
     this.auth.signOut();
@@ -38,8 +42,8 @@ export class FirebaseService {
     });
   }
 
-  deposit() {
-    this.auth.currentUser.then(user => {
+  deposit(restart: boolean = false) {
+    return this.auth.currentUser.then(user => {
       this.afs
         .doc(`users/${user.uid}`)
         .get()
@@ -93,27 +97,38 @@ export class FirebaseService {
               ? money
               : current.data().moneyMax || 0;
 
-          this.afs.doc(`users/${user.uid}`).update({
-            clicks: clicks,
-            clicksMax: clicksMax,
-            visits: visits,
-            visitsMax: visitsMax,
-            views: views,
-            viewsMax: viewsMax,
-            reads: reads,
-            readsMax: readsMax,
-            shares: shares,
-            sharesMax: sharesMax,
-            downloads: downloads,
-            downloadsMax: downloadsMax,
-            money: money,
-            moneyMax: moneyMax,
-            seen: new Date().getTime()
-          });
+          return this.afs
+            .doc(`users/${user.uid}`)
+            .update({
+              clicks: clicks,
+              clicksMax: clicksMax,
+              visits: visits,
+              visitsMax: visitsMax,
+              views: views,
+              viewsMax: viewsMax,
+              reads: reads,
+              readsMax: readsMax,
+              shares: shares,
+              sharesMax: sharesMax,
+              downloads: downloads,
+              downloadsMax: downloadsMax,
+              money: money,
+              moneyMax: moneyMax,
+              seen: new Date().getTime()
+            })
+            .then(data => {
+              this.gs.game.clicks = 0;
+              this.as.deposit();
+              moneyObject.amount = 0;
 
-          this.gs.game.clicks = 0;
-          this.as.deposit();
-          moneyObject.amount = 0;
+              if (restart) {
+                this.gs.restart();
+                this.ms.restart();
+                this.as.restart();
+                this.ts.restart();
+                this.ps.restart();
+              }
+            });
         });
     });
   }

@@ -34,6 +34,8 @@ export class AnalyticsService {
     }
   }
 
+  // @TODO: this is a mess, figure out refs/have single constant
+
   initialValues: AnalyticsStore = {
     visits: {
       name: "Visits",
@@ -119,8 +121,93 @@ export class AnalyticsService {
     }
   };
 
+  analyticsStore: AnalyticsStore = {
+    visits: {
+      name: "Visits",
+      base: 0.01,
+      amount: 0,
+      tick: 0
+    },
+    views: {
+      name: "Views",
+      base: 0.001,
+      amount: 0,
+      tick: 0,
+      modifier: 1.1,
+      produces: {
+        visits: 10,
+        views: 1
+      },
+      cost: {
+        visits: 10000,
+        views: 1000
+      },
+      generators: 0
+    },
+    reads: {
+      name: "Reads",
+      base: 0.0001,
+      amount: 0,
+      tick: 0,
+      modifier: 1.2,
+      produces: {
+        visits: 100,
+        views: 10,
+        reads: 1
+      },
+      cost: {
+        visits: 10000,
+        views: 1000,
+        reads: 100
+      },
+      generators: 0
+    },
+    shares: {
+      name: "Shares",
+      base: 0.00001,
+      amount: 0,
+      tick: 0,
+      modifier: 1.3,
+      produces: {
+        visits: 1000,
+        views: 100,
+        reads: 10,
+        shares: 1
+      },
+      cost: {
+        visits: 10000,
+        views: 1000,
+        reads: 100,
+        shares: 10
+      },
+      generators: 0
+    },
+    downloads: {
+      name: "Downloads",
+      base: 0.000001,
+      amount: 0,
+      tick: 0,
+      modifier: 1.4,
+      cost: {
+        visits: 1000000,
+        views: 100000,
+        reads: 10000,
+        shares: 1000,
+        downloads: 1
+      },
+      produces: {
+        visits: 10000,
+        views: 1000,
+        reads: 100,
+        shares: 10,
+        downloads: 1
+      },
+      generators: 0
+    }
+  };
+
   private _analytics = new BehaviorSubject<AnalyticsStore>({
-    ...this.initialValues
+    ...this.analyticsStore
   });
   readonly analytics$ = this._analytics.asObservable();
 
@@ -387,5 +474,14 @@ export class AnalyticsService {
       this.analytics.shares.generators +
       this.analytics.downloads.generators
     );
+  }
+
+  restart() {
+    this.level = 1;
+    this.analytics = JSON.parse(JSON.stringify(this.initialValues));
+    this.worker.postMessage({
+      message: "stop"
+    });
+    this.workerUpdate();
   }
 }

@@ -238,4 +238,9 @@ export class TasksService {
     task.completed = true;
     eval(task.reward);
   }
+
+  restart() {
+    this.tasks = [];
+    this.addTasks();
+  }
 }

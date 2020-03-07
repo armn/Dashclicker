@@ -152,4 +152,11 @@ export class MarketService {
   enableSpecialDeals() {
     this.specialDeals = true;
   }
+
+  restart() {
+    this.specialDeals = false;
+    this.orderCount = 0;
+    this.orders = [];
+    this.relationship = [];
+  }
 }
