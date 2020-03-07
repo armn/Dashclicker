@@ -97,6 +97,19 @@ export class TasksService {
       ),
       new Task(
         7,
+        "Reset click value, auto clicker and multiplier costs (6)",
+        "this.gs.game.counts.auto >= 50",
+        "Have 50 auto clickers",
+        `this.gs.game.costs = {
+          clicks: 0,
+          value: 10,
+          auto: 100,
+          multiplier: 1000
+        }`,
+        false
+      ),
+      new Task(
+        8,
         "Reset generator costs and increase measurement generation",
         "this.as.analytics.views.generators >= 5 && this.as.analytics.reads.generators >= 5 && this.as.analytics.shares.generators >= 5 && this.as.analytics.downloads.generators >= 5",
         "Have 5 of each generator",
@@ -104,7 +117,7 @@ export class TasksService {
         false
       ),
       new Task(
-        8,
+        9,
         "Reset generator costs and increase measurement generation (2)",
         "this.as.analytics.views.generators + this.as.analytics.reads.generators + this.as.analytics.shares.generators + this.as.analytics.downloads.generators >= 50",
         "Have 50 generators",
@@ -113,7 +126,7 @@ export class TasksService {
       ),
 
       new Task(
-        9,
+        10,
         "Reset generator costs and increase measurement generation (3)",
         "this.as.analytics.downloads.generators >= 10",
         "Have 10 downloads generators",
@@ -122,7 +135,7 @@ export class TasksService {
       ),
 
       new Task(
-        10,
+        11,
         "Reset generator costs and increase measurement generation (4)",
         "this.money() >= 50000",
         "Have 50K money",
@@ -131,7 +144,7 @@ export class TasksService {
       ),
 
       new Task(
-        11,
+        12,
         "Reset generator costs and increase measurement generation (5)",
         "this.as.analytics.views.generators + this.as.analytics.reads.generators + this.as.analytics.shares.generators + this.as.analytics.downloads.generators >= 100",
         "Have 100 generators",
@@ -139,7 +152,7 @@ export class TasksService {
         false
       ),
       new Task(
-        11,
+        13,
         "Reset generator costs and increase measurement generation (6)",
         "this.as.analytics.views.generators + this.as.analytics.reads.generators + this.as.analytics.shares.generators + this.as.analytics.downloads.generators >= 150",
         "Have 150 generators",
@@ -147,7 +160,7 @@ export class TasksService {
         false
       ),
       new Task(
-        12,
+        14,
         "Reduce uncompleted project costs & reset click value, auto clicker and multiplier costs",
         "this.as.analytics.views.generators + this.as.analytics.reads.generators + this.as.analytics.shares.generators + this.as.analytics.downloads.generators >= 200",
         "Have 200 generators",
@@ -161,7 +174,7 @@ export class TasksService {
         false
       ),
       new Task(
-        13,
+        15,
         "Reduce uncompleted project costs & reset click value, auto clicker and multiplier costs (2)",
         "this.as.analytics.views.generators + this.as.analytics.reads.generators + this.as.analytics.shares.generators + this.as.analytics.downloads.generators >= 250",
         "Have 250 generators",

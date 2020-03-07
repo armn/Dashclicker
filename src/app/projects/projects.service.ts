@@ -37,7 +37,7 @@ export class ProjectsService {
   }
 
   reduceCosts() {
-    this.level = this.level * 10;
+    this.level = this.level * 20;
     const incompleteProjects = this.projects.filter(
       project => project.completed == false
     );

@@ -133,9 +133,10 @@ export class AnalyticsService {
   }
 
   upgradeGenerators(multiply = false) {
-    this.level += 1;
     if (multiply) {
       this.level = this.level * 100;
+    } else {
+      this.level += 1;
     }
     this.analytics.views.cost = {
       visits: 10000,
