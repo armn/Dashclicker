@@ -12,9 +12,14 @@
     </button></nb-card-header
   >
   <nb-list>
-    <nb-list-item *ngFor="let project of this.ps.availableProjects()">
+    <nb-list-item
+      *ngFor="let project of this.ps.availableProjects()"
+      [class]="this.specialProject(project.id) ? 'special' : ''"
+    >
       <div class="project-item row">
-        <div class="col-auto col-sm-1"><small>#</small>{{ project.id }}</div>
+        <div class="col-auto col-sm-1">
+          <div><small>#</small>{{ project.id }}</div>
+        </div>
         <div class="col-12 col-sm-7">
           <div class="requirements">
             <span class="visits">
@@ -111,7 +116,7 @@
     </nb-list-item>
   </nb-list>
   <nb-card-footer class="text-center"
-    >Feeling stuck? Try depositing in your wallet and reloading the game for a
-    new run.</nb-card-footer
+    >Every fifth completed project resets Analytics generator costs and
+    multiplies generation amount by 100x.</nb-card-footer
   >
 </nb-card>

@@ -3,6 +3,7 @@ import { Task } from "./task.model";
 import { GameService } from "../game.service";
 import { MarketService } from "../market/market.service";
 import { AnalyticsService } from "../analytics/analytics.service";
+import { ProjectsService } from "../projects/projects.service";
 
 @Injectable({
   providedIn: "root"
@@ -12,7 +13,8 @@ export class TasksService {
   constructor(
     public gs: GameService,
     public ms: MarketService,
-    public as: AnalyticsService
+    public as: AnalyticsService,
+    public ps: ProjectsService
   ) {
     this.tasks = [];
     this.addTasks();
@@ -138,10 +140,24 @@ export class TasksService {
       ),
       new Task(
         11,
-        "Reset generator costs & increase measurement generation by 100000x",
+        "Reset generator costs & increase measurement generation (6)",
         "this.as.analytics.views.generators + this.as.analytics.reads.generators + this.as.analytics.shares.generators + this.as.analytics.downloads.generators >= 150",
         "Have 150 generators",
-        "this.as.upgradeGenerators(true)",
+        "this.as.upgradeGenerators()",
+        false
+      ),
+      new Task(
+        12,
+        "Reduce incompleted project costs, reset click value, auto clicker & multiplier costs",
+        "this.as.analytics.views.generators + this.as.analytics.reads.generators + this.as.analytics.shares.generators + this.as.analytics.downloads.generators >= 200",
+        "Have 200 generators",
+        `this.ps.reduceCosts(); 
+        this.gs.game.costs = {
+          clicks: 0,
+          value: 10,
+          auto: 100,
+          multiplier: 1000
+        }`,
         false
       )
     );

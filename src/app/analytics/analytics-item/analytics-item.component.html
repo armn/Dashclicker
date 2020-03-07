@@ -109,25 +109,25 @@
           <li>
             <span class="subtitle-2">Generate</span>
           </li>
-          <li *ngIf="measurement.produces.downloads">
-            +{{ measurement.produces.downloads | numbers }}
-            <small>downloads/s</small>
-          </li>
-          <li *ngIf="measurement.produces.shares">
-            +{{ measurement.produces.shares | numbers }}
-            <small>shares/s</small>
-          </li>
-          <li *ngIf="measurement.produces.reads">
-            +{{ measurement.produces.reads | numbers }}
-            <small>reads/s</small>
+          <li *ngIf="measurement.produces.visits">
+            +{{ measurement.produces.visits | numbers }}
+            <small>visits/s</small>
           </li>
           <li *ngIf="measurement.produces.views">
             +{{ measurement.produces.views | numbers }}
             <small>views/s</small>
           </li>
-          <li *ngIf="measurement.produces.visits">
-            +{{ measurement.produces.visits | numbers }}
-            <small>visits/s</small>
+          <li *ngIf="measurement.produces.reads">
+            +{{ measurement.produces.reads | numbers }}
+            <small>reads/s</small>
+          </li>
+          <li *ngIf="measurement.produces.shares">
+            +{{ measurement.produces.shares | numbers }}
+            <small>shares/s</small>
+          </li>
+          <li *ngIf="measurement.produces.downloads">
+            +{{ measurement.produces.downloads | numbers }}
+            <small>downloads/s</small>
           </li>
         </ul>
       </div>

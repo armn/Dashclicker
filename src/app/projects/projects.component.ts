@@ -32,7 +32,15 @@ export class ProjectsComponent implements OnInit {
     );
   }
 
-  complete(project) {
+  specialProject(id: number) {
+    if (Number.isInteger(id / 5)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  complete(project: Project) {
     const money = this.ast.assets.find(asset => asset.name == "Money");
     money.amount += project.money;
     this.as.decrease(
@@ -43,6 +51,9 @@ export class ProjectsComponent implements OnInit {
       project.downloads
     );
     project.completed = true;
+    if (Number.isInteger(project.id / 5)) {
+      this.as.upgradeGenerators(true);
+    }
   }
 
   canComplete(project) {

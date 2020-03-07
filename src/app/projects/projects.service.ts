@@ -34,6 +34,21 @@ export class ProjectsService {
     );
   }
 
+  reduceCosts() {
+    const incompleteProjects = this.projects.filter(
+      project => project.completed == false
+    );
+    if (incompleteProjects.length) {
+      incompleteProjects.forEach(project => {
+        project.visits = project.visits / 1000000;
+        project.views = project.views / 100000;
+        project.reads = project.reads / 10000;
+        project.shares = project.shares / 1000;
+        project.downloads = project.downloads / 100;
+      });
+    }
+  }
+
   availableProjects() {
     return this.projects.filter(project => project.completed == false);
   }

@@ -132,14 +132,14 @@ export class AnalyticsService {
     this._analytics.next(val);
   }
 
-  upgradeGenerators(multiply) {
+  upgradeGenerators(multiply = false) {
     this.level += 1;
     if (multiply) {
-      this.level = this.level * 100000;
+      this.level = this.level * 100;
     }
     this.analytics.views.cost = {
-      visits: 10000 / this.level,
-      views: 1000 / this.level
+      visits: 10000,
+      views: 1000
     };
     this.analytics.views.produces = {
       visits: 100 * this.level,
@@ -152,9 +152,9 @@ export class AnalyticsService {
       reads: 10 * this.level
     };
     this.analytics.reads.cost = {
-      visits: 10000 / this.level,
-      views: 1000 / this.level,
-      reads: 100 / this.level
+      visits: 10000,
+      views: 1000,
+      reads: 100
     };
 
     this.analytics.shares.produces = {
@@ -164,17 +164,17 @@ export class AnalyticsService {
       shares: 10 * this.level
     };
     this.analytics.shares.cost = {
-      visits: 10000 / this.level,
-      views: 1000 / this.level,
-      reads: 100 / this.level,
-      shares: 10 / this.level
+      visits: 10000,
+      views: 1000,
+      reads: 100,
+      shares: 10
     };
 
     this.analytics.downloads.cost = {
-      visits: 1000000 / this.level,
-      views: 100000 / this.level,
-      reads: 10000 / this.level,
-      shares: 1000 / this.level,
+      visits: 1000000,
+      views: 100000,
+      reads: 10000,
+      shares: 1000,
       downloads: 1
     };
     this.analytics.downloads.produces = {
