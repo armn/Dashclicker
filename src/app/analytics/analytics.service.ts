@@ -134,7 +134,7 @@ export class AnalyticsService {
 
   upgradeGenerators(multiply = false) {
     if (multiply) {
-      this.level = this.level * 100;
+      this.level = this.level * 10;
     } else {
       this.level += 1;
     }

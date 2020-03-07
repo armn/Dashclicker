@@ -23,7 +23,8 @@ import {
   NbToastrModule,
   NbContextMenuModule,
   NbMenuModule,
-  NbIconModule
+  NbIconModule,
+  NbBadgeModule
 } from "@nebular/theme";
 import { NbEvaIconsModule } from "@nebular/eva-icons";
 import { AppRoutingModule } from "./app-routing.module";
@@ -100,6 +101,7 @@ import { AssetsComponent } from "./assets/assets.component";
     NbContextMenuModule,
     NbMenuModule.forRoot(),
     NbIconModule,
+    NbBadgeModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,

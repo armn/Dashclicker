@@ -41,6 +41,17 @@ export class TasksComponent implements OnInit {
     return this.tasks.filter(task => task.completed === false);
   }
 
+  // @TODO - figure out a non-resource intensive way of implementing this
+  // ableToComplete() {
+  //   let available = 0;
+  //   this.tasks.forEach(task => {
+  //     if (eval(task.evaluate) == true) {
+  //       available += 1;
+  //     }
+  //   });
+  //   return String(available);
+  // }
+
   money() {
     const money = this.ast.assets.find(asset => asset.type == "money");
     return money.amount;
