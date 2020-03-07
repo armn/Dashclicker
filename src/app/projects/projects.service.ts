@@ -10,11 +10,13 @@ export class ProjectsService {
   public current: Project;
   public modifier: number;
   public moneyModifier: number;
+  public level: number;
 
   constructor(public gs: GameService) {
     this.projects = [];
     this.modifier = 0.21;
     this.moneyModifier = 0.42;
+    this.level = 1;
   }
 
   generate() {
@@ -35,16 +37,17 @@ export class ProjectsService {
   }
 
   reduceCosts() {
+    this.level = this.level * 10;
     const incompleteProjects = this.projects.filter(
       project => project.completed == false
     );
     if (incompleteProjects.length) {
       incompleteProjects.forEach(project => {
-        project.visits = project.visits / 1000000;
-        project.views = project.views / 100000;
-        project.reads = project.reads / 10000;
-        project.shares = project.shares / 1000;
-        project.downloads = project.downloads / 100;
+        project.visits = project.visits / (1000000 * this.level);
+        project.views = project.views / (100000 * this.level);
+        project.reads = project.reads / (10000 * this.level);
+        project.shares = project.shares / (1000 * this.level);
+        project.downloads = project.downloads / (100 * this.level);
       });
     }
   }
