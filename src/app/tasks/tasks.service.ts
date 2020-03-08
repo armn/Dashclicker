@@ -104,20 +104,6 @@ export class TasksService {
       new Task(
         7,
         "Reset click value, auto clicker and multiplier costs #6",
-        "this.gs.game.counts.auto >= 50",
-        "Have 50 auto clickers",
-        `this.gs.game.costs = {
-          clicks: 0,
-          value: 10,
-          auto: 100,
-          multiplier: 1000
-        }`,
-        false,
-        "primary"
-      ),
-      new Task(
-        8,
-        "Reset click value, auto clicker and multiplier costs #7",
         "this.gs.game.counts.auto >= 60",
         "Have 60 auto clickers",
         `this.gs.game.costs = {
@@ -130,7 +116,63 @@ export class TasksService {
         "primary"
       ),
       new Task(
+        8,
+        "Reset click value, auto clicker and multiplier costs #7",
+        "this.gs.game.counts.auto >= 70",
+        "Have 70 auto clickers",
+        `this.gs.game.costs = {
+          clicks: 0,
+          value: 10,
+          auto: 100,
+          multiplier: 1000
+        }`,
+        false,
+        "primary"
+      ),
+      new Task(
         9,
+        "Reset click value, auto clicker and multiplier costs #8",
+        "this.gs.game.counts.auto >= 80",
+        "Have 80 auto clickers",
+        `this.gs.game.costs = {
+          clicks: 0,
+          value: 10,
+          auto: 100,
+          multiplier: 1000
+        }`,
+        false,
+        "primary"
+      ),
+      new Task(
+        10,
+        "Reset click value, auto clicker and multiplier costs #9",
+        "this.gs.game.counts.auto >= 90",
+        "Have 90 auto clickers",
+        `this.gs.game.costs = {
+          clicks: 0,
+          value: 10,
+          auto: 100,
+          multiplier: 1000
+        }`,
+        false,
+        "primary"
+      ),
+      new Task(
+        11,
+        "Reset click value, auto clicker and multiplier costs #10",
+        "this.as.analytics.views.generators + this.as.analytics.reads.generators + this.as.analytics.shares.generators + this.as.analytics.downloads.generators >= 400",
+        "Have 400 generators",
+        `this.gs.game.costs = {
+          clicks: 0,
+          value: 10,
+          auto: 100,
+          multiplier: 1000
+        }`,
+        false,
+        "primary"
+      ),
+      new Task(
+        12,
         "Reset generator costs and increase measurement generation",
         "this.as.analytics.views.generators >= 5 && this.as.analytics.reads.generators >= 5 && this.as.analytics.shares.generators >= 5 && this.as.analytics.downloads.generators >= 5",
         "Have 5 of each generator",
@@ -139,7 +181,7 @@ export class TasksService {
         "success"
       ),
       new Task(
-        10,
+        13,
         "Reset generator costs and increase measurement generation #2",
         "this.as.analytics.views.generators + this.as.analytics.reads.generators + this.as.analytics.shares.generators + this.as.analytics.downloads.generators >= 50",
         "Have 50 generators",
@@ -149,7 +191,7 @@ export class TasksService {
       ),
 
       new Task(
-        11,
+        14,
         "Reset generator costs and increase measurement generation #3",
         "this.as.analytics.downloads.generators >= 10",
         "Have 10 downloads generators",
@@ -159,7 +201,7 @@ export class TasksService {
       ),
 
       new Task(
-        12,
+        15,
         "Reset generator costs and increase measurement generation #4",
         "this.money() >= 50000",
         "Have 50K money",
@@ -169,7 +211,7 @@ export class TasksService {
       ),
 
       new Task(
-        13,
+        16,
         "Reset generator costs and increase measurement generation #5",
         "this.as.analytics.views.generators + this.as.analytics.reads.generators + this.as.analytics.shares.generators + this.as.analytics.downloads.generators >= 100",
         "Have 100 generators",
@@ -178,7 +220,7 @@ export class TasksService {
         "success"
       ),
       new Task(
-        14,
+        17,
         "Reset generator costs and increase measurement generation #6",
         "this.as.analytics.views.generators + this.as.analytics.reads.generators + this.as.analytics.shares.generators + this.as.analytics.downloads.generators >= 150",
         "Have 150 generators",
@@ -187,7 +229,7 @@ export class TasksService {
         "success"
       ),
       new Task(
-        15,
+        18,
         "Reduce current project costs & reset click value, auto clicker and multiplier costs",
         "this.as.analytics.views.generators + this.as.analytics.reads.generators + this.as.analytics.shares.generators + this.as.analytics.downloads.generators >= 200",
         "Have 200 generators",
@@ -202,7 +244,7 @@ export class TasksService {
         "warning"
       ),
       new Task(
-        16,
+        19,
         "Reduce current project costs & reset click value, auto clicker and multiplier costs #2",
         "this.as.analytics.views.generators + this.as.analytics.reads.generators + this.as.analytics.shares.generators + this.as.analytics.downloads.generators >= 250",
         "Have 250 generators",
@@ -217,10 +259,25 @@ export class TasksService {
         "warning"
       ),
       new Task(
-        17,
+        20,
         "Reduce current project costs & reset click value, auto clicker and multiplier costs #3",
         "this.as.analytics.views.generators >= 100",
         "Have 100 views generators",
+        `this.ps.reduceCosts(); 
+        this.gs.game.costs = {
+          clicks: 0,
+          value: 10,
+          auto: 100,
+          multiplier: 1000
+        }`,
+        false,
+        "warning"
+      ),
+      new Task(
+        21,
+        "Reduce current project costs & reset click value, auto clicker and multiplier costs #4",
+        "this.as.analytics.views.generators + this.as.analytics.reads.generators + this.as.analytics.shares.generators + this.as.analytics.downloads.generators >= 333",
+        "Have 333 generators",
         `this.ps.reduceCosts(); 
         this.gs.game.costs = {
           clicks: 0,
@@ -241,6 +298,7 @@ export class TasksService {
 
   restart() {
     this.tasks = [];
+
     this.addTasks();
   }
 }
