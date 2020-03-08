@@ -69,7 +69,7 @@ export class ProjectsComponent implements OnInit {
     );
     project.completed = true;
     if (Number.isInteger(project.id / 5)) {
-      this.as.upgradeGenerators(true);
+      this.as.upgradeGenerators(project.id);
     }
   }
 

@@ -4,6 +4,7 @@ import { GameService } from "../game.service";
 import { MarketService } from "../market/market.service";
 import { AnalyticsService } from "../analytics/analytics.service";
 import { ProjectsService } from "../projects/projects.service";
+import { AssetsService } from "../assets/assets.service";
 
 @Injectable({
   providedIn: "root"
@@ -14,7 +15,8 @@ export class TasksService {
     public gs: GameService,
     public ms: MarketService,
     public as: AnalyticsService,
-    public ps: ProjectsService
+    public ps: ProjectsService,
+    public ast: AssetsService
   ) {
     this.tasks = [];
     this.addTasks();
@@ -90,8 +92,8 @@ export class TasksService {
       new Task(
         6,
         "Reset click value, auto clicker and multiplier costs #5",
-        "this.money() >= 5000",
-        "Have $ 5K money",
+        "this.ast.money() >= 5000 || this.gs.game.counts.auto >= 50",
+        "Have 50 auto clickers or $5K money",
         `this.gs.game.costs = {
           clicks: 0,
           value: 10,
@@ -104,8 +106,8 @@ export class TasksService {
       new Task(
         7,
         "Reset click value, auto clicker and multiplier costs #6",
-        "this.gs.game.counts.auto >= 60",
-        "Have 60 auto clickers",
+        "this.ast.money() >= 100000000",
+        "Have $100M money",
         `this.gs.game.costs = {
           clicks: 0,
           value: 10,
@@ -160,8 +162,8 @@ export class TasksService {
       new Task(
         11,
         "Reset click value, auto clicker and multiplier costs #10",
-        "this.as.analytics.views.generators + this.as.analytics.reads.generators + this.as.analytics.shares.generators + this.as.analytics.downloads.generators >= 400",
-        "Have 400 generators",
+        "(this.as.analytics.views.generators + this.as.analytics.reads.generators + this.as.analytics.shares.generators + this.as.analytics.downloads.generators >= 400) || this.ast.money() >= 1000000000000",
+        "Have 400 generators or $1t money",
         `this.gs.game.costs = {
           clicks: 0,
           value: 10,
@@ -203,7 +205,7 @@ export class TasksService {
       new Task(
         15,
         "Reset generator costs and increase measurement generation #4",
-        "this.money() >= 50000",
+        "this.ast.money() >= 50000",
         "Have 50K money",
         "this.as.upgradeGenerators()",
         false,
@@ -278,6 +280,21 @@ export class TasksService {
         "Reduce current project costs & reset click value, auto clicker and multiplier costs #4",
         "this.as.analytics.views.generators + this.as.analytics.reads.generators + this.as.analytics.shares.generators + this.as.analytics.downloads.generators >= 333",
         "Have 333 generators",
+        `this.ps.reduceCosts(); 
+        this.gs.game.costs = {
+          clicks: 0,
+          value: 10,
+          auto: 100,
+          multiplier: 1000
+        }`,
+        false,
+        "warning"
+      ),
+      new Task(
+        22,
+        "Reduce current project costs & reset click value, auto clicker and multiplier costs #5",
+        "this.gs.game.counts.auto >= 100",
+        "Have 100 auto clickers",
         `this.ps.reduceCosts(); 
         this.gs.game.costs = {
           clicks: 0,
