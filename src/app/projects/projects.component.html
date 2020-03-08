@@ -15,6 +15,7 @@
     <nb-list-item
       *ngFor="let project of this.ps.availableProjects()"
       [class]="this.specialProject(project.id) ? 'special' : ''"
+      [@inOutAnimation]
     >
       <div class="project-item row">
         <div class="col-auto col-sm-1">

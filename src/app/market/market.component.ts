@@ -13,12 +13,12 @@ import {
   templateUrl: "./market.component.html",
   styleUrls: ["./market.component.scss"],
   animations: [
-    // trigger("inOutAnimation", [
-    //   transition(":leave", [
-    //     style({ opacity: 1 }),
-    //     animate("0.5s ease-in", style({ opacity: 0 }))
-    //   ])
-    // ])
+    trigger("inAnimation", [
+      transition(":enter", [
+        style({ opacity: 0 }),
+        animate("150ms linear", style({ opacity: 1 }))
+      ])
+    ])
   ]
 })
 export class MarketComponent implements OnInit {

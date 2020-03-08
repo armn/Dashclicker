@@ -4,11 +4,24 @@ import { GameService } from "../game.service";
 import { AnalyticsService } from "../analytics/analytics.service";
 import { ProjectsService } from "./projects.service";
 import { AssetsService } from "../assets/assets.service";
+import { trigger, transition, style, animate } from "@angular/animations";
 
 @Component({
   selector: "app-projects",
   templateUrl: "./projects.component.html",
-  styleUrls: ["./projects.component.scss"]
+  styleUrls: ["./projects.component.scss"],
+  animations: [
+    trigger("inOutAnimation", [
+      transition(":enter", [
+        style({ opacity: 0 }),
+        animate("0.15s ease-in", style({ opacity: 1 }))
+      ]),
+      transition(":leave", [
+        style({ opacity: 1 }),
+        animate("0.15s ease-out", style({ opacity: 0 }))
+      ])
+    ])
+  ]
 })
 export class ProjectsComponent implements OnInit {
   constructor(

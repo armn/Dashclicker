@@ -22,6 +22,7 @@
           *ngFor="let order of market.orders$ | async"
           [class]="'market-entry d-block d-sm-table-row ' + order.special"
           [order]="order"
+          [@inAnimation]
         ></tr>
       </tbody>
     </table>
