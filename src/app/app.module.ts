@@ -54,6 +54,7 @@ import { environment } from "../environments/environment";
 import { LoginComponent } from "./wallet/login/login.component";
 import { RegisterComponent } from "./wallet/register/register.component";
 import { AssetsComponent } from "./assets/assets.component";
+import { BoostsComponent } from "./boosts/boosts.component";
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { AssetsComponent } from "./assets/assets.component";
     OrdersComponent,
     LoginComponent,
     RegisterComponent,
-    AssetsComponent
+    AssetsComponent,
+    BoostsComponent
   ],
   imports: [
     BrowserModule,

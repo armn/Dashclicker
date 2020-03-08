@@ -22,6 +22,16 @@ table {
   }
 }
 
+.visits,
+.views,
+.reads,
+.shares,
+.downloads {
+  span {
+    border-radius: 5px;
+  }
+}
+
 .visits span {
   background: nb-theme(color-primary-100);
 }

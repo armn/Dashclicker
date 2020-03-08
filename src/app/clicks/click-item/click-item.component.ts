@@ -39,7 +39,9 @@ export class ClickItemComponent implements OnInit {
         return this.gs.game.value / 5 + this.gs.game.counts.value * 2 + 1;
 
       case "clicks":
-        return this.gs.game.value * this.gs.game.multiplier;
+        return (
+          this.gs.game.value * this.gs.game.multiplier * this.gs.boost_manual
+        );
 
       case "multiplier":
         return this.gs.game.multiplier;

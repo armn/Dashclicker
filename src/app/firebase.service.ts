@@ -12,6 +12,7 @@ import { AssetsService } from "./assets/assets.service";
 import { MarketService } from "./market/market.service";
 import { TasksService } from "./tasks/tasks.service";
 import { ProjectsService } from "./projects/projects.service";
+import { BoostsService } from "./boosts/boosts.service";
 
 @Injectable({
   providedIn: "root"
@@ -27,7 +28,8 @@ export class FirebaseService {
     private as: AnalyticsService,
     private ts: TasksService,
     private ast: AssetsService,
-    private ps: ProjectsService
+    private ps: ProjectsService,
+    private bs: BoostsService
   ) {}
 
   logout() {
@@ -91,11 +93,29 @@ export class FirebaseService {
           const moneyObject = this.ast.assets.find(
             asset => asset.type === "money"
           );
+          const cryptoObject = this.ast.assets.find(
+            asset => asset.type === "crypto"
+          );
           const money = current.data().money + moneyObject.amount || 0;
           const moneyMax =
             money > current.data().moneyMax
               ? money
               : current.data().moneyMax || 0;
+
+          const crypto = current.data().crypto + cryptoObject.amount || 0;
+          const cryptoMax =
+            crypto > current.data().cryptoMax
+              ? crypto
+              : current.data().cryptoMax || 0;
+
+          /* Boosts */
+
+          const currentBoost = current.data().boost_manual
+            ? current.data().boost_manual
+            : 0;
+          const boost_manual =
+            currentBoost +
+            this.bs.boosts.find(boost => boost.name == "boost_manual").owned;
 
           return this.afs
             .doc(`users/${user.uid}`)
@@ -114,12 +134,17 @@ export class FirebaseService {
               downloadsMax: downloadsMax,
               money: money,
               moneyMax: moneyMax,
+              crypto: crypto,
+              cryptoMax: cryptoMax,
+              boost_manual: boost_manual,
               seen: new Date().getTime()
             })
             .then(data => {
               this.gs.game.clicks = 0;
               this.as.deposit();
+              this.bs.deposit();
               moneyObject.amount = 0;
+              cryptoObject.amount = 0;
 
               if (restart) {
                 this.gs.restart();
@@ -149,8 +174,9 @@ export class FirebaseService {
             downloads: current.data().downloads
           };
           const money = this.ast.assets.find(asset => asset.type == "money");
+          const crypto = this.ast.assets.find(asset => asset.type == "crypto");
           money.amount += current.data().money;
-
+          crypto.amount += current.data().crypto;
           this.as.withdraw({ ...analytics });
 
           this.afs.doc(`users/${user.uid}`).update({
@@ -161,6 +187,7 @@ export class FirebaseService {
             shares: 0,
             downloads: 0,
             money: 0,
+            crypto: 0,
             seen: new Date().getTime()
           });
         });

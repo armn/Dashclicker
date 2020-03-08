@@ -1,0 +1,23 @@
+.icons-card {
+  padding: 0.6rem 1.5rem;
+}
+
+.icons {}
+
+.icon {
+  display: inline-block;
+  position: relative;
+
+  nb-icon {
+    font-size: 2rem;
+    margin: 0 !important;
+  }
+
+  button {
+    position: relative;
+  }
+}
+
+.icons-popover {
+  padding: 10px;
+}

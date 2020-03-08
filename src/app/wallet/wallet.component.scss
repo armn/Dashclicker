@@ -1,8 +1,9 @@
+@import '../../themes';
+
 .wallet {
   list-style-type: none;
   margin-left: 0;
   padding-left: 0;
-  margin-bottom: -10px;
 }
 
 .load {
@@ -15,6 +16,7 @@
   width: 100%;
   justify-content: flex-end;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 li span {
@@ -30,4 +32,41 @@ li span {
 
 .reload {
   margin-right: auto;
+}
+
+@media (max-width: 1500px) {
+  .reload {
+
+    span {
+      display: none;
+    }
+
+    nb-icon {
+      margin-left: 0 !important;
+    }
+  }
+}
+
+@media (max-width: 1337px) {
+  button span {
+    display: none;
+  }
+
+  button nb-icon {
+    margin: 0 !important;
+  }
+}
+
+.boosts {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+
+  .boost {
+    position: relative;
+
+    nb-icon {
+      margin: 0 !important;
+    }
+  }
 }

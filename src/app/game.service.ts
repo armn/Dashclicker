@@ -5,7 +5,7 @@ import { AnalyticsService } from "./analytics/analytics.service";
 })
 export class GameService {
   public worker: Worker;
-
+  public boost_manual: number = 1;
   private initial = {
     clicks: 0,
     value: 1,
@@ -108,7 +108,8 @@ export class GameService {
 
     switch (resource) {
       case "clicks":
-        this.game.clicks += this.game.value * this.game.multiplier;
+        this.game.clicks +=
+          this.game.value * this.game.multiplier * this.boost_manual;
         break;
       case "value":
         this.game.value += this.game.value / 5 + this.game.counts.value * 2 + 1;
@@ -170,5 +171,9 @@ export class GameService {
       auto: this.game.auto,
       multiplier: this.game.multiplier
     });
+  }
+
+  applyBoost(amount: number) {
+    this.boost_manual = amount + 1;
   }
 }

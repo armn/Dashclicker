@@ -1,0 +1,59 @@
+<nb-card status="basic" size="tiny">
+  <nb-card-header>Boosts</nb-card-header>
+  <nb-card-body class="icons-card">
+    <div class="icons">
+      <div
+        class="icon"
+        *ngFor="let boost of boosts"
+        [nbPopover]="popover"
+        nbPopoverTrigger="hint"
+      >
+        <button
+          nbButton
+          ghost
+          [status]="boost.status"
+          [disabled]="canAfford(boost)"
+          (click)="buyIcon(boost)"
+        >
+          <nb-badge [text]="boost.owned" position="bottom right"></nb-badge>
+          <nb-icon [icon]="boost.icon"></nb-icon>
+        </button>
+
+        <ng-template #popover>
+          <div class="icons-popover medium-popover">
+            <div class="row">
+              <div class="col">
+                <span class="subtitle">{{ boost.description }}</span>
+                <ul class="costs">
+                  <li
+                    *ngIf="boost.moneyCost"
+                    [class]="
+                      this.ast.money() >= boost.moneyCost
+                        ? 'text-success'
+                        : 'text-danger'
+                    "
+                  >
+                    $ {{ boost.moneyCost | numbers }} <small>money</small>
+                  </li>
+                  <li
+                    *ngIf="boost.cryptoCost"
+                    [class]="
+                      this.ast.crypto() >= boost.cryptoCost
+                        ? 'text-success'
+                        : 'text-danger'
+                    "
+                  >
+                    ⛓ {{ boost.cryptoCost | numbers }} <small>crypto</small>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </nb-card-body>
+  <nb-card-footer class="text-center">
+    <small>To use boosts, deposit them into your Wallet after purchase.</small>
+  </nb-card-footer>
+</nb-card>

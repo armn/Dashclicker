@@ -2,6 +2,10 @@
 
 .money {
   margin-bottom: 0;
+
+  span {
+    white-space: nowrap;
+  }
 }
 
 .projects-header {

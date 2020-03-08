@@ -18,7 +18,7 @@ import { trigger, transition, style, animate } from "@angular/animations";
       ]),
       transition(":leave", [
         style({ opacity: 1 }),
-        animate("0.15s ease-out", style({ opacity: 0 }))
+        animate("0.15s linear", style({ opacity: 0 }))
       ])
     ])
   ]
@@ -55,7 +55,11 @@ export class ProjectsComponent implements OnInit {
 
   complete(project: Project) {
     const money = this.ast.assets.find(asset => asset.name == "Money");
+    const crypto = this.ast.assets.find(asset => asset.name == "Crypto");
+
     money.amount += project.money;
+    crypto.amount += project.crypto;
+
     this.as.decrease(
       project.visits,
       project.views,

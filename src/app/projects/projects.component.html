@@ -41,7 +41,12 @@
           </div>
         </div>
         <div class="col-6 col-sm-3">
-          <h5 class="money">$ {{ project.money | numbers }}</h5>
+          <h5 class="money">
+            $ {{ project.money | numbers }}
+            <span *ngIf="project.crypto">
+              ⛓ {{ project.crypto | numbers }}</span
+            >
+          </h5>
         </div>
         <div
           class="col-12 col-sm-1 text-right"
@@ -117,7 +122,9 @@
     </nb-list-item>
   </nb-list>
   <nb-card-footer class="text-center"
-    >Projects marked in green reset Analytics generator costs and increase
-    generation.</nb-card-footer
+    ><small
+      >Projects marked in green reset Analytics generator costs and increase
+      generation.</small
+    ></nb-card-footer
   >
 </nb-card>

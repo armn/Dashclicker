@@ -21,8 +21,8 @@
       </button>
     </div>
     <div *ngIf="this.user">
-      <nb-card>
-        <nb-card-body>
+      <div class="row">
+        <div class="col col-sm-8">
           <ul class="wallet">
             <li>
               <span>{{ this.user.clicks | numbers }}</span
@@ -51,21 +51,52 @@
               >/{{ this.user.downloadsMax | numbers }}<small> downloads</small>
             </li>
             <li>
-              <span>$ {{ this.user.money | numbers }}</span
+              <span>{{ this.user.money | numbers }}</span
               >/{{ this.user.moneyMax | numbers }}<small> money</small>
             </li>
+            <li>
+              <span>{{ this.user.crypto | numbers }}</span
+              >/{{ this.user.cryptoMax | numbers }}<small> crypto</small>
+            </li>
           </ul>
-        </nb-card-body>
-      </nb-card>
+        </div>
+        <div class="col col-sm-4">
+          <div class="boosts">
+            <div
+              class="boost"
+              nbTooltip="Enable to increase manual click value"
+            >
+              <button
+                nbButton
+                hero
+                [status]="boost_manual ? 'success' : 'basic'"
+                [disabled]="this.user.boost_manual ? false : true"
+                (click)="toggleBoost('boost_manual', this.user.boost_manual)"
+                size="large"
+                fullWidth
+              >
+                <nb-badge
+                  [text]="this.user.boost_manual || 0"
+                  status="basic"
+                  position="bottom right"
+                ></nb-badge>
+                <nb-icon icon="person-add"></nb-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="actions">
         <button
           nbButton
           [status]="reloading ? 'success' : 'danger'"
           class="reload"
           (click)="reload()"
+          [disabled]="loading"
           nbTooltip="This will deposit your assets and start a new run (a way to advance in the game)"
         >
-          Restart
+          <span>Restart</span>
           <nb-icon [icon]="reloading ? 'checkmark' : 'refresh'"></nb-icon>
         </button>
 
@@ -73,9 +104,9 @@
           nbButton
           status="primary"
           (click)="withdraw()"
-          [disabled]="reloading"
+          [disabled]="reloading || loading"
         >
-          Withdraw
+          <span>Withdraw</span>
           <nb-icon icon="arrow-up"></nb-icon>
         </button>
         <button
@@ -83,9 +114,9 @@
           class="ml-2"
           status="primary"
           (click)="deposit()"
-          [disabled]="reloading"
+          [disabled]="reloading || loading"
         >
-          Deposit
+          <span>Deposit</span>
           <nb-icon icon="arrow-down"></nb-icon>
         </button>
 

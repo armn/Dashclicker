@@ -10,12 +10,14 @@ export class ProjectsService {
   public current: Project;
   public modifier: number;
   public moneyModifier: number;
+  public cryptoModifier: number;
   public level: number;
 
   constructor(public gs: GameService) {
     this.projects = [];
     this.modifier = 0.21;
     this.moneyModifier = 0.42;
+    this.cryptoModifier = 2;
     this.level = 1;
   }
 
@@ -23,6 +25,10 @@ export class ProjectsService {
     const lastProject =
       this.projects.length > 0 ? this.projects[this.projects.length - 1].id : 0;
     const currentProject = lastProject + 1;
+    let specialProject: boolean = false;
+    if (Number.isInteger(currentProject / 5)) {
+      specialProject = true;
+    }
     this.projects.push(
       new Project(
         currentProject,
@@ -31,7 +37,8 @@ export class ProjectsService {
         Math.ceil(Math.pow(10000, currentProject * this.modifier) * 10),
         Math.ceil(Math.pow(1000, currentProject * this.modifier) * 10),
         Math.ceil(Math.pow(100, currentProject * this.modifier) * 10),
-        Math.ceil(Math.pow(10, currentProject * this.moneyModifier))
+        Math.ceil(Math.pow(10, currentProject * this.moneyModifier)),
+        specialProject ? (1 * currentProject) / 5 : 0
       )
     );
   }

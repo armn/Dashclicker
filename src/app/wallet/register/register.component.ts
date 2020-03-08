@@ -61,6 +61,9 @@ export class RegisterComponent implements OnInit {
           ordersMax: 0,
           projects: 0,
           projectsMax: 0,
+          crypto: 0,
+          cryptoMax: 0,
+          boost_manual: 0,
           registered: new Date().getTime()
         });
         this.fb.isLoggedIn();
