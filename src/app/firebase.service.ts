@@ -110,12 +110,19 @@ export class FirebaseService {
 
           /* Boosts */
 
-          const currentBoost = current.data().boost_manual
+          const current_boost_manual = current.data().boost_manual
             ? current.data().boost_manual
             : 0;
           const boost_manual =
-            currentBoost +
+            current_boost_manual +
             this.bs.boosts.find(boost => boost.name == "boost_manual").owned;
+
+          const current_boost_analytics = current.data().boost_analytics
+            ? current.data().boost_analytics
+            : 0;
+          const boost_analytics =
+            current_boost_analytics +
+            this.bs.boosts.find(boost => boost.name == "boost_analytics").owned;
 
           return this.afs
             .doc(`users/${user.uid}`)
@@ -137,6 +144,7 @@ export class FirebaseService {
               crypto: crypto,
               cryptoMax: cryptoMax,
               boost_manual: boost_manual,
+              boost_analytics: boost_analytics,
               seen: new Date().getTime()
             })
             .then(data => {

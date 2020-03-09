@@ -64,6 +64,7 @@ export class RegisterComponent implements OnInit {
           crypto: 0,
           cryptoMax: 0,
           boost_manual: 0,
+          boost_analytics: 0,
           registered: new Date().getTime()
         });
         this.fb.isLoggedIn();

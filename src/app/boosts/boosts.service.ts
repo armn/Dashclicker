@@ -19,7 +19,14 @@ export class BoostsService {
         "person-add",
         "Increase manual click value",
         16000,
-        8
+        6
+      ),
+      new Boost(
+        "boost_analytics",
+        "bar-chart-2",
+        "Increase analytics generation",
+        100000000,
+        10
       )
     );
   }

@@ -9,6 +9,7 @@ import { Order } from "../market/market.model";
 export class AnalyticsService {
   worker: Worker;
   level: number;
+  public boost_analytics: number = 1;
   constructor() {
     this.level = 1;
     this.startWorker();
@@ -222,7 +223,7 @@ export class AnalyticsService {
   upgradeGenerators(level: number = 1) {
     this.level += 1;
     if (level) {
-      this.level = this.level * level;
+      this.level = this.level * (level * level);
     }
     this.analytics.views.cost = {
       visits: 10000,
@@ -431,17 +432,19 @@ export class AnalyticsService {
   }
 
   update(message) {
-    this.analytics.visits.tick = message.data.visits;
-    this.analytics.views.tick = message.data.views;
-    this.analytics.reads.tick = message.data.reads;
-    this.analytics.shares.tick = message.data.shares;
-    this.analytics.downloads.tick = message.data.downloads;
+    this.analytics.visits.tick = message.data.visits * this.boost_analytics;
+    this.analytics.views.tick = message.data.views * this.boost_analytics;
+    this.analytics.reads.tick = message.data.reads * this.boost_analytics;
+    this.analytics.shares.tick = message.data.shares * this.boost_analytics;
+    this.analytics.downloads.tick =
+      message.data.downloads * this.boost_analytics;
 
-    this.analytics.visits.amount += message.data.visits;
-    this.analytics.views.amount += message.data.views;
-    this.analytics.reads.amount += message.data.reads;
-    this.analytics.shares.amount += message.data.shares;
-    this.analytics.downloads.amount += message.data.downloads;
+    this.analytics.visits.amount += message.data.visits * this.boost_analytics;
+    this.analytics.views.amount += message.data.views * this.boost_analytics;
+    this.analytics.reads.amount += message.data.reads * this.boost_analytics;
+    this.analytics.shares.amount += message.data.shares * this.boost_analytics;
+    this.analytics.downloads.amount +=
+      message.data.downloads * this.boost_analytics;
   }
 
   deposit() {
@@ -483,5 +486,9 @@ export class AnalyticsService {
       message: "stop"
     });
     this.workerUpdate();
+  }
+
+  applyBoost(amount: number) {
+    this.boost_analytics = amount + 1;
   }
 }

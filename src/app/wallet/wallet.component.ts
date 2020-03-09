@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from "@angular/core";
 import { FirebaseService } from "../firebase.service";
 import { Subscription } from "rxjs";
 import { GameService } from "../game.service";
+import { AnalyticsService } from "../analytics/analytics.service";
 @Component({
   selector: "app-wallet",
   templateUrl: "./wallet.component.html",
@@ -14,8 +15,13 @@ export class WalletComponent implements OnInit, OnDestroy {
   public loading: boolean;
 
   public boost_manual: boolean;
+  public boost_analytics: boolean;
 
-  constructor(public fb: FirebaseService, private gs: GameService) {}
+  constructor(
+    public fb: FirebaseService,
+    private gs: GameService,
+    private as: AnalyticsService
+  ) {}
 
   ngOnInit() {}
 
@@ -32,6 +38,7 @@ export class WalletComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
     this.user = null;
     this.boost_manual = false;
+    this.boost_analytics = false;
   }
 
   deposit() {
@@ -42,7 +49,9 @@ export class WalletComponent implements OnInit, OnDestroy {
     this.fb.deposit();
 
     this.boost_manual = false;
+    this.boost_analytics = false;
     this.gs.applyBoost(0);
+    this.as.applyBoost(0);
   }
 
   reload() {
@@ -53,7 +62,9 @@ export class WalletComponent implements OnInit, OnDestroy {
 
     this.fb.deposit(true);
     this.boost_manual = false;
+    this.boost_analytics = false;
     this.gs.applyBoost(0);
+    this.as.applyBoost(0);
   }
 
   withdraw() {
@@ -74,10 +85,18 @@ export class WalletComponent implements OnInit, OnDestroy {
         this.boost_manual = !this.boost_manual;
         if (this.boost_manual) {
           this.gs.applyBoost(amount);
-          this.boost_manual = true;
         } else {
           this.gs.applyBoost(0);
         }
+        break;
+      case "boost_analytics":
+        this.boost_analytics = !this.boost_analytics;
+        if (this.boost_analytics) {
+          this.as.applyBoost(amount);
+        } else {
+          this.as.applyBoost(0);
+        }
+        break;
     }
   }
 

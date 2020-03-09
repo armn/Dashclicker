@@ -27,8 +27,8 @@ export class TasksService {
       new Task(
         1,
         "Enable special deals in the market",
-        "this.as.analytics.downloads.generators >= 1",
-        "Have 1 downloads generator",
+        "this.as.analytics.downloads.generators >= 1 || this.gs.game.counts.auto >= 10",
+        "Have 1 downloads generator or 10 auto clickers",
         "this.ms.enableSpecialDeals()",
         false,
         "info"
@@ -106,8 +106,8 @@ export class TasksService {
       new Task(
         7,
         "Reset click value, auto clicker and multiplier costs #6",
-        "this.ast.money() >= 100000000",
-        "Have $100M money",
+        "this.ast.money() >= 100000000 || this.gs.game.counts.auto >= 60",
+        "Have 60 auto clickers or $100M money",
         `this.gs.game.costs = {
           clicks: 0,
           value: 10,
@@ -162,8 +162,8 @@ export class TasksService {
       new Task(
         11,
         "Reset click value, auto clicker and multiplier costs #10",
-        "(this.as.analytics.views.generators + this.as.analytics.reads.generators + this.as.analytics.shares.generators + this.as.analytics.downloads.generators >= 400) || this.ast.money() >= 1000000000000",
-        "Have 400 generators or $1t money",
+        "(this.as.analytics.views.generators + this.as.analytics.reads.generators + this.as.analytics.shares.generators + this.as.analytics.downloads.generators >= 300) || this.ast.money() >= 1000000000000",
+        "Have 300 generators or $1t money",
         `this.gs.game.costs = {
           clicks: 0,
           value: 10,
@@ -295,6 +295,21 @@ export class TasksService {
         "Reduce current project costs & reset click value, auto clicker and multiplier costs #5",
         "this.gs.game.counts.auto >= 100",
         "Have 100 auto clickers",
+        `this.ps.reduceCosts(); 
+        this.gs.game.costs = {
+          clicks: 0,
+          value: 10,
+          auto: 100,
+          multiplier: 1000
+        }`,
+        false,
+        "warning"
+      ),
+      new Task(
+        23,
+        "Reduce current project costs & reset click value, auto clicker and multiplier costs #6",
+        "this.as.analytics.views.generators + this.as.analytics.reads.generators + this.as.analytics.shares.generators + this.as.analytics.downloads.generators >= 400",
+        "Have 400 generators",
         `this.ps.reduceCosts(); 
         this.gs.game.costs = {
           clicks: 0,
