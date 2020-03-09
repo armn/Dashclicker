@@ -24,15 +24,15 @@ export class TasksService {
 
   addTasks() {
     this.tasks.push(
-      new Task(
-        1,
-        "Enable special deals in the market",
-        "this.as.analytics.downloads.generators >= 1 || this.gs.game.counts.auto >= 10",
-        "Have 1 downloads generator or 10 auto clickers",
-        "this.ms.enableSpecialDeals()",
-        false,
-        "info"
-      ),
+      // new Task(
+      //   1,
+      //   "Enable special deals in the market",
+      //   "this.as.analytics.downloads.generators >= 1 || this.gs.game.counts.auto >= 10",
+      //   "Have 1 downloads generator or 10 auto clickers",
+      //   "this.ms.enableSpecialDeals()",
+      //   false,
+      //   "info"
+      // ),
       new Task(
         2,
         "Reset click value, auto clicker and multiplier costs",

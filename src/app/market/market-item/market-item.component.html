@@ -21,8 +21,11 @@
   >
 </td>
 <td class="unit d-inline-block d-sm-table-cell">
-  {{ order.clicks / order.offer | numbers }}
-  <small>clicks <span class="d-inline d-sm-none">/ unit</span></small>
+  <span *ngIf="order.clicks / order.offer <= 1">&lt;1</span
+  ><span *ngIf="order.clicks / order.offer > 1">{{
+    order.clicks / order.offer | numbers
+  }}</span>
+  <small> clicks <span class="d-inline d-sm-none">/ unit</span></small>
 </td>
 <td class="actions text-right  d-block d-sm-table-cell">
   <button nbButton status="danger" size="small" (click)="reject()">

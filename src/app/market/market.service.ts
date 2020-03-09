@@ -16,7 +16,7 @@ export class MarketService {
     private ps: PeopleService
   ) {}
 
-  specialDeals = false;
+  specialDeals = true;
   public orderCount: number = 0;
   private _orders = new BehaviorSubject<Order[]>([]);
   private _relationship = new BehaviorSubject<Relationship[]>([]);
@@ -57,16 +57,16 @@ export class MarketService {
     let orderType: string;
 
     switch (true) {
-      case randomNumber <= 70:
+      case randomNumber <= 50:
         orderType = "visits";
         break;
-      case randomNumber > 70 && randomNumber <= 85:
+      case randomNumber > 50 && randomNumber <= 75:
         orderType = "views";
         break;
-      case randomNumber > 85 && randomNumber <= 95:
+      case randomNumber > 75 && randomNumber <= 90:
         orderType = "reads";
         break;
-      case randomNumber >= 95 && randomNumber < 100:
+      case randomNumber >= 90 && randomNumber < 100:
         orderType = "shares";
         break;
       case randomNumber == 100:
@@ -76,14 +76,16 @@ export class MarketService {
 
     let specialDealLottery = this.getRandomInt(1, 10);
     let isSpecialDeal = false;
-    if (this.specialDeals && specialDealLottery === 10) {
+    if (this.specialDeals && specialDealLottery === 7) {
       isSpecialDeal = true;
     }
 
-    let basePrice;
-    this.as.analytics$.pipe(first()).subscribe(result => {
-      basePrice = result[orderType].base;
-    });
+    //let basePrice;
+    // this.as.analytics.pipe(first()).subscribe(result => {
+    //   basePrice = result[orderType].base;
+    // });
+
+    const basePrice = this.as.analytics[orderType].base * 10;
 
     const randomPerson = this.getRandomInt(1, 200);
 
@@ -94,7 +96,7 @@ export class MarketService {
     );
 
     const offer = isSpecialDeal
-      ? Math.ceil(basePrice * clickOffer * buyer.random) * 100
+      ? Math.ceil(basePrice * clickOffer * buyer.random) * 10
       : Math.ceil(basePrice * clickOffer * buyer.random);
 
     const order = {
@@ -149,14 +151,14 @@ export class MarketService {
     this.orders = this.orders.filter(entry => entry.id !== order.id);
   }
 
-  enableSpecialDeals() {
-    this.specialDeals = true;
-  }
+  // enableSpecialDeals() {
+  //   this.specialDeals = true;
+  // }
 
   restart() {
-    this.specialDeals = false;
+    //this.specialDeals = false;
     this.orderCount = 0;
     this.orders = [];
-    this.relationship = [];
+    //this.relationship = [];
   }
 }
