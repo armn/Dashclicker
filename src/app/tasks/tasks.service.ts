@@ -319,6 +319,21 @@ export class TasksService {
         }`,
         false,
         "warning"
+      ),
+      new Task(
+        24,
+        "Reduce current project costs & reset click value, auto clicker and multiplier costs #7",
+        "this.gs.game.counts.auto >= 120 || this.ast.money() >= 1000000000000000000000",
+        "Have 120 auto clickers or $1Sx money ",
+        `this.ps.reduceCosts(); 
+        this.gs.game.costs = {
+          clicks: 0,
+          value: 10,
+          auto: 100,
+          multiplier: 1000
+        }`,
+        false,
+        "warning"
       )
     );
   }

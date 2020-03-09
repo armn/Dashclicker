@@ -223,7 +223,7 @@ export class AnalyticsService {
   upgradeGenerators(level: number = 1) {
     this.level += 1;
     if (level) {
-      this.level = this.level * (level * level);
+      this.level = this.level + this.level * (level * level);
     }
     this.analytics.views.cost = {
       visits: 10000,
