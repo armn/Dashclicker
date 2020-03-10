@@ -1,8 +1,6 @@
 # Dashclicker
 
-Dashlicker is an Angular-based open source incremental clicker game.
-
-Development version is available for playing at http://dev.dashclicker.com
+Dashlicker is an Angular-based open source incremental clicker game, available at https://dashclicker.com
 
 ![Screenshot of Dashclicker](https://raw.githubusercontent.com/armn/Dashclicker/master/src/assets/images/screenshot.png)
 
