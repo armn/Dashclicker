@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Boost } from "./boost.model";
 import { AssetsService } from "../assets/assets.service";
 import { BoostsService } from "./boosts.service";
+import { NbThemeService } from "@nebular/theme";
 
 @Component({
   selector: "app-boosts",
@@ -10,8 +11,13 @@ import { BoostsService } from "./boosts.service";
 })
 export class BoostsComponent implements OnInit {
   boosts: Boost[];
+  darkTheme: boolean = false;
 
-  constructor(public bs: BoostsService, public ast: AssetsService) {}
+  constructor(
+    public bs: BoostsService,
+    public ast: AssetsService,
+    private themeService: NbThemeService
+  ) {}
 
   ngOnInit() {
     this.boosts = this.bs.boosts;
@@ -35,5 +41,12 @@ export class BoostsComponent implements OnInit {
     }
 
     return true;
+  }
+
+  toggleTheme() {
+    this.darkTheme = !this.darkTheme;
+    this.darkTheme
+      ? this.themeService.changeTheme("cosmic")
+      : this.themeService.changeTheme("dashclicker");
   }
 }

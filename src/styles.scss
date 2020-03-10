@@ -29,6 +29,7 @@ table {
 .downloads {
   span {
     border-radius: 5px;
+    color: black;
   }
 }
 
@@ -69,5 +70,35 @@ table {
 
   li {
     white-space: nowrap;
+  }
+}
+
+/* Dark theme */
+.nb-theme-cosmic {
+  .table td {
+    border-color: #151a30;
+  }
+  .market {
+    color: white;
+
+    thead {
+      color: black;
+      background: #616a86;
+    }
+
+    .market-entry.true {
+      color: black;
+      nb-user {
+        .user-name,
+        .user-title {
+          color: black;
+        }
+      }
+    }
+  }
+
+  .special,
+  .special .money {
+    color: black;
   }
 }

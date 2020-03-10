@@ -1,13 +1,22 @@
-@import '../../themes';
+@import "../../themes";
 
 nb-card-header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+
+  button {
+    margin-left: auto;
+  }
 }
 
 .market {
   table-layout: fixed;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 0;
+  thead th {
+    border: none;
+  }
 }
 
 .market-entry.true {
@@ -18,5 +27,4 @@ nb-card-header {
   table thead {
     display: none;
   }
-
 }

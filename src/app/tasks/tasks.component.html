@@ -1,12 +1,5 @@
 <nb-card status="info" size="medium">
-  <nb-card-header
-    >Tasks
-    <!-- <nb-badge
-      [text]="ableToComplete()"
-      status="primary"
-      position="top right"
-    ></nb-badge> -->
-  </nb-card-header>
+  <nb-card-header>Tasks</nb-card-header>
   <nb-list>
     <nb-list-item *ngFor="let item of availableTasks()" [@inOutAnimation]>
       <nb-checkbox

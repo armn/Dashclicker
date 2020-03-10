@@ -68,7 +68,6 @@
             >
               <button
                 nbButton
-                hero
                 [status]="boost_manual ? 'success' : 'basic'"
                 [disabled]="this.user.boost_manual ? false : true"
                 (click)="toggleBoost('boost_manual', this.user.boost_manual)"
@@ -89,7 +88,6 @@
             >
               <button
                 nbButton
-                hero
                 [status]="boost_analytics ? 'success' : 'basic'"
                 [disabled]="this.user.boost_analytics ? false : true"
                 (click)="

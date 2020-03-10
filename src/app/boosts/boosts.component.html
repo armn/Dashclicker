@@ -1,7 +1,25 @@
 <nb-card status="basic" size="tiny">
-  <nb-card-header>Boosts</nb-card-header>
+  <nb-card-header
+    >Boosts
+    <nb-icon
+      icon="question-mark"
+      nbTooltip="Boosts give you permanent upgrades. After purchase, deposit them into your wallet and enable them from there."
+      class="text-right"
+    ></nb-icon
+  ></nb-card-header>
   <nb-card-body class="icons-card">
     <div class="icons">
+      <div class="icon">
+        <button
+          nbButton
+          ghost
+          status="primary"
+          (click)="toggleTheme()"
+          nbTooltip="Toggle dark theme"
+        >
+          <nb-icon icon="moon"></nb-icon>
+        </button>
+      </div>
       <div
         class="icon"
         *ngFor="let boost of boosts"
@@ -53,7 +71,4 @@
       </div>
     </div>
   </nb-card-body>
-  <nb-card-footer class="text-center">
-    <small>To use boosts, deposit them into your Wallet after purchase.</small>
-  </nb-card-footer>
 </nb-card>

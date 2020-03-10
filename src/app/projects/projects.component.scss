@@ -1,4 +1,4 @@
-@import '../../themes';
+@import "../../themes";
 
 .money {
   margin-bottom: 0;
@@ -10,11 +10,11 @@
 
 .projects-header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
 
   button {
     margin-top: -8px;
+    margin-left: auto;
     position: relative;
     top: 4px;
   }

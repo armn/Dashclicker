@@ -1,6 +1,9 @@
 @import "~@nebular/theme/styles/theming";
 @import "~@nebular/theme/styles/themes/default";
+@import "~@nebular/theme/styles/themes/dark";
+@import "~@nebular/theme/styles/themes/cosmic";
 
+//$nb-themes: nb-register-theme((), dark, dark);
 $nb-themes: nb-register-theme(
   (
     color-primary-100: #dfe6fd,
@@ -93,4 +96,25 @@ $nb-themes: nb-register-theme(
   ),
   dashclicker,
   default
+);
+
+$nb-themes: nb-register-theme(
+  (
+    color-basic-200: #616a86,
+    color-success-100: #b2d1a0,
+    color-warning-500: #fb6340,
+    header-background-color: color-success-500,
+    button-filled-text-transform: "none",
+    button-hero-text-transform: "none",
+    button-hero-shadow: "0 4px 6px rgba(50, 50, 89, .10)",
+    actions-icon-color: text-basic-color,
+    actions-divider-color: text-hint-color,
+    font-family-secondary: "Bahnschrift",
+    card-height-tiny: 11rem,
+    card-height-small: 21.6rem,
+    card-height-large: 34.5rem,
+    select-min-width: 5rem
+  ),
+  cosmic,
+  dark
 );
