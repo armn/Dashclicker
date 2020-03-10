@@ -1,0 +1,95 @@
+<nb-card status="primary" size="large">
+  <nb-card-header>Help</nb-card-header>
+
+  <nb-card-body>
+    <h1>Dashclicker</h1>
+    <p>
+      Dashclicker is an open-source free-to-play incremental clicker game. This
+      is the second iteration of the game, rewritten from scratch in Angular.
+      Initial version of the game is still available for play at
+      <a href="http://old.dashclicker.com" target="_blank"
+        >old.dashclicker.com</a
+      >.
+    </p>
+
+    <h4>Frequently asked questions</h4>
+    <div>
+      <h6>I am stuck, next upgrades are unreachable</h6>
+
+      <p>
+        If you can't reach a task milestone, try stocking up on clicks &
+        analytics and using the Restart game button you'll find in your wallet.
+        Due to the way of how costs and prices are calculated, this is the
+        actual way of how to progress in the game (<em>prestige mechanic</em>).
+        While tasks reset costs, calculations for the next upgrade costs take
+        into account your already owned number of upgrades, thus you should
+        upgrade as far as possible before using resets from tasks.
+      </p>
+
+      <h6>How long does it take to complete the game?</h6>
+      <p>
+        It should take you around 2-4 hours to complete the game (all tasks
+        finished, level #50 reached), but as new features are added, the play
+        time might increase considerably.
+      </p>
+
+      <h6>There is too much clicking, there is no <em>Buy max</em> button</h6>
+      <p>
+        If you are playing on a computer, you can click on a button and hold
+        Enter key to trigger the action repeatedly. You can also navigate
+        between buttons by pressing Tab (forwards) or Shift-Tab (backwards).
+      </p>
+      <h6>How does the wallet work?</h6>
+      <p>
+        Values listed in <strong>bold</strong> are the actual values stored in
+        the wallet, while the values after slash / are maximal values the wallet
+        has ever held. If you want to keep your assets between different
+        sessions / devices, deposit into your wallet before exiting the game.
+      </p>
+
+      <h6>I started the game as a guest but now want to create an account</h6>
+      <p>
+        You can transfer assets between accounts. While logged into your guest
+        account: 1) withdraw from wallet (note that it is not possible to
+        withdraw boosts) 2) log out 3) register an account 4) deposit into
+        wallet.
+      </p>
+
+      <h6>I logged in and found my wallet empty</h6>
+
+      <p>
+        Most likely you didn't deposit your assets before exiting the game,
+        which can be considered a <em>hard reset</em> of the game. If you want
+        to restore your assets, write an e-mail to
+        <a href="mailto:dashclicker@dashclicker.com" target="_blank"
+          >dashclicker@dashclicker.com</a
+        >
+        and I will reset your wallet to the max values it had in it.
+      </p>
+    </div>
+
+    <h4>About the developer</h4>
+    <p>
+      My name is Armands and I am a front-end web developer from Riga, Latvia. I
+      really enjoy incremental games and love to code, so that is how this
+      project came to be. If you enjoyed the game and want to support its
+      continued development, you can:
+    </p>
+    <p>
+      <a
+        href="https://ko-fi.com/S6S21H5F7"
+        target="_blank"
+        class="kofi"
+        (click)="logClick()"
+      >
+        <img
+          src="./assets/images/kofi.png"
+          alt="Support me on Ko-fi"
+          title="Support me on Ko-fi"
+      /></a>
+    </p>
+  </nb-card-body>
+  <nb-card-footer class="text-center">
+    <button status="primary" nbButton (click)="close()">Got it</button>
+  </nb-card-footer>
+</nb-card>

@@ -24,7 +24,9 @@ import {
   NbContextMenuModule,
   NbMenuModule,
   NbIconModule,
-  NbBadgeModule
+  NbBadgeModule,
+  NbDialogRef,
+  NbDialogConfig
 } from "@nebular/theme";
 import { NbEvaIconsModule } from "@nebular/eva-icons";
 import { AppRoutingModule } from "./app-routing.module";
@@ -55,6 +57,7 @@ import { LoginComponent } from "./wallet/login/login.component";
 import { RegisterComponent } from "./wallet/register/register.component";
 import { AssetsComponent } from "./assets/assets.component";
 import { BoostsComponent } from "./boosts/boosts.component";
+import { HelpComponent } from "./help/help.component";
 
 @NgModule({
   declarations: [
@@ -74,7 +77,8 @@ import { BoostsComponent } from "./boosts/boosts.component";
     LoginComponent,
     RegisterComponent,
     AssetsComponent,
-    BoostsComponent
+    BoostsComponent,
+    HelpComponent
   ],
   imports: [
     BrowserModule,
@@ -98,7 +102,7 @@ import { BoostsComponent } from "./boosts/boosts.component";
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    NbDialogModule.forRoot(),
+    NbDialogModule.forChild(),
     NbToastrModule.forRoot(),
     NbContextMenuModule,
     NbMenuModule.forRoot(),

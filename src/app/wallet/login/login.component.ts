@@ -50,6 +50,61 @@ export class LoginComponent implements OnInit {
       });
   }
 
+  loginAnonymously() {
+    this.fb.auth
+      .signInAnonymously()
+      .then(data => {
+        this.afAnalytics.logEvent("user_registered_anonymous");
+
+        this.fb.afs
+          .doc(`users/${data.user.uid}`)
+          .get()
+          .toPromise()
+          .then(doc => {
+            if (doc.exists) {
+              this.fb.isLoggedIn();
+            } else {
+              this.fb.afs.doc(`users/${data.user.uid}`).set({
+                name: "Guest " + data.user.uid.slice(0, 5),
+                clicks: 0,
+                clicksMax: 0,
+                visits: 0,
+                visitsMax: 0,
+                views: 0,
+                viewsMax: 0,
+                reads: 0,
+                readsMax: 0,
+                shares: 0,
+                sharesMax: 0,
+                downloads: 0,
+                downloadsMax: 0,
+                money: 0,
+                moneyMax: 0,
+                orders: 0,
+                ordersMax: 0,
+                projects: 0,
+                projectsMax: 0,
+                crypto: 0,
+                cryptoMax: 0,
+                boost_manual: 0,
+                boost_analytics: 0,
+                registered: new Date().getTime()
+              });
+              this.fb.isLoggedIn();
+            }
+
+            this.showToast(
+              `Signed in as Guest ${data.user.uid.slice(0, 5)}`,
+              "Sign in successful!",
+              "success"
+            );
+          });
+      })
+      .catch(err => {
+        this.showToast(err.message, "Sign in failed", "danger");
+      });
+  }
+
   forgot() {
     this.fb.auth
       .sendPasswordResetEmail(this.loginForm.value.email)

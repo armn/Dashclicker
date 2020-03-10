@@ -26,14 +26,15 @@
     >
       Login
     </button>
-    <!-- <div class="subtitle ml-2">
+    <div class="subtitle ml-2">
       or
       <span
-        class="link "
-        nbTooltip="This will create a temporary account. You will be able to register afterwards."
+        class="link"
+        nbTooltip="This will create a temporary account for a single game session. If at a later point you want to sign up with your e-mail, withdraw funds, log out and create a new account."
+        (click)="loginAnonymously()"
         >Play as a guest</span
       >
-    </div> -->
+    </div>
   </div>
   <div class="subtitle-2 mt-2">
     <span

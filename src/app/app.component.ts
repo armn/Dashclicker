@@ -3,6 +3,8 @@ import { GameService } from "./game.service";
 import { FirebaseService } from "./firebase.service";
 import { Subscription } from "rxjs";
 import { AngularFireAnalytics } from "@angular/fire/analytics";
+import { NbDialogService, NbDialogRef } from "@nebular/theme";
+import { HelpComponent } from "./help/help.component";
 
 @Component({
   selector: "app-root",
@@ -13,7 +15,7 @@ export class AppComponent {
   constructor(
     public gs: GameService,
     public fb: FirebaseService,
-    private afAnalytics: AngularFireAnalytics
+    private dialogService: NbDialogService
   ) {}
   user: any;
   userMenu = [{ title: "Profile" }, { title: "Log out" }];
@@ -31,7 +33,7 @@ export class AppComponent {
     this.subscription.unsubscribe();
   }
 
-  logClick() {
-    this.afAnalytics.logEvent("clicked_kofi");
+  openHelp() {
+    this.dialogService.open(HelpComponent, {});
   }
 }

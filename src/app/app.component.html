@@ -6,10 +6,6 @@
           <span>Dashclicker</span>
         </button>
       </div>
-      <!-- 
-      <div [nbContextMenu]="userMenu">
-        <nb-icon icon="person"></nb-icon> {{ user?.email }}
-      </div> -->
     </div>
   </nb-layout-header>
 
@@ -51,20 +47,9 @@
         >
         for the latest updates! <br />You can also view the source code on
         <a href="https://github.com/armn/Dashclicker" target="_blank">GitHub</a
-        >.</small
-      >
-      <a
-        href="https://ko-fi.com/S6S21H5F7"
-        target="_blank"
-        class="kofi"
-        (click)="logClick()"
-      >
-        <img
-          src="./assets/images/kofi.png"
-          alt="Support me on Ko-fi"
-          title="Support me on Ko-fi"
-      /></a>
-      <!-- <button nbButton>About</button> -->
+        >.
+      </small>
+      <button nbButton (click)="openHelp()">Help</button>
     </div>
   </nb-layout-footer>
 </nb-layout>
