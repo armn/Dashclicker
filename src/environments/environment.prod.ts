@@ -7,7 +7,7 @@ export const environment = {
     projectId: "dashclicker-game",
     storageBucket: "dashclicker-game.appspot.com",
     messagingSenderId: "881414126943",
-    appId: "1:881414126943:web:e8c010b9b1a7b758f6caea",
-    measurementId: "G-NJMG7R3VYH"
+    appId: "1:881414126943:web:a22850dde2eb7341f6caea",
+    measurementId: "G-GRWEFKGZNT"
   }
 };
