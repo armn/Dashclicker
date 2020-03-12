@@ -3,7 +3,7 @@
     >Projects
     <nb-icon
       icon="question-mark"
-      nbTooltip="Completing a project will grant you assets. Projects marked in green multiply analytics generation."
+      nbTooltip="Completing a project will grant you assets. Projects marked in green reset analytics generator costs and increase production."
     ></nb-icon>
     <button
       nbButton
@@ -21,7 +21,7 @@
       [class]="this.specialProject(project.id) ? 'special' : ''"
       [@inOutAnimation]
     >
-      <div class="project-item row">
+      <div class="project-item row no-gutters">
         <div class="col-auto col-sm-1">
           <div><small>#</small>{{ project.id }}</div>
         </div>

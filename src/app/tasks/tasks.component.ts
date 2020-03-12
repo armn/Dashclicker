@@ -15,7 +15,7 @@ import { trigger, transition, style, animate } from "@angular/animations";
     trigger("inOutAnimation", [
       transition(":leave", [
         style({ opacity: 1 }),
-        animate("0.25s ease-out", style({ opacity: 0 }))
+        animate("0.25s cubic-bezier(.76,.3,.83,.67)", style({ opacity: 0 }))
       ])
     ])
   ]

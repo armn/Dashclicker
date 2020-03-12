@@ -1,5 +1,10 @@
 @import "../../themes";
 
+nb-list-item {
+  padding: 1.25rem 1rem;
+
+}
+
 .money {
   margin-bottom: 0;
 
@@ -35,9 +40,13 @@
   }
 
   @media (max-width: 576px) {
-    margin: 5px 0;
+    margin: 5px -5px;
     width: 100%;
     display: flex;
+
+    span {
+      margin: 0 -2px;
+    }
   }
 }
 

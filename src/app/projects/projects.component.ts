@@ -14,11 +14,11 @@ import { trigger, transition, style, animate } from "@angular/animations";
     trigger("inOutAnimation", [
       transition(":enter", [
         style({ opacity: 0 }),
-        animate("0.15s ease-in", style({ opacity: 1 }))
+        animate("0.15s cubic-bezier(.76,.3,.83,.67)", style({ opacity: 1 }))
       ]),
       transition(":leave", [
         style({ opacity: 1 }),
-        animate("0.15s linear", style({ opacity: 0 }))
+        animate("0.15s cubic-bezier(.76,.3,.83,.67)", style({ opacity: 0 }))
       ])
     ])
   ]

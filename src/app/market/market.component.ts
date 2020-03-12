@@ -15,8 +15,8 @@ import {
   animations: [
     trigger("inAnimation", [
       transition(":enter", [
-        style({ opacity: 0 }),
-        animate("150ms linear", style({ opacity: 1 }))
+        style({ opacity: 0.5 }),
+        animate("100ms cubic-bezier(.76,.3,.83,.67)", style({ opacity: 1 }))
       ])
     ])
   ]
