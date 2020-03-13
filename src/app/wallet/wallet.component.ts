@@ -11,6 +11,7 @@ import { AnalyticsService } from "../analytics/analytics.service";
 export class WalletComponent implements OnInit, OnDestroy {
   public user: any;
   private subscription: Subscription;
+  private userSubscription: Subscription;
   public reloading: boolean;
   public loading: boolean;
 
@@ -23,7 +24,13 @@ export class WalletComponent implements OnInit, OnDestroy {
     private as: AnalyticsService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.userSubscription = this.fb.auth.user.subscribe(user => {
+      if (user) {
+        this.fb.isLoggedIn();
+      }
+    });
+  }
 
   wallet() {
     this.subscription = this.fb.user.subscribe(user => {
@@ -36,6 +43,7 @@ export class WalletComponent implements OnInit, OnDestroy {
   logout() {
     this.fb.logout();
     this.subscription.unsubscribe();
+    this.userSubscription.unsubscribe();
     this.user = null;
     this.boost_manual = false;
     this.boost_analytics = false;
@@ -77,6 +85,7 @@ export class WalletComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+    this.userSubscription.unsubscribe();
   }
 
   toggleBoost(type: string, amount: number) {

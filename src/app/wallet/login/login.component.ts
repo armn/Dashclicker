@@ -114,7 +114,6 @@ export class LoginComponent implements OnInit {
           "Check your e-mail",
           "success"
         );
-        this.fb.isLoggedIn();
       })
       .catch(err => {
         this.showToast(err.message, "Password reset failed", "danger");
