@@ -60,16 +60,16 @@ export class MarketService {
       case randomNumber <= 50:
         orderType = "visits";
         break;
-      case randomNumber > 50 && randomNumber <= 75:
+      case randomNumber > 50 && randomNumber <= 70:
         orderType = "views";
         break;
-      case randomNumber > 75 && randomNumber <= 90:
+      case randomNumber > 70 && randomNumber <= 85:
         orderType = "reads";
         break;
-      case randomNumber >= 90 && randomNumber < 100:
+      case randomNumber > 85 && randomNumber <= 95:
         orderType = "shares";
         break;
-      case randomNumber == 100:
+      case randomNumber > 95:
         orderType = "downloads";
         break;
     }
