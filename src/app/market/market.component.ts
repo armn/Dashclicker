@@ -23,11 +23,23 @@ import {
 })
 export class MarketComponent implements OnInit {
   orders: any;
+  collapsed: boolean = false;
   constructor(public market: MarketService) {}
 
   ngOnInit() {}
 
   generateOrder() {
     this.market.generateOrder();
+  }
+
+  canGenerateOrder() {
+    if (this.market.orders.filter(order => order.held == true).length >= 5) {
+      return true;
+    }
+    return false;
+  }
+
+  collapse() {
+    this.collapsed = !this.collapsed;
   }
 }

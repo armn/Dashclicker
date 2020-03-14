@@ -41,4 +41,27 @@ export class MarketItemComponent implements OnInit {
   reject() {
     this.market.rejectOrder(this.order.id);
   }
+
+  hold() {
+    this.market.holdOrder(this.order.id);
+  }
+
+  relationshipStatus(amount: number = 0) {
+    switch (true) {
+      case amount == 0:
+        return "";
+        break;
+
+      case amount < 0:
+        return "bad";
+        break;
+
+      case amount > 0:
+        return "good";
+        break;
+
+      default:
+        return "";
+    }
+  }
 }

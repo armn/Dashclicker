@@ -1,15 +1,17 @@
 <td class="buyer d-block d-sm-table-cell">
-  <nb-user
-    size="large"
-    [name]="buyer.name.first + ' ' + buyer.name.last"
-    [badgeText]="relationship?.value | numbers"
-    [title]="'#' + order.id"
-    [badgeStatus]="relationship?.value > 0 ? 'success' : 'danger'"
-    badgePosition="bottom right"
-    [picture]="'./assets/images/people/' + order.person + '.jpg'"
-  >
+  <div [class]="relationshipStatus(relationship?.value)">
+    <nb-user
+      size="large"
+      [name]="buyer.name.first + ' ' + buyer.name.last"
+      [badgeText]="relationship?.value | numbers"
+      [title]="'#' + order.id"
+      [badgeStatus]="relationship?.value > 0 ? 'success' : 'danger'"
+      badgePosition="bottom right"
+      [picture]="'./assets/images/people/' + order.person + '.jpg'"
+      nbTooltip="Buyer color indicates your relationship level which is based on trades and rejections made."
     >
-  </nb-user>
+    </nb-user>
+  </div>
 </td>
 <td class="clicks  d-inline-block d-sm-table-cell">
   <strong>{{ order.clicks | numbers }}</strong>
@@ -28,9 +30,18 @@
   <small> clicks <span class="d-inline d-sm-none">/ unit</span></small>
 </td>
 <td class="actions text-right  d-block d-sm-table-cell">
+  <button
+    nbButton
+    size="small"
+    (click)="hold()"
+    [status]="order.held ? 'primary' : 'default'"
+  >
+    {{ order.held ? "Held" : "Hold" }}
+  </button>
   <button nbButton status="danger" size="small" (click)="reject()">
     Reject
   </button>
+
   <button
     nbButton
     status="success"

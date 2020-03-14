@@ -22,6 +22,10 @@ table {
   }
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
 .visits,
 .views,
 .reads,
@@ -78,6 +82,7 @@ table {
   .table td {
     border-color: #151a30;
   }
+
   .market {
     color: white;
 
@@ -88,7 +93,20 @@ table {
 
     .market-entry.true {
       color: black;
+
       nb-user {
+
+        .user-name,
+        .user-title {
+          color: black;
+        }
+      }
+    }
+
+    .good,
+    .bad {
+      nb-user {
+
         .user-name,
         .user-title {
           color: black;

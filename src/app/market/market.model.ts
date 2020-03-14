@@ -4,6 +4,7 @@ export interface Order {
   clicks: number;
   offer: number;
   unit: string;
+  held?: boolean;
 }
 
 export interface Relationship {

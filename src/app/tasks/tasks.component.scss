@@ -1,8 +1,32 @@
+@import "../../themes";
+
 nb-card-header {
   position: relative;
+  display: flex;
 }
 
 nb-badge {
   font-size: 1rem;
   line-height: 1rem;
+}
+
+nb-list-item {
+  padding: 0;
+  border: none;
+
+  nb-checkbox {
+    padding: 10px 15px;
+    width: 100%;
+    border-bottom: 1px solid nb-theme(border-basic-color-3);
+  }
+}
+
+nb-toggle {
+  margin: -8px 0 -15px auto;
+}
+
+.filter-true {
+  nb-checkbox[ng-reflect-disabled=true] {
+    display: none;
+  }
 }

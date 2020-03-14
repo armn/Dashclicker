@@ -22,3 +22,16 @@ td {
     border: none;
   }
 }
+
+.good,
+.bad {
+  border-radius: 50px;
+}
+
+.good {
+  background: nb-theme(color-success-300);
+}
+
+.bad {
+  background: nb-theme(color-danger-300);
+}

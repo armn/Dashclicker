@@ -1,6 +1,13 @@
 <nb-card status="info" size="medium">
-  <nb-card-header>Tasks</nb-card-header>
-  <nb-list>
+  <nb-card-header
+    >Tasks
+    <nb-toggle
+      status="primary"
+      [(ngModel)]="showAvailable"
+      nbTooltip="Show only available tasks"
+    ></nb-toggle
+  ></nb-card-header>
+  <nb-list [class]="'filter-' + showAvailable">
     <nb-list-item *ngFor="let item of availableTasks()" [@inOutAnimation]>
       <nb-checkbox
         [checked]="item.completed"
@@ -12,7 +19,6 @@
         [status]="item.status"
         >{{ item.title }}</nb-checkbox
       >
-
       <ng-template #popover>
         <div class="custom-popover">
           <span>{{ item.description }}</span>

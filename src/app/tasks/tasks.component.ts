@@ -21,18 +21,13 @@ import { trigger, transition, style, animate } from "@angular/animations";
   ]
 })
 export class TasksComponent implements OnInit {
+  public showAvailable: boolean = false;
   constructor(
     public ts: TasksService,
     public gs: GameService,
     public as: AnalyticsService,
     public ast: AssetsService
   ) {}
-
-  //tasks = this.ts.tasks;
-
-  toggle() {
-    //this.checked = checked;
-  }
 
   complete(task: Task) {
     this.ts.complete(task);
@@ -49,17 +44,6 @@ export class TasksComponent implements OnInit {
   availableTasks() {
     return this.ts.tasks.filter(task => task.completed === false);
   }
-
-  // @TODO - figure out a non-resource intensive way of implementing this
-  // ableToComplete() {
-  //   let available = 0;
-  //   this.tasks.forEach(task => {
-  //     if (eval(task.evaluate) == true) {
-  //       available += 1;
-  //     }
-  //   });
-  //   return String(available);
-  // }
 
   money() {
     const money = this.ast.assets.find(asset => asset.type == "money");

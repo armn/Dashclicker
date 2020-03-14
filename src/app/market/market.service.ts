@@ -50,7 +50,8 @@ export class MarketService {
     this.orderCount += 1;
 
     if (this.orders.length >= 5) {
-      this.orders.shift();
+      const firstUnHeld = this.orders.find(order => order.held === false);
+      this.orders = this.orders.filter(order => order.id !== firstUnHeld.id);
     }
 
     const randomNumber = this.getRandomInt(1, 100);
@@ -105,7 +106,8 @@ export class MarketService {
       clicks: clickOffer,
       offer: offer,
       unit: orderType,
-      special: isSpecialDeal
+      special: isSpecialDeal,
+      held: false
     };
 
     this.orders = [...this.orders, { ...order }];
@@ -129,6 +131,11 @@ export class MarketService {
     }
 
     this.orders = this.orders.filter(entry => entry.id !== order.id);
+  }
+
+  holdOrder(id: number) {
+    const order = this.orders.find(order => order.id === id);
+    order.held = !order.held;
   }
 
   rejectOrder(id: number) {
