@@ -111,13 +111,13 @@
       <div class="actions">
         <button
           nbButton
-          [status]="reloading ? 'success' : 'danger'"
+          [status]="reloading ? 'success' : 'warning'"
           class="reload"
           (click)="reload()"
           [disabled]="loading"
           nbTooltip="This will deposit your assets and start a new run (a way to advance in the game)"
         >
-          <span>Restart</span>
+          <span>New run</span>
           <nb-icon [icon]="reloading ? 'checkmark' : 'refresh'"></nb-icon>
         </button>
 
