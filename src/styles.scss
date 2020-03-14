@@ -120,3 +120,22 @@ table {
     color: black;
   }
 }
+
+
+// @todo rethink this
+nb-checkbox .custom-checkbox {
+  margin-left: 15px;
+}
+
+nb-checkbox label .text {
+  padding: 10px 15px;
+  // border-bottom: 1px solid nb-theme(border-basic-color-3);
+}
+
+.filter-true {
+
+  input[disabled],
+  input[disabled]~* {
+    display: none;
+  }
+}

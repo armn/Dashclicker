@@ -10,23 +10,13 @@ nb-badge {
   line-height: 1rem;
 }
 
-nb-list-item {
+nb-list nb-list-item {
   padding: 0;
   border: none;
-
-  nb-checkbox {
-    padding: 10px 15px;
-    width: 100%;
-    border-bottom: 1px solid nb-theme(border-basic-color-3);
-  }
+  line-height: 0;
+  font-size: 0;
 }
 
 nb-toggle {
   margin: -8px 0 -15px auto;
-}
-
-.filter-true {
-  nb-checkbox[ng-reflect-disabled=true] {
-    display: none;
-  }
 }
