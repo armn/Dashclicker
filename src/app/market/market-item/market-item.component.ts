@@ -48,20 +48,25 @@ export class MarketItemComponent implements OnInit {
 
   relationshipStatus(amount: number = 0) {
     switch (true) {
-      case amount == 0:
-        return "";
+      case amount < 0.25:
+        return "terrible";
         break;
 
-      case amount < 0:
+      case amount >= 0.25 && amount < 0.4:
         return "bad";
         break;
 
-      case amount > 0:
+      case amount >= 0.4 && amount < 0.6:
+        return "average";
+        break;
+
+      case amount >= 0.6 && amount < 0.8:
         return "good";
         break;
 
-      default:
-        return "";
+      case amount >= 0.8:
+        return "excellent";
+        break;
     }
   }
 }

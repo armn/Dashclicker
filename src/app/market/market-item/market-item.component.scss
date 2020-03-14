@@ -23,15 +23,30 @@ td {
   }
 }
 
+.terrible,
+.average,
+.excellent,
 .good,
 .bad {
   border-radius: 50px;
 }
 
-.good {
-  background: nb-theme(color-success-300);
+.terrible {
+  background: nb-theme(color-danger-400);
 }
 
 .bad {
-  background: nb-theme(color-danger-300);
+  background: nb-theme(color-danger-200);
+}
+
+.average {
+  background: nb-theme(color-success-200);
+}
+
+.good {
+  background: nb-theme(color-success-400);
+}
+
+.excellent {
+  background: nb-theme(color-success-600);
 }

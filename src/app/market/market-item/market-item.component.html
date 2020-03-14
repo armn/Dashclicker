@@ -1,5 +1,5 @@
 <td class="buyer d-block d-sm-table-cell">
-  <div [class]="relationshipStatus(relationship?.value)">
+  <div [class]="relationshipStatus(buyer.random)">
     <nb-user
       size="large"
       [name]="buyer.name.first + ' ' + buyer.name.last"
@@ -8,7 +8,7 @@
       [badgeStatus]="relationship?.value > 0 ? 'success' : 'danger'"
       badgePosition="bottom right"
       [picture]="'./assets/images/people/' + order.person + '.jpg'"
-      nbTooltip="Buyer color indicates your relationship level which is based on trades and rejections made."
+      nbTooltip="Color indicates how good is the buyers base offer, notification badge shows how many deals or rejections you have made with the buyer."
     >
     </nb-user>
   </div>
