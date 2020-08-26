@@ -17,20 +17,14 @@ export class AppComponent {
     public fb: FirebaseService,
     private dialogService: NbDialogService
   ) {}
-  user: any;
-  userMenu = [{ title: "Profile" }, { title: "Log out" }];
-  subscription: Subscription;
+  //user: any;
+  //userMenu = [{ title: "Profile" }, { title: "Log out" }];
+  //subscription: Subscription;
 
-  ngOnInit() {
-    // this.subscription = this.fb.getUserInformation().subscribe(user => {
-    //   this.user = user;
-    // });
-    // console.log(this.user);
-    //this.user = this.fb.auth.currentUser;
-  }
+  ngOnInit() {}
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    //this.subscription.unsubscribe();
   }
 
   openHelp() {

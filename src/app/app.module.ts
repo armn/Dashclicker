@@ -58,6 +58,7 @@ import { RegisterComponent } from "./wallet/register/register.component";
 import { AssetsComponent } from "./assets/assets.component";
 import { BoostsComponent } from "./boosts/boosts.component";
 import { HelpComponent } from "./help/help.component";
+import { CompaniesComponent } from './companies/companies.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import { HelpComponent } from "./help/help.component";
     RegisterComponent,
     AssetsComponent,
     BoostsComponent,
-    HelpComponent
+    HelpComponent,
+    CompaniesComponent
   ],
   imports: [
     BrowserModule,

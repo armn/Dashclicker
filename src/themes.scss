@@ -4,9 +4,7 @@
 @import "~@nebular/theme/styles/themes/cosmic";
 
 //$nb-themes: nb-register-theme((), dark, dark);
-$nb-themes: nb-register-theme(
-  (
-    color-primary-100: #dfe6fd,
+$nb-themes: nb-register-theme((color-primary-100: #dfe6fd,
     color-primary-200: #c0ccfc,
     color-primary-300: #9faff6,
     color-primary-400: #8596ee,
@@ -92,15 +90,12 @@ $nb-themes: nb-register-theme(
     card-height-tiny: 11rem,
     card-height-small: 21.6rem,
     card-height-large: 34.5rem,
-    select-min-width: 5rem
-  ),
+    card-height-giant: 44.5rem,
+    select-min-width: 5rem),
   dashclicker,
-  default
-);
+  default);
 
-$nb-themes: nb-register-theme(
-  (
-    color-basic-200: #616a86,
+$nb-themes: nb-register-theme((color-basic-200: #616a86,
     color-success-100: #b2d1a0,
     color-warning-500: #fb6340,
     header-background-color: color-success-500,
@@ -113,8 +108,7 @@ $nb-themes: nb-register-theme(
     card-height-tiny: 11rem,
     card-height-small: 21.6rem,
     card-height-large: 34.5rem,
-    select-min-width: 5rem
-  ),
+    card-height-giant: 44.5rem,
+    select-min-width: 5rem),
   cosmic,
-  dark
-);
+  dark);

@@ -1,0 +1,55 @@
+.company {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+header {
+  width: 100%;
+}
+
+.progress {
+  height: auto;
+}
+
+.company-image {
+  img {
+    height: 31px;
+  }
+}
+
+nb-progress-bar {
+  flex: 1;
+}
+
+nb-list-item {
+  padding: 13px 0 13px 16px;
+
+  .row .col:last-child {
+    padding-right: 0;
+  }
+}
+
+.actions {
+  .status-warning {
+    margin-right: 10px;
+  }
+}
+
+nb-card-header {
+  display: flex;
+  align-items: center;
+
+  button {
+    margin-top: -8px;
+    margin-left: auto;
+    position: relative;
+    top: 4px;
+  }
+}
+
+.companies-header {
+  background: #f7f9fc;
+  font-weight: bold;
+  font-size: 0.8rem;
+}

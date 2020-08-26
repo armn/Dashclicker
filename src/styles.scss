@@ -95,7 +95,6 @@ table {
       color: black;
 
       nb-user {
-
         .user-name,
         .user-title {
           color: black;
@@ -109,7 +108,6 @@ table {
     .good,
     .excellent {
       nb-user {
-
         .user-name,
         .user-title {
           color: black;
@@ -122,8 +120,12 @@ table {
   .special .money {
     color: black;
   }
-}
 
+  .companies-header {
+    color: black;
+    background: #616a86 !important;
+  }
+}
 
 // @todo rethink this
 nb-checkbox .custom-checkbox {
@@ -136,9 +138,8 @@ nb-checkbox label .text {
 }
 
 .filter-true {
-
   input[disabled],
-  input[disabled]~* {
+  input[disabled] ~ * {
     display: none;
   }
 }

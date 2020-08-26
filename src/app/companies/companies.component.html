@@ -1,0 +1,147 @@
+<nb-card [size]="collapsed ? 'tiny' : 'giant'" status="primary">
+  <nb-card-header
+    >Companies | Money: ${{ this.as.money() | numbers }}
+    <button nbButton status="warning" size="small" (click)="nextPeriod()">
+      Next period
+    </button></nb-card-header
+  >
+  <nb-list>
+    <nb-list-item class="companies-header">
+      <header class="row">
+        <div class="col-2">Company</div>
+
+        <div class="col-1">Valuation</div>
+
+        <div class="col-2">Price / share (<small>Δ</small>)</div>
+
+        <div class="col-4">Shares owned</div>
+        <div class="col-3">Forecast</div>
+      </header>
+    </nb-list-item>
+    <nb-list-item *ngFor="let company of companies">
+      <div class="company row">
+        <div class="company-image col-2">
+          <img
+            [src]="'/assets/images/companies/' + company.img"
+            [alt]="company.name"
+          />
+        </div>
+
+        <div class="liquidated col-10 text-center" *ngIf="company.liquidated">
+          <strong class="text-danger">Liquidated</strong>
+        </div>
+
+        <div class="valuation col-1" *ngIf="!company.liquidated">
+          ${{ company.shares * company.sharePrice | numbers }}
+        </div>
+
+        <div class="price col-2" *ngIf="!company.liquidated">
+          ${{ company.sharePrice | numbers
+          }}<small
+            [class]="
+              company.sharePrice > company.previousShareCost
+                ? 'text-success'
+                : 'text-danger'
+            "
+          >
+            (<span *ngIf="company.sharePrice > company.previousShareCost"
+              >+</span
+            >${{
+              company.sharePrice - company.previousShareCost | numbers
+            }})</small
+          >
+        </div>
+
+        <div
+          class="company-progress col-3"
+          *ngIf="!company.owned && !company.liquidated"
+        >
+          <nb-progress-bar
+            [value]="ownedPercent(company)"
+            status="primary"
+            size="small"
+            [displayValue]="true"
+          ></nb-progress-bar>
+        </div>
+
+        <div
+          class="company-owned col-1"
+          *ngIf="!company.owned && !company.liquidated"
+        >
+          <span
+            >{{ company.sharesOwned | numbers }} /
+            {{ company.shares | numbers }}</span
+          >
+        </div>
+
+        <div
+          class="company-liquidation col-4"
+          *ngIf="company.owned && !company.liquidated"
+        >
+          <div *ngIf="!company.liquidated">
+            <strong class="text-info">Claimed.</strong> Periods left until
+            company liqudation:
+            <strong class="text-danger">{{ company.periods }}</strong>
+          </div>
+        </div>
+
+        <div class="forecast col-1" *ngIf="!company.liquidated">
+          <div *ngIf="company.forecast <= 0.5">
+            <span class="status text-danger">Very bad</span>
+          </div>
+          <div *ngIf="company.forecast > 0.5 && company.forecast <= 1">
+            <span class="status text-warning">Bad</span>
+          </div>
+          <div *ngIf="company.forecast > 1 && company.forecast < 2">
+            <span class="status text-gray">Neutral</span>
+          </div>
+          <div *ngIf="company.forecast >= 2 && company.forecast < 10">
+            <span class="status text-success">Good</span>
+          </div>
+          <div *ngIf="company.forecast >= 10">
+            <span class="status text-info">Very good</span>
+          </div>
+        </div>
+
+        <div class="actions text-right col-2" *ngIf="!company.liquidated">
+          <button
+            nbButton
+            size="small"
+            status="warning"
+            (click)="sell(company)"
+            *ngIf="company.sharesOwned < 100000000"
+            [disabled]="canSell(company)"
+          >
+            Sell
+          </button>
+          <button
+            nbButton
+            size="small"
+            status="success"
+            (click)="buy(company)"
+            *ngIf="company.sharesOwned < 100000000"
+            [disabled]="canBuy(company)"
+          >
+            Buy
+          </button>
+          <button
+            nbButton
+            size="small"
+            status="info"
+            (click)="claim(company)"
+            *ngIf="company.sharesOwned >= 100000000 && !company.owned"
+          >
+            Claim
+          </button>
+          <div *ngIf="company.owned">
+            Profit:
+            <span class="text-success" *ngIf="company.profit > 0"
+              >$ {{ company.profit | numbers }}</span
+            >
+            <span *ngIf="company.profit == 0">0</span>
+          </div>
+        </div>
+      </div>
+    </nb-list-item>
+  </nb-list>
+</nb-card>
