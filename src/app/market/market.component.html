@@ -35,7 +35,7 @@
       <tbody>
         <tr
           app-market-item
-          *ngFor="let order of market.orders$ | async"
+          *ngFor="let order of market.orders"
           [class]="'market-entry d-block d-sm-table-row ' + order.special"
           [order]="order"
           [@inAnimation]

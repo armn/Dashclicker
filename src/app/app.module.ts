@@ -26,17 +26,18 @@ import {
   NbIconModule,
   NbBadgeModule,
   NbDialogRef,
-  NbDialogConfig
+  NbDialogConfig,
+  NbAlertModule,
 } from "@nebular/theme";
 import { NbEvaIconsModule } from "@nebular/eva-icons";
 import { AppRoutingModule } from "./app-routing.module";
 
-import { AngularFireModule } from "@angular/fire";
-import { AngularFirestoreModule } from "@angular/fire/firestore";
-import { AngularFireAuthModule } from "@angular/fire/auth";
-import { AngularFireAnalyticsModule } from "@angular/fire/analytics";
-import * as firebase from "firebase";
-import "firebase/firestore";
+// import { AngularFireModule } from "@angular/fire";
+// import { AngularFirestoreModule } from "@angular/fire/firestore";
+// import { AngularFireAuthModule } from "@angular/fire/auth";
+// import { AngularFireAnalyticsModule } from "@angular/fire/analytics";
+// import * as firebase from "firebase";
+// import "firebase/firestore";
 
 import { ClicksComponent } from "./clicks/clicks.component";
 import { ClickItemComponent } from "./clicks/click-item/click-item.component";
@@ -52,13 +53,13 @@ import { ProjectsComponent } from "./projects/projects.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { OrdersComponent } from "./orders/orders.component";
 
-import { environment } from "../environments/environment";
-import { LoginComponent } from "./wallet/login/login.component";
-import { RegisterComponent } from "./wallet/register/register.component";
+// import { environment } from "../environments/environment";
+// import { LoginComponent } from "./wallet/login/login.component";
+// import { RegisterComponent } from "./wallet/register/register.component";
 import { AssetsComponent } from "./assets/assets.component";
 import { BoostsComponent } from "./boosts/boosts.component";
 import { HelpComponent } from "./help/help.component";
-import { CompaniesComponent } from './companies/companies.component';
+// import { CompaniesComponent } from "./companies/companies.component";
 
 @NgModule({
   declarations: [
@@ -75,12 +76,10 @@ import { CompaniesComponent } from './companies/companies.component';
     TradingComponent,
     ProjectsComponent,
     OrdersComponent,
-    LoginComponent,
-    RegisterComponent,
     AssetsComponent,
     BoostsComponent,
     HelpComponent,
-    CompaniesComponent
+    // CompaniesComponent,
   ],
   imports: [
     BrowserModule,
@@ -110,12 +109,13 @@ import { CompaniesComponent } from './companies/companies.component';
     NbMenuModule.forRoot(),
     NbIconModule,
     NbBadgeModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule,
-    AngularFireAuthModule,
-    AngularFireAnalyticsModule
+    NbAlertModule,
+    // AngularFireModule.initializeApp(environment.firebase),
+    // AngularFirestoreModule,
+    // AngularFireAuthModule,
+    // AngularFireAnalyticsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

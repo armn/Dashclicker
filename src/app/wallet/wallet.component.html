@@ -1,62 +1,57 @@
 <nb-card status="warning" size="small">
   <nb-card-header
     >Wallet
-    <span *ngIf="this.user && this.user.name"> ({{ this.user.name }}) </span>
     <nb-icon
       icon="question-mark"
-      nbTooltip="Creating an account will allow you to to save your progress betweeen games."
+      nbTooltip="Wallet is where you store your clicks, visits, views, reads, shares, downloads, money and crypto."
       class="text-right"
     ></nb-icon>
   </nb-card-header>
-  <nb-card-body *ngIf="!this.fb.user">
+  <!-- <nb-card-body *ngIf="!this.fb.user">
     <nb-tabset fullWidth>
       <nb-tab tabTitle="Login"> <app-login></app-login></nb-tab>
       <nb-tab tabTitle="Register"> <app-register></app-register></nb-tab>
     </nb-tabset>
-  </nb-card-body>
-  <nb-card-body *ngIf="this.fb.user">
-    <div class="load" *ngIf="!this.user">
+  </nb-card-body> -->
+  <nb-card-body *ngIf="this.user">
+    <!-- <div class="load" *ngIf="!this.user">
       <button nbButton status="primary" (click)="wallet()">
         Load wallet
-      </button>
-    </div>
+      </button> -->
+    <!-- </div> -->
     <div *ngIf="this.user">
       <div class="row">
         <div class="col-auto col-sm-8">
           <ul class="wallet">
             <li>
-              <span>{{ this.user.clicks | numbers }}</span
-              >/{{ this.user.clicksMax | numbers }}
-              <small>clicks</small>
+              <span>{{ this.user.clicks | numbers }}</span>
+              <small> clicks</small>
             </li>
             <li>
-              <span>{{ this.user.visits | numbers }}</span
-              >/{{ this.user.visitsMax | numbers }}
+              <span>{{ this.user.visits | numbers }}</span>
               <small> visits</small>
             </li>
             <li>
-              <span>{{ this.user.views | numbers }}</span
-              >/{{ this.user.viewsMax | numbers }} <small> views</small>
+              <span>{{ this.user.views | numbers }}</span> <small> views</small>
             </li>
             <li>
-              <span>{{ this.user.reads | numbers }}</span
-              >/{{ this.user.readsMax | numbers }} <small> reads</small>
+              <span>{{ this.user.reads | numbers }}</span> <small> reads</small>
             </li>
             <li>
-              <span>{{ this.user.shares | numbers }}</span
-              >/{{ this.user.sharesMax | numbers }} <small> shares</small>
+              <span>{{ this.user.shares | numbers }}</span>
+              <small> shares</small>
             </li>
             <li>
               <span>{{ this.user.downloads | numbers }}</span
-              >/{{ this.user.downloadsMax | numbers }}<small> downloads</small>
+              ><small> downloads</small>
             </li>
             <li>
               <span>{{ this.user.money | numbers }}</span
-              >/{{ this.user.moneyMax | numbers }}<small> money</small>
+              ><small> money</small>
             </li>
             <li>
               <span>{{ this.user.crypto | numbers }}</span
-              >/{{ this.user.cryptoMax | numbers }}<small> crypto</small>
+              ><small> crypto</small>
             </li>
           </ul>
         </div>
@@ -115,10 +110,10 @@
           class="reload"
           (click)="reload()"
           [disabled]="loading"
-          nbTooltip="This will deposit your assets and start a new run (a way to advance in the game)"
+          nbTooltip="This will start a new run - it's a way to advance in the game"
         >
           <span>New run</span>
-          <nb-icon [icon]="reloading ? 'checkmark' : 'refresh'"></nb-icon>
+          <nb-icon [icon]="reloading ? 'checkmark' : 'skip-forward'"></nb-icon>
         </button>
 
         <button
@@ -141,14 +136,14 @@
           <nb-icon icon="arrow-down"></nb-icon>
         </button>
 
-        <nb-action
+        <!-- <nb-action
           icon="log-out"
           status="primary"
           (click)="logout()"
           nbTooltip="Log out"
           class="ml-2 logout"
         >
-        </nb-action>
+        </nb-action> -->
       </div>
       <div class="deposit-warning text-danger text-right">
         <small>Remember to deposit before exiting the game!</small>
