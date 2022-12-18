@@ -27,7 +27,7 @@ export class MarketComponent implements OnInit {
   constructor(public market: MarketService) {}
 
   ngOnInit() {
-    this.market.generateOrder();
+    // this.market.generateOrder();
   }
 
   generateOrder() {
