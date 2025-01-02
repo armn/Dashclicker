@@ -2,7 +2,6 @@
 
 .logo {
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-
   span {
     font-family: "Bahnschrift";
     font-weight: normal;
@@ -28,4 +27,16 @@
   justify-content: space-between;
   width: 100%;
   align-items: center;
+  flex-direction: row;
+}
+.alert {
+  text-align: center;
+  background: white;
+  outline: 1px solid black;
+  margin: 5px;
+  padding: 5px;
+  p {
+    margin: 0;
+    padding: 0;
+  }
 }
