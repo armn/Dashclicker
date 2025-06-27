@@ -25,18 +25,19 @@
 .header-container {
   display: flex;
   justify-content: space-between;
-  width: 100%;
+  width: 100vw;
   align-items: center;
   flex-direction: row;
+  gap: 1rem;
 }
-.alert {
-  text-align: center;
-  background: white;
-  outline: 1px solid black;
-  margin: 5px;
-  padding: 5px;
-  p {
-    margin: 0;
-    padding: 0;
-  }
-}
+// .alert {
+//   text-align: center;
+//   background: white;
+//   outline: 1px solid black;
+//   margin: 5px;
+//   padding: 5px;
+//   p {
+//     margin: 0;
+//     padding: 0;
+//   }
+// }
